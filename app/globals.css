@@ -3,6 +3,84 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #1E45A2;
+  --secondary: #30B6F9;
+  --color-light-gray: #626262;
+  --color-f5f5: #F5F5F5;
+  --color-paragraph: #464646;
+  --cmn-border-color: #cccccc;
+  --text-12: clamp(0.60rem, 1.2vw + 0.35rem, 12px);
+  --text-13: clamp(0.65rem, 1.4vw + 0.4rem, 13px);
+  --text-14: clamp(0.70rem, 1.6vw + 0.4rem, 14px);
+  --text-16: clamp(0.80rem, 2vw + 0.4rem, 16px);
+  --text-18: clamp(0.90rem, 2.3vw + 0.45rem, 18px);
+  --text-19: clamp(0.95rem, 1.4vw + 0.1rem, 19px);
+  --text-20: clamp(1rem, 2.8vw + 0.45rem, 20px);
+  --text-24: clamp(1.20rem, 3vw + 0.5rem, 24px);
+  --text-26: clamp(1.25rem, 3.4vw + 0.5rem, 26px);
+  --text-28: clamp(1.3rem, 3.6vw + 0.5rem, 28px);
+  --text-29: clamp(1.35rem, 3.8vw + 0.5rem, 29px);
+  --text-32: clamp(1.36rem, 4vw + 0.5rem, 32px);
+  --text-36: clamp(1.60rem, 4.2vw + 0.5rem, 36px);
+  --text-40: clamp(1.70rem, 4.5vw + 0.5rem, 40px);
+  --text-45: clamp(1.80rem, 5vw + 0.5rem, 45px);
+  --text-48: clamp(1.85rem, 5.2vw + 0.5rem, 48px);
+  --text-60: clamp(1.9rem, 3vw + 0.5rem, 60px);
+  --text-70: clamp(2.20rem, 4vw + 0.1rem, 70px);
+
+  --spacing-30px: clamp(0.75rem, 1.5vw + 0.5rem, 30px);
+  --spacing-35px: clamp(0.875rem, 1.5vw + 0.5rem, 35px);
+  --spacing-50px: clamp(1.4rem, 10vw + 0.1em, 50px);
+}
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-xs: 550px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1360px;
+  --breakpoint-3xl: 1680px;
+}
+
+@utility container {
+  @apply mx-auto px-[15px];
+
+  /* Set custom max-widths at each breakpoint */
+  max-width: 100%;
+
+  @media (width >=550px) {
+    max-width: 520px;
+  }
+
+  @media (width >=640px) {
+    max-width: 610px;
+  }
+
+  @media (width >=768px) {
+    max-width: 738px;
+  }
+
+  @media (width >=900px) {
+    max-width: 850px;
+  }
+
+  @media (width >=1024px) {
+    max-width: 1000px;
+  }
+
+  @media (width >=1200px) {
+    max-width: 1100px;
+  }
+
+  @media (width >=1360px) {
+    max-width: 1300px;
+  }
+
+  @media (width >=1680px) {
+    max-width: 1650px;
+  }
 }
 
 @theme inline {
@@ -10,6 +88,34 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+
+  --text-12: var(--text-12);
+  --text-13: var(--text-13);
+  --text-14: var(--text-14);
+  --text-16: var(--text-16);
+  --text-18: var(--text-18);
+  --text-19: var(--text-19);
+  --text-20: var(--text-20);
+  --text-24: var(--text-24);
+  --text-26: var(--text-26);
+  --text-28: var(--text-28);
+  --text-29: var(--text-29);
+  --text-32: var(--text-32);
+  --text-36: var(--text-36);
+  --text-40: var(--text-40);
+  --text-45: var(--text-45);
+  --text-48: var(--text-48);
+  --text-60: var(--text-60);
+  --text-70: var(--text-70);
+
+  --color-light-gray: var(--color-light-gray);
+  --color-paragraph: var(--color-paragraph);
+
+  --spacing-30px: var(--spacing-30px);
+  --spacing-35px: var(--spacing-35px);
+  --spacing-50px: var(--spacing-50px);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +129,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  @apply px-[15px] mx-auto;
 }
