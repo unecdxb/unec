@@ -5,10 +5,13 @@
   --foreground: #171717;
   --primary: #fc1312;
   --secondary: #000000;
+  --bg-light: #f5f5f5;
   --color-light-gray: #626262;
   --color-f5f5: #F5F5F5;
   --color-paragraph: #464646;
   --cmn-border-color: #cccccc;
+
+  --font-suisse-intl: "SuisseIntl", sans-serif;
   --text-12: clamp(0.60rem, 1.2vw + 0.35rem, 12px);
   --text-13: clamp(0.65rem, 1.4vw + 0.4rem, 13px);
   --text-14: clamp(0.70rem, 1.6vw + 0.4rem, 14px);
@@ -88,8 +91,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-suisse-intl: var(--font-suisse-intl);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-light: var(--bg-light);
 
   --text-12: var(--text-12);
   --text-13: var(--text-13);
@@ -130,6 +135,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 .container {
   @apply px-[15px] mx-auto;
@@ -172,8 +178,12 @@ body {
 
 /* CARD STYLES (optional) */
 .nws-card {
-  border: 1px solid black;
+  border: 1px solid #f0f0f0;
   color: black;
+  position: relative;
+  a{
+    @apply text-primary;
+  }
 }
 
 .img-box img {
@@ -181,6 +191,63 @@ body {
   height: 100%;
   object-fit: cover;
 }
-.nws-content {
-  
+.nws-card:first-child .nws-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  @apply p-4 xl:p-8;
+  h3 {
+    grid-column: 1/4;
+    grid-row: span 2;
+
+    @apply text-26 font-bold;
+  }
+
+  p {
+    grid-column: 4/5;
+    grid-row: 1/2;
+    text-align: right;
+  }
+
+  a {
+    grid-column:4/5;
+    grid-row: 2/3;
+    text-align: right;
+    font-weight: 600;
+  }
+}
+.nws-card:first-child .img-box img {
+  height: 550px;
+}
+.nws-card:not(:first-child) .img-box {
+  @apply h-full flex relative;
+  /* border-radius: 10px; */
+  .overlay{
+    @apply absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10;
+  } 
+}
+.nws-card:not(:first-child) .img-box img {
+  @apply h-full flex;
+  /* border-radius: 10px; */
+}
+.nws-card:not(:first-child) .nws-content {
+  @apply absolute top-0 left-0 w-full h-full z-10 p-4 xl:p-8 flex flex-col;
+  h3 {
+    @apply text-white order-2 text-24 font-bold mt-4;
+  }
+  p {
+    @apply text-white order-1 bg-secondary px-4 py-2 w-fit text-14;
+  }
+  a {
+    @apply order-3 mt-auto ml-auto bg-primary text-white px-4 py-2;
+  }
+}
+
+.sp-py{
+  @apply py-16 xl:py-20 2xl:py-24;
+}
+.sp-pt{
+  @apply pt-16 xl:pt-20 2xl:pt-24;
+}
+.sp-pb{
+  @apply pb-16 xl:pb-20 2xl:pb-24;
 }

@@ -86,7 +86,7 @@ const Hero = () => {
               <div ref={containerRef} className="container h-screen mx-auto px-4">
                 <div className="relative z-20 h-full flex flex-col justify-end gap-5 pb-[10%]">
                   <h2
-                    className={`text-white text-5xl md:text-6xl lg:text-7xl max-w-3xl font-bold transition-all duration-1000 ease-out ${activeIndex === index
+                    className={`text-white text-5xl md:text-6xl lg:text-7xl max-w-3xl font-normal transition-all duration-1000 ease-out font-suisse-intl ${activeIndex === index
                         ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-12'
                       }`}

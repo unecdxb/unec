@@ -43,6 +43,7 @@ const CompanyProfile = () => {
           </div>
         </div>
       </div>
+      
     </section>
    );
 }
