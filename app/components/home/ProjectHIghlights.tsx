@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { StaticImageData } from "next/image";
+import SubTitle from "../common/SubTitle";
 interface ProjectHIghlightsProps {
   data: {
     title: string;
@@ -14,14 +15,10 @@ interface ProjectHIghlightsProps {
 
 const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
   return (
-    <section className="py-10 xl:py-16 2xl:py-20 bg-amber-50">
+    <section className="sp-py bg-light">
       <div className="container">
-        <div className="inline-block  mb-6 xl:mb-12">
-          <h2 className="text-2xl md:text-5xl font-bold mb-4  text-black">
-            {data.title}
-          </h2>
-          <div className="h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent" />
-        </div>
+       
+        <SubTitle title={data.title} mClass="mb-6 xl:mb-12" titleColor="text-black" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {
             data.items.map((item, index) => (
