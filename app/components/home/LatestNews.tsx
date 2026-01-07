@@ -13,7 +13,7 @@ interface Props {
 
 const LatestNews = ({data}: Props) => {
   return ( 
-    <section className="sp-py ">
+    <section className="sp-py border boder-b border-gray-100">
       <div className="container">
      
         <SubTitle title="Latest on [UNEC]" mClass="mb-6 xl:mb-12" titleColor="text-black " />
