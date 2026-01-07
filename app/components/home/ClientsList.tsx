@@ -14,7 +14,7 @@ interface dataProps{
 
 const ClientsList = ({data}: dataProps) => {
   return ( 
-    <section className="sp-py border boder-t border-gray-300">
+    <section className="sp-py ">
       <div className="container">
         <SubTitle title="Clients" titleColor="text-black" mClass="mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-l border-t border-black/10">
