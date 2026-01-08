@@ -3,7 +3,7 @@ import { aboutUsData } from "./data";
 import Image from "next/image";
 const AwardsRecognitions = () => {
   return ( 
-    <section className="sp-py relative">
+    <section className="sp-py relative" id="awards-recognition">
       <Image src="/assets/images/about-us/awards_bg.png" alt="Awards" width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0 z-0" />
       <div className="container relative z-10 text-white">
         <SubTitle title="Awards & Recognitions" mClass="mb-4 xl:mb-12" />

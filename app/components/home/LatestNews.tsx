@@ -21,8 +21,8 @@ const LatestNews = ({data}: Props) => {
      
         <SubTitle title="Latest on [UNEC]" mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block">
-          {latestThreeNews.map(news=>(
-            <div className="nws-card">
+          {latestThreeNews.map((news,index)=>(
+            <div className="nws-card" key={index}>
               <div className="img-box">
                 <Image src={news.image} alt="" width={1200} height={600} className="w-full object-cover" />
                 <div className="overlay"></div>
