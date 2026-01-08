@@ -2,7 +2,7 @@ import Image from "next/image";
 import SubTitle from "../common/SubTitle";
 const ChairmanMsg = () => {
     return ( 
-      <section className="sp-py bg-light">
+      <section className="sp-py bg-light" id="chairman-message">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-20 items-stretch">
             <div>
@@ -15,7 +15,7 @@ const ChairmanMsg = () => {
                   className="w-full h-full object-cover"
                   style={{
                     clipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 75% 83%, 75% 100%, 61% 84%, 0 84%);",
-                    WebkitClipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 75% 83%, 75% 100%, 61% 84%, 0 84%);"
+                    WebkitClipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 75% 83%, 75% 100%, 61% 84%, 0 84%)"
                   }}
                 />
               </div>

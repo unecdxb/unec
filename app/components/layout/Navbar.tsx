@@ -14,11 +14,11 @@ const Navbar = () => {
             <nav>
               <ul className="flex gap-5">
                 <li><Link href="/" className="text-white uppercase">Home</Link></li>
-                <li><Link href="/about" className="text-white uppercase">About Us</Link></li>
+                <li><Link href="/about-us" className="text-white uppercase">About Us</Link></li>
                 <li><Link href="/projects" className="text-white uppercase">Projects</Link></li>
                 <li><Link href="/news" className="text-white uppercase">News</Link></li>
                 <li><Link href="/careers" className="text-white uppercase">Careers</Link></li>
-                <li><Link href="/contact" className="text-white uppercase">Contact Us</Link></li>
+                <li><Link href="/contact-us" className="text-white uppercase">Contact Us</Link></li>
                 <li><Link href="/downloads" className="text-white uppercase">Downloads</Link></li>
               </ul>
             </nav>

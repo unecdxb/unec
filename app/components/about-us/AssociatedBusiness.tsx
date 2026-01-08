@@ -2,7 +2,7 @@ import SubTitle from "../common/SubTitle";
 import Image from "next/image";
 const AssociatedBusiness = () => {
   return ( 
-    <section className="sp-py">
+    <section className="sp-py" id="associated-business">
       <div className="container">
         <SubTitle title="Associated Business" mClass="mb-4 xl:mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-20 items-center bg-light p-6 xl:p-10">

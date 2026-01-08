@@ -5,7 +5,7 @@ import { GoLog } from "react-icons/go";
 import { BsHouseCheck } from "react-icons/bs";
 const OurValue = () => {
   return ( 
-    <section className="sp-py bg-light">
+    <section className="sp-py bg-light" id="our-values">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-[4fr_6fr] pb-10 md:pb-16 lg:pb-20 xl:pb-24 border-b border-gray-300">
           <div>

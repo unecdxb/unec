@@ -3,7 +3,7 @@ import Image from "next/image";
 import { aboutUsData } from "./data";
 const ExecutiveCommitteeLIst = () => {
   return ( 
-    <section className="sp-py">
+    <section className="sp-py" id="executive-committee">
       <div className="container">
         <SubTitle title="Executive Committee" mClass="mb-4 xl:mb-12" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-2 xl:gap-x-3 gap-y-12">

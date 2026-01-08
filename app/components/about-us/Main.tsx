@@ -15,12 +15,12 @@ const Main = () => {
             <p className="text-19">With proven ability in delivering highly acclaimed projects, we continue to partner with prominent real estate developers to shaping cities and building tomorrows skylines, today.
               [UNEC] is a renowned General Contracting Company headquartered in Dubai, United Arab Emirates. Established in 1976, the company boasts a portfolio spanning local and regional markets, exhibiting our extensive experience across the construction industry.</p>
               <div className="mt-6 flex items-center flex-wrap gap-4">
-                <Link href="/about-us" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Chairman Message</span></Link>
-                <Link href="/about-us" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Executive Committee</span></Link>
-                <Link href="/about-us" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Our Values</span></Link>
-                <Link href="/about-us" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Awards & Recognition</span></Link>
-                <Link href="/about-us" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Associated Business</span></Link>
-                <Link href="/about-us" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">QHSE</span></Link>
+                <Link href="#chairman-message" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Chairman Message</span></Link>
+                <Link href="#executive-committee" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Executive Committee</span></Link>
+                <Link href="#our-values" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Our Values</span></Link>
+                <Link href="#awards-recognition" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Awards & Recognition</span></Link>
+                <Link href="#associated-business" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Associated Business</span></Link>
+                <Link href="#qhse" className="text-white bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">QHSE</span></Link>
               </div>
           </div>
         </div>

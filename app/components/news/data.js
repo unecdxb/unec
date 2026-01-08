@@ -21,7 +21,7 @@ export const NewsData = {
     {
       title: "[UNEC] 2022 Iftar",
       description: ["Eng. Abdulhalim Muwahid the Chairman of [UNEC], Hosts Ramadan 2022 Iftar Party to Celebrate The Holy Month With the Team"],
-      image: "/assets/images/news/nws3.jpg",
+      image: "/assets/images/news/nws-4.jpg",
       date: "2022-04-30"
     },
     {

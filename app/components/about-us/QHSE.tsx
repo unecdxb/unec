@@ -3,7 +3,7 @@ import SubTitle from "../common/SubTitle";
 import { aboutUsData } from "./data";
 const QHSE = () => {
   return (
-    <section className="border-t border-gray-300 sp-py">
+    <section className="border-t border-gray-300 sp-py" id="qhse">
       <div className="container">
         <SubTitle title="QHSE" mClass="mb-4 xl:mb-12" />
         <div className="qhse-grid">
