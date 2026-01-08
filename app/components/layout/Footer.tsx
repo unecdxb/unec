@@ -21,7 +21,6 @@ const Footer = () => {
     { icon: FaInstagram, href: '#', label: 'Instagram' },
     { icon: FaYoutube, href: '#', label: 'YouTube' },
     { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-    { icon: IoLogoWhatsapp, href: '#', label: 'WhatsApp' },
     { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
   ];
 
