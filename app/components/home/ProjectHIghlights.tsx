@@ -24,7 +24,7 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
             data.items.map((item, index) => (
               <div key={index} className="group relative overflow-hidden">
                 <div className="overflow-hidden">
-                  <Image src={item.image} alt="" width={500} height={500} className="group-hover:scale-110 transition-all duration-300" />
+                  <Image src={item.image} alt="" width={1200} height={1200} className="w-full h-[250px] xl:h-[350px] object-cover group-hover:scale-110 transition-all duration-300" />
                 </div>
                 <div className="absolute bottom-[-100%] left-0 right-0 p-4 bg-gradient-to-r from-black via-red-500 to-transparent group-hover:bottom-0 transition-all duration-500">
                   <h2 className="text-white text-2xl">{item.title}</h2>

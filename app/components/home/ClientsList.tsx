@@ -21,7 +21,7 @@ const ClientsList = ({data}: dataProps) => {
           {
             data.items.map((client,index)=>(
               <div key={index} className="w-full h-[218px] border-r border-b border-black/10 flex items-center justify-center overflow-hidden group">
-                <Image src={client.image} alt={client.alt} width={350} height={218} className="w-[250px] h-[145px] object-contain group-hover:scale-110 transition-all duration-300" />
+                <Image src={client.image} alt={client.alt} width={350} height={218} className="w-[250px] h-[145px] xl:w-[280px] xl:h-[200px] object-contain group-hover:scale-110 transition-all duration-300" />
               </div>
             ))
           }
