@@ -5,19 +5,19 @@ const CompanyProfile = () => {
     { end: 1976, label: 'Establishment Year', suffix: '' },
     { end: 48, label: 'Years of Dedication', suffix: '' },
     { end: 11000, label: 'Workforce', suffix: '' },
-    { end: 11, label: 'Billions AED Current Projects', suffix: 'B' },
+    { end: 11, label: 'Billions AED Current Projects', suffix: '' },
     { end: 341, label: 'Projects Completed', suffix: '' },
     { end: 21, label: 'On-Going Projects', suffix: '' },
   ];
   return ( 
     <section className="py-16">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-20">
-          <div className="flex flex-col">
-           <div className="space-y-4 font-medium">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.5fr_1.2fr] gap-6 xl:gap-20">
+          <div className="flex flex-col justify-between">
+           <div className="space-y-4 font-medium ">
        
-              <p className="text-24">[<span className="text-primary"> UNEC </span> ] is a multi-award winning general contracting company with more than 40 years of expertise in the region.</p>
-              <p className="text-24">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</p>
+              <p className="text-20">[<span className="text-primary"> UNEC </span> ] is a multi-award winning general contracting company with more than 40 years of expertise in the region.</p>
+              <p className="text-20">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</p>
            </div>
             {/* <button className="bg-black text-white px-4 py-2 mt-auto w-fit">Corporate Profile</button> */}
             <div className="w-fit mt-16 text-center">
@@ -29,7 +29,7 @@ const CompanyProfile = () => {
             </div>
           </div>
           <div>
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid grid-cols-2 gap-[2px]">
               {stats.map((stat, index) => (
                 <MechanicalCounter
                   key={index}

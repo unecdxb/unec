@@ -12,6 +12,9 @@
   width: auto !important;
   text-align: left !important;
   margin-bottom: 3em;
+  @media (min-width: 1400px) {
+    margin-bottom: 4em;
+  }
 }
 
 .swiper-pagination-bullet-custom {
