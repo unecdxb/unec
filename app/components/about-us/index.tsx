@@ -7,10 +7,11 @@ import MVV from "./MVV";
 import OurValue from "./OurValue";
 import AwardsRecognitions from "./AwardsRecognitions";
 import AssociatedBusiness from "./AssociatedBusiness";
+import QHSE from "./QHSE";
 const Index = () => {
   return ( 
     <main className="min-h-screen">
-     <PageBnr />
+     <PageBnr title="About Us" image="/assets/images/about-us/bnr.jpg" />
      <Main />
      <MVV />
      <ChairmanMsg />
@@ -18,6 +19,7 @@ const Index = () => {
      <OurValue />
      <AwardsRecognitions />
      <AssociatedBusiness />
+     <QHSE />
     </main>
    );
 }

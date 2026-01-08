@@ -70,7 +70,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
           return (
             <li key={index} className="flex items-center">
               {index > 0 && (
-                <MdOutlineKeyboardArrowRight className="text-black mx-1" size={20} />
+                <MdOutlineKeyboardArrowRight className="text-primary mx-1" size={20} />
               )}
               {isLast ? (
                 <span className="text-sm font-medium text-white opacity-100">
