@@ -5,7 +5,7 @@
   --foreground: #171717;
   --primary: #fc1312;
   --secondary: #000000;
-  --bg-light: #f5f5f5;
+  --light-clr: #f5f5f5;
   --color-light-gray: #626262;
   --color-f5f5: #F5F5F5;
   --color-paragraph: #464646;
@@ -94,7 +94,7 @@
   --font-suisse-intl: var(--font-suisse-intl);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-  --color-light: var(--bg-light);
+  --color-light: var(--light-clr);
 
   --text-12: var(--text-12);
   --text-13: var(--text-13);
@@ -125,8 +125,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #000000;
   }
 }
 
@@ -250,4 +250,24 @@ body {
 }
 .sp-pb{
   @apply pb-16 xl:pb-20 2xl:pb-24;
+}
+.sp-my{
+  @apply my-16 xl:my-20 2xl:my-24;
+}
+
+.qhse-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 2px;
+
+  .qhse-item{
+    @apply p-4 xl:p-8 bg-light;
+  }
+
+  .qhse-item:last-child{
+   grid-column: span 3;
+   p{
+    @apply max-w-[47%]
+   }
+  }
 }

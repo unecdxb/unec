@@ -5,20 +5,23 @@ import SubTitle from "../common/SubTitle";
 interface Props {
     data:{
         title:string,
-        description:string,
         image:string | StaticImageData,
         date:string
     }[]
 }
 
 const LatestNews = ({data}: Props) => {
+  // Sort by date (newest first) and take only the first 3
+  const latestThreeNews = [...data]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
   return ( 
     <section className="sp-py border boder-b border-gray-100">
       <div className="container">
      
         <SubTitle title="Latest on [UNEC]" mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block">
-          {data.map(news=>(
+          {latestThreeNews.map(news=>(
             <div className="nws-card">
               <div className="img-box">
                 <Image src={news.image} alt="" width={1200} height={600} className="w-full object-cover" />
