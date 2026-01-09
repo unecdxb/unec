@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="pt-12 bg-black text-white font-suisse-intl">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[2fr_1fr_1fr_1fr] gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-2 xl:grid-cols-[2fr_1fr_1fr_1fr] gap-8">
           <div>
             <div className="mb-4 md:mb-6 lg:mb-12">
               <Image src="/assets/images/logo-footer.png" alt="" width={489} height={149} className="w-auto h-[70px]" />

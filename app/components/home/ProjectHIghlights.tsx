@@ -20,7 +20,7 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
       <div className="container">
        
         <SubTitle title={data.title} mClass="mb-6 xl:mb-12" titleColor="text-black" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 xl:gap-6">
           {
             data.items.map((item, index) => (
               <div key={index} className="group relative overflow-hidden">
@@ -37,8 +37,8 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
             ))
           }
         </div>
-        <div className="max-w-7xl xl:min-w-[50%] w-full mx-auto mt-4 xl:mt-16 text-center">
-          <Link href="projects" className="group relative px-4 xl:px-8 py-1 xl:py-4 bg-black font-light  text-white text-16 xl:text-lg tracking-wider overflow-hidden transition-all duration-300 
+        <div className="max-w-7xl xl:min-w-[50%] w-full mx-auto mt-8 xl:mt-16 text-center">
+          <Link href="projects" className="group relative px-4 md:px-6 xl:px-8 py-2 md:py-3 xl:py-4 bg-black font-light  text-white text-16 xl:text-lg tracking-wider overflow-hidden transition-all duration-300 
           hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105 cursor-pointer">
             <span className="relative z-10">View All Projects</span>
             <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />

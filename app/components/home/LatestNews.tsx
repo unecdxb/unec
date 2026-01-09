@@ -28,7 +28,7 @@ const LatestNews = ({data}: Props) => {
                 <div className="overlay"></div>
               </div>
               <div className="nws-content">
-                <h3 className="font-light lg:font-semibold xl:font-bold">{news.title}</h3>
+                <h3 className="font-light">{news.title}</h3>
                 <p className="">{news.date}</p>
                 <Link href="#">Read More</Link>
               </div>
