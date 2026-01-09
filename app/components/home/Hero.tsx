@@ -102,7 +102,7 @@ const Hero = () => {
                   >
                     {slide.description}
                   </p>
-                  <Link href="#" className={`relative bg-transparent text-white px-4 py-2 xl:px-8 xl:py-3 font-light  w-fit overflow-hidden border-2 border-white text-sm uppercase transition-all duration-700 ease-out group ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '700ms' : '0ms' }}>
+                  <Link href="#" className={`relative bg-transparent text-white px-4 py-2 xl:px-8 xl:py-3 font-light w-fit overflow-hidden border-2 border-white text-xs xl:text-sm uppercase transition-all duration-700 ease-out group ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '700ms' : '0ms' }}>
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
                       {slide.button}
                     </span>

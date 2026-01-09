@@ -76,11 +76,11 @@ const MechanicalCounter: React.FC<CounterProps> = ({ end, duration = 2, label, s
       <div className="absolute inset-0 bg-gradient-to-br from-white-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10">
         <div className="flex items-baseline justify-center mb-2 xl:mb-4">
-          <span className="text-xl xl:text-4xl">[</span>
-          <span className="text-lg xl:text-3xl font-bold text-primary tracking-tight">
+          <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl">[</span>
+          <span className="text-lg xs:text-xl lg:text-2xl xl:text-3xl font-bold text-primary tracking-tight">
             {formatNumber(count)}
           </span>
-          <span className="text-xl xl:text-4xl">]</span>
+          <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl">]</span>
           {suffix && (
             <span className="text-lg font-bold text-red-500 ml-1">
               {suffix}
@@ -90,7 +90,7 @@ const MechanicalCounter: React.FC<CounterProps> = ({ end, duration = 2, label, s
 
         <div className="text-center">
           <div className="inline-block px-0 xl:px-4 py-1 xl:py-1.5">
-            <p className="text-xs lg:text-sm font-light lg:font-semibold  uppercase tracking-wider text-black/70">
+            <p className="text-xs lg:text-sm font-normal xl:font-semibold  uppercase tracking-wider text-black xl:text-black/70">
               {label}
             </p>
           </div>

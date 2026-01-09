@@ -219,17 +219,17 @@ body {
 .nws-card:first-child .nws-content {
   display: grid;
   @apply p-4 xl:p-8;
-
   h3 {
-    @apply text-20 xl:text-26;
+    @apply text-20 xl:text-26 order-2;
   }
-
-  p {
-    text-align: right;
+  .news-date {
+    @apply flex items-center gap-2 text-white text-sm mb-3 bg-black px-4 py-2 w-fit rounded-sm;
   }
-
+  .news-date p {
+    text-align: right ;
+  }
   a {
-    @apply font-light text-16 hover:bg-light hover:text-black transition-all duration-300 mt-4;
+    @apply font-light text-16 hover:bg-light border border-transparent hover:border-black hover:text-black transition-all duration-300 mt-4 order-1;
   }
 }
 
@@ -241,7 +241,7 @@ body {
   height: 250px;
 
   @media (width >=1024px) {
-    height: 550px;
+    height: 350px;
   }
 }
 
@@ -269,20 +269,22 @@ body {
   h3 {
     @apply text-white order-2 text-24 mt-4 max-w-[35ch];
   }
-
-  p {
-    @apply text-white order-1 bg-secondary px-4 py-2 w-fit text-14;
+ .news-date {
+   @apply flex items-center gap-2 text-white text-sm mb-3 w-fit rounded-sm p-0;
+ }
+  .news-date  p{
+    @apply text-white text-sm w-fit text-14;
   }
 
   a {
-    @apply order-3 text-16 mt-auto ml-auto bg-primary text-white px-4 py-2 hover:bg-light hover:text-black transition-all duration-300;
+    @apply order-3 text-16 mt-auto w-fit bg-transparent border-2 border-white text-white px-4 py-2 hover:bg-light hover:text-black transition-all duration-300;
   }
 }
 
 @media (min-width: 1024px) {
   .nws-card:first-child .nws-content {
     grid-template-columns: repeat(4, 1fr);
-    @apply p-4 xl:p-8;
+    @apply p-4 xl:px-8 xl:pt-8 xl:pb-12 gap-2 xl:gap-4;
 
     h3 {
       grid-column: 1/4;
@@ -290,19 +292,19 @@ body {
     }
 
     p {
-      grid-column: 4/5;
+      grid-column: 1;
       grid-row: 1/2;
-      text-align: right;
-      @apply bg-secondary px-4 py-2 text-white w-fit ml-auto h-fit;
+      text-align: left;
+      @apply bg-secondary px-4 py-2 text-white w-fit h-fit;
     }
 
     a {
       grid-column: 4/5;
-      grid-row: 2/3;
+      grid-row: 3/4;
       text-align: right;
       font-weight: 300;
-      @apply text-16 bg-primary text-white px-4 py-2 w-fit h-fit ml-auto;
-    }
+      @apply text-16 bg-primary text-white px-4 py-2 w-fit h-fit mt-auto ml-auto;   
+     }
   }
 
   .nws-card:first-child .img-box img {
