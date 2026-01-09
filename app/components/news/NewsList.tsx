@@ -70,10 +70,7 @@ const NewsList = () => {
         <div className="bg-black/10 rounded-2xl shadow-sm border border-gray-100 p-4 mb-8">
           <div className="flex flex-wrap gap-3">
             {years.map((year) => (
-              <button
-                key={year}
-                onClick={() => setSelectedYear(year)}
-                className={`
+              <button key={year} onClick={() => setSelectedYear(year)} className={`
                   px-6 py-2.5 rounded-xl font-medium transition-all duration-300
                   ${selectedYear === year
                     ? "bg-black text-white shadow-lg scale-105"
@@ -88,24 +85,12 @@ const NewsList = () => {
         </div>
 
         {/* News Grid */}
-        <div
-          ref={newsGridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
           {sortedNews.map((news, index) => (
-            <div
-              key={index}
-              className="news-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer"
-            >
+            <div key={index} className="news-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer" >
               {/* Image Container */}
               <div className="relative h-[220px] xl:h-[260px] overflow-hidden">
-                <Image
-                  src={news.image}
-                  alt={news.title}
-                  width={1200}
-                  height={600}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                <Image src={news.image} alt={news.title} width={1200} height={600} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Year Badge */}

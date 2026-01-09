@@ -77,11 +77,11 @@ export const HomeData = {
       alt:"Client1",
     },
     {
-      image:"/assets/images/clients/cli-2.png",
+      image:"/assets/images/clients/cli-2b.png",
       alt:"Client2",
     },
     {
-      image:"/assets/images/clients/cli-3.png",
+      image:"/assets/images/clients/cli-3b.png",
       alt:"Client3",
     },
     {

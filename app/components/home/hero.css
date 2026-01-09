@@ -13,13 +13,16 @@
   text-align: left !important;
   margin-bottom: 1em;
   @media (min-width: 1400px) {
+    margin-bottom: 3em;
+  }
+  @media (min-width: 1600px) {
     margin-bottom: 4em;
   }
 }
 
 .swiper-pagination-bullet-custom {
   width: 2rem;
-  height: 0.25rem;
+  height: 0.1rem;
   border-radius: 0;
   background: rgba(255, 255, 255, 0.5);
   opacity: 1;
