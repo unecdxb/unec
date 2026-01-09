@@ -28,14 +28,29 @@ const LatestNews = ({data}: Props) => {
                 <div className="overlay"></div>
               </div>
               <div className="nws-content">
-                <h3 className="font-bold">{news.title}</h3>
+                <h3 className="font-light lg:font-semibold xl:font-bold">{news.title}</h3>
                 <p className="">{news.date}</p>
                 <Link href="#">Read More</Link>
               </div>
             </div>
           ))}
           <div className="nws-btn">
-            <button className="bg-black text-white w-full py-3">View All News</button>
+            <Link
+              href="news"
+              className="relative overflow-hidden bg-black text-white w-full py-3 text-center font-medium
+             transition-all duration-300 group"
+            >
+              <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
+                View All News
+              </span>
+
+              {/* Hover overlay */}
+              <span
+                className="absolute inset-0 bg-primary translate-y-full
+               transition-transform duration-300 group-hover:translate-y-0"
+              ></span>
+            </Link>
+
           </div>
         </div>
       </div>

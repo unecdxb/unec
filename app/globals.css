@@ -144,37 +144,59 @@ body {
 
 .nws-block {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: 24px;
+
 }
 
 /* FEATURED CARD */
-.nws-card:first-child {
-  grid-column: span 2;
-  grid-row: span 3;
-}
-.nws-card:nth-child(2) {
-  grid-column: 3;
-  grid-row: 1;
-}
 
-.nws-card:nth-child(3) {
-  grid-column: 3;
-  grid-row: 2;
-}
-
-/* RIGHT COLUMN STACK */
-.nws-card:not(:first-child) {
-  grid-column: 3;
-}
 
 /* BUTTON */
 .nws-btn {
-  grid-column: 3;
-  grid-row: 3;
+  width: 100%;
   align-self: center;
   display: flex;
   text-align: center;
+
+}
+
+@media (min-width: 1024px) {
+  .nws-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* FEATURED CARD */
+  .nws-card:first-child {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+
+  .nws-card:nth-child(2) {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .nws-card:nth-child(3) {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  /* RIGHT COLUMN STACK */
+  .nws-card:not(:first-child) {
+    grid-column: 3;
+  }
+
+  /* BUTTON */
+  .nws-btn {
+    grid-column: 3;
+    grid-row: 3;
+    align-self: center;
+    display: flex;
+    text-align: center;
+  }
 }
 
 /* CARD STYLES (optional) */
@@ -182,7 +204,8 @@ body {
   border: 1px solid #f0f0f0;
   color: black;
   position: relative;
-  a{
+
+  a {
     @apply text-primary;
   }
 }
@@ -192,86 +215,132 @@ body {
   height: 100%;
   object-fit: cover;
 }
+
 .nws-card:first-child .nws-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   @apply p-4 xl:p-8;
   h3 {
-    grid-column: 1/4;
-    grid-row: span 2;
+    @media (min-width: 1024px) {
+      grid-column: 1/4;
+      grid-row: span 2;
+    }
 
-    @apply text-26 font-bold;
+    @apply text-20 xl:text-26;
   }
 
   p {
-    grid-column: 4/5;
-    grid-row: 1/2;
+    @media (min-width: 1024px) {
+      grid-column: 4/5;
+      grid-row: 1/2;
+    }
     text-align: right;
   }
 
   a {
-    grid-column:4/5;
-    grid-row: 2/3;
-    text-align: right;
-    font-weight: 600;
+    @apply font-light text-16 hover:bg-light hover:text-black transition-all duration-300;
   }
 }
+
+@media (min-width: 1024px) {
+  .nws-card:first-child .nws-content {
+    grid-template-columns: repeat(4, 1fr);
+    @apply p-4 xl:p-8;
+
+    h3 {
+      grid-column: 1/4;
+      grid-row: span 2;
+    }
+  
+    p {
+      grid-column: 4/5;
+      grid-row: 1/2;
+      text-align: right;
+      @apply bg-secondary px-4 py-2 text-white w-fit ml-auto h-fit;
+    }
+
+    a {
+      grid-column: 4/5;
+      grid-row: 2/3;
+      text-align: right;
+      font-weight: 300;
+      @apply text-16 bg-primary text-white px-4 py-2 w-fit h-fit ml-auto;
+    }
+  }
+
+}
+
 .nws-card:first-child {
   @apply flex flex-col justify-between;
 }
+
 .nws-card:first-child .img-box img {
-  height: 550px;
+  height: 250px;
+
+  @media (width >=1024px) {
+    height: 550px;
+  }
 }
+
 .nws-card:not(:first-child) .img-box {
   @apply h-full flex relative;
+
   /* border-radius: 10px; */
-  .overlay{
+  .overlay {
     @apply absolute top-0 left-0 w-full h-full bg-black opacity-50 z-10;
-  } 
+  }
 }
+
 .nws-card:not(:first-child) .img-box img {
   @apply h-full flex;
   /* border-radius: 10px; */
 }
+
 .nws-card:not(:first-child) .nws-content {
   @apply absolute top-0 left-0 w-full h-full z-10 p-4 xl:p-8 flex flex-col;
+
   h3 {
     @apply text-white order-2 text-24 font-bold mt-4;
   }
+
   p {
     @apply text-white order-1 bg-secondary px-4 py-2 w-fit text-14;
   }
+
   a {
-    @apply order-3 mt-auto ml-auto bg-primary text-white px-4 py-2;
+    @apply order-3 mt-auto ml-auto bg-primary text-white px-4 py-2 hover:bg-light hover:text-black transition-all duration-300;
   }
 }
 
-.sp-py{
-  @apply py-16 xl:py-20 2xl:py-24;
-}
-.sp-pt{
-  @apply pt-16 xl:pt-20 2xl:pt-24;
-}
-.sp-pb{
-  @apply pb-16 xl:pb-20 2xl:pb-24;
-}
-.sp-my{
-  @apply my-16 xl:my-20 2xl:my-24;
+.sp-py {
+  @apply py-10 lg:py-16 xl:py-20 2xl:py-24;
 }
 
-.qhse-grid{
+.sp-pt {
+  @apply pt-10 lg:pt-16 xl:pt-20 2xl:pt-24;
+}
+
+.sp-pb {
+  @apply pb-10 lg:pb-16 xl:pb-20 2xl:pb-24;
+}
+
+.sp-my {
+  @apply my-10 lg:my-16 xl:my-20 2xl:my-24;
+}
+
+.qhse-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
   gap: 2px;
 
-  .qhse-item{
+  .qhse-item {
     @apply p-4 xl:p-8 bg-light;
   }
 
-  .qhse-item:last-child{
-   grid-column: span 3;
-   p{
-    @apply max-w-[47%]
-   }
+  .qhse-item:last-child {
+    grid-column: span 3;
+
+    p {
+      @apply max-w-[47%]
+    }
   }
 }

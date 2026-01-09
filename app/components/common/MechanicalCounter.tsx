@@ -77,7 +77,7 @@ const MechanicalCounter: React.FC<CounterProps> = ({ end, duration = 2, label, s
       {/* Animated background effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-white-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10">
-        <div className="flex items-baseline justify-center mb-4">
+        <div className="flex items-baseline justify-center mb-2 xl:mb-4">
           <span className="text-xl md:text-4xl">[</span>
           <span className="text-lg md:text-3xl font-bold text-primary tracking-tight">
             {formatNumber(count)}
@@ -91,8 +91,8 @@ const MechanicalCounter: React.FC<CounterProps> = ({ end, duration = 2, label, s
         </div>
 
         <div className="text-center">
-          <div className="inline-block px-4 py-1.5">
-            <p className="text-sm font-semibold  uppercase tracking-wider text-black/70">
+          <div className="inline-block px-0 xl:px-4 py-1 xl:py-1.5">
+            <p className="text-xs lg:text-sm font-light lg:font-semibold  uppercase tracking-wider text-black/70">
               {label}
             </p>
           </div>

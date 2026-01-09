@@ -164,7 +164,7 @@ const Footer = () => {
       </div>
       <div className="py-4 border-t border-white/20 mt-6">
         <div className="container">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap gap-y-2">
             <p className="text-white/50">© 2025 UNEC. All rights reserved.</p>
             <div className="flex items-center gap-3 ">
               {socialLinks.map((social, index) => {

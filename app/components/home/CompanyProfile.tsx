@@ -10,7 +10,7 @@ const CompanyProfile = () => {
     { end: 21, label: 'On-Going Projects', suffix: '' },
   ];
   return ( 
-    <section className="py-16">
+    <section className="sp-py">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.5fr_1.2fr] gap-6 xl:gap-20">
           <div className="flex flex-col justify-between">
@@ -26,9 +26,9 @@ const CompanyProfile = () => {
                 <span className="relative z-10">Corporate Profile</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button><br /> */}
-              <button className="group cursor-pointer relative px-8 py-4 bg-transparent border-2 border-black font-semibold 
-              text-black text-lg overflow-hidden transition-all duration-300 hover:text-white hover:shadow-2xl hover:shadow-red-500/50 ">
-                <span className="relative z-10">Corporate Profile</span>
+              <button className="group cursor-pointer relative px-4 py-2 xl:px-8 xl:py-4 bg-transparent border-2 border-black font-normal font-suisse-intl
+              text-black text-16 xl:text-lg overflow-hidden transition-all duration-300 hover:text-white hover:shadow-2xl hover:shadow-red-500/50 ">
+                <span className="relative z-10 uppercase">Corporate &nbsp;Profile</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>
             </div>

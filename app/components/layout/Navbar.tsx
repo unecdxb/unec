@@ -1,32 +1,205 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
+
 const Navbar = () => {
-  return ( 
-    <header className="absolute top-0 left-0 w-full z-50 ">
-      <div className="container">
-        <div className="flex items-center justify-between py-2 xl:py-4">
-          <div>
-            <Link href="/">
-              <Image src="/assets/images/unec-logo.svg" alt="Logo" width={150} height={150} className="object-contain w-15 xl:w-20" />
-            </Link>
-          </div>
-          <div>
-            <nav>
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMobileMenuOpen]);
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about-us", label: "About Us" },
+    { href: "/projects", label: "Projects" },
+    { href: "/news", label: "News" },
+    { href: "/careers", label: "Careers" },
+    { href: "/contact-us", label: "Contact Us" },
+    { href: "/downloads", label: "Downloads" },
+  ];
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  return (
+    <>
+      {/* Original Header - Always visible on top */}
+      <header className="absolute top-0 left-0 w-full z-50">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-2 xl:py-4">
+            <div>
+              <Link href="/">
+                <Image
+                  src="/assets/images/unec-logo.svg"
+                  alt="Logo"
+                  width={150}
+                  height={150}
+                  className="object-contain w-15 xl:w-20"
+                />
+              </Link>
+            </div>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:block">
               <ul className="flex gap-5 xl:gap-10 2xl:gap-12">
-                <li><Link href="/" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Home</Link></li>
-                <li><Link href="/about-us" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">About Us</Link></li>
-                <li><Link href="/projects" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Projects</Link></li>
-                <li><Link href="/news" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">News</Link></li>
-                <li><Link href="/careers" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Careers</Link></li>
-                <li><Link href="/contact-us" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Contact Us</Link></li>
-                <li><Link href="/downloads" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Downloads</Link></li>
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden text-white text-3xl z-50"
+              aria-label="Open menu"
+            >
+              <HiMenuAlt3 />
+            </button>
           </div>
         </div>
-      </div>
-    </header>
-   );
-}
- 
+      </header>
+
+      {/* Scrolled Header - Shows when scrolling down */}
+      <motion.header
+        initial={{ y: "-100%" }}
+        animate={{ y: isScrolled ? 0 : "-100%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="fixed top-0 left-0 w-full z-40 bg-white shadow-md"
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between py-3 xl:py-4">
+            <div>
+              <Link href="/">
+                <Image
+                  src="/assets/images/unec-logo-dark.svg"
+                  alt="Logo"
+                  width={120}
+                  height={120}
+                  className="object-contain w-10 xl:w-12"
+                />
+              </Link>
+            </div>
+
+            {/* Desktop Navigation - Scrolled */}
+            <nav className="hidden lg:block">
+              <ul className="flex gap-5 xl:gap-8 2xl:gap-10">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-gray-800 text-base xl:text-18 uppercase hover:text-gray-600 transition-all duration-200 font-medium"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* Mobile Menu Button - Scrolled */}
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden text-gray-800 text-3xl"
+              aria-label="Open menu"
+            >
+              <HiMenuAlt3 />
+            </button>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
+              onClick={closeMobileMenu}
+            />
+
+            {/* Mobile Menu */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[70] lg:hidden shadow-2xl"
+            >
+              <div className="flex flex-col h-full">
+                {/* Header with Logo and Close Button */}
+                <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                  <Image
+                    src="/assets/images/unec-logo-dark.svg"
+                    alt="Logo"
+                    width={100}
+                    height={100}
+                    className="object-contain w-8"
+                  />
+                  <button
+                    onClick={closeMobileMenu}
+                    className="text-gray-800 text-4xl hover:text-gray-600 transition-colors"
+                    aria-label="Close menu"
+                  >
+                    <IoClose />
+                  </button>
+                </div>
+
+                {/* Mobile Navigation */}
+                <nav className="flex-1 px-6 py-6">
+                  <ul className="flex flex-col gap-1">
+                    {navLinks.map((link, index) => (
+                      <motion.li
+                        key={link.href}
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.3 }}
+                      >
+                        <Link href={link.href} onClick={closeMobileMenu} className="block py-2 px-4 text-gray-800 text-sm uppercase hover:bg-gray-100 rounded-lg transition-all duration-200 font-medium" >
+                          {link.label}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
 export default Navbar;

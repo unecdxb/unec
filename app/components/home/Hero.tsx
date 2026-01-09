@@ -84,7 +84,7 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10"></div>
               <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 via-black/50 to-transparent z-10"></div>
               <div ref={containerRef} className="container h-screen mx-auto px-4">
-                <div className="relative z-20 h-full flex flex-col justify-end gap-5 pb-[10%]">
+                <div className="relative z-20 h-full flex flex-col justify-end gap-5 pb-[35%] xl:pb-[10%] ">
                   <h2
                     className={`text-white text-5xl md:text-6xl lg:text-7xl max-w-3xl font-normal transition-all duration-1000 ease-out font-suisse-intl mb-3 xl:mb-5 ${activeIndex === index
                         ? 'opacity-100 translate-y-0'
@@ -104,7 +104,8 @@ const Hero = () => {
                     {slide.description}
                   </p>
                   <button
-                    className={`relative bg-transparent text-white px-8 py-3 font-bold w-fit overflow-hidden border-2 border-white hover:bg-white hover:text-black transition-all duration-1000 ease-out ${activeIndex === index
+                    className={`relative bg-transparent text-white px-4 py-2  xl:px-8 xl:py-3 font-light w-fit overflow-hidden border-2 border-white text-sm uppercase  
+                      hover:bg-white hover:text-black transition-all duration-1000 ease-out ${activeIndex === index
                         ? 'opacity-100 translate-y-0'
                         : 'opacity-0 translate-y-12'
                       }`}
