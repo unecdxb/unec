@@ -3,7 +3,7 @@ export const NewsData = {
     {
       title: "UNEC BECAME APPROVED IOSH TRAINING PROVIDER TO DELIVER HIGH-QUALITY COURSES IN HEALTH AND SAFETY",
       description: ["UNEC have become an approved IOSH training provider authorized to deliver IOSH working safely and IOSH managing safely training courses to satisfy the most stringent health and safety standards and to reinforce the knowledge and experience of our employees in a variety of health and safety-related aspects."],
-      image: "/assets/images/news/nws-1.jpg",
+      image: "/assets/images/news/news-1.jpg",
       date: "2024-08-16"
     },
     {
