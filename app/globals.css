@@ -219,54 +219,18 @@ body {
 .nws-card:first-child .nws-content {
   display: grid;
   @apply p-4 xl:p-8;
-  h3 {
-    @media (min-width: 1024px) {
-      grid-column: 1/4;
-      grid-row: span 2;
-    }
 
+  h3 {
     @apply text-20 xl:text-26;
   }
 
   p {
-    @media (min-width: 1024px) {
-      grid-column: 4/5;
-      grid-row: 1/2;
-    }
     text-align: right;
   }
 
   a {
-    @apply font-light text-16 hover:bg-light hover:text-black transition-all duration-300;
+    @apply font-light text-16 hover:bg-light hover:text-black transition-all duration-300 mt-4;
   }
-}
-
-@media (min-width: 1024px) {
-  .nws-card:first-child .nws-content {
-    grid-template-columns: repeat(4, 1fr);
-    @apply p-4 xl:p-8;
-
-    h3 {
-      grid-column: 1/4;
-      grid-row: span 2;
-    }
-  
-    p {
-      grid-column: 4/5;
-      grid-row: 1/2;
-      text-align: right;
-      @apply bg-secondary px-4 py-2 text-white w-fit ml-auto h-fit;
-    }
-
-    a {
-      grid-column: 4/5;
-      grid-row: 2/3;
-      text-align: right;
-      font-weight: 300;
-      @apply text-16 bg-primary text-white px-4 py-2 w-fit h-fit ml-auto;
-    }
-  }
-
 }
 
 .nws-card:first-child {
@@ -295,11 +259,15 @@ body {
   /* border-radius: 10px; */
 }
 
+.nws-card:not(:first-child) {
+  @apply min-h-[250px] xs:max-h-[250px] lg:max-h-[350px];
+}
+
 .nws-card:not(:first-child) .nws-content {
   @apply absolute top-0 left-0 w-full h-full z-10 p-4 xl:p-8 flex flex-col;
 
   h3 {
-    @apply text-white order-2 text-24 font-bold mt-4;
+    @apply text-white order-2 text-24 mt-4 max-w-[35ch];
   }
 
   p {
@@ -307,7 +275,47 @@ body {
   }
 
   a {
-    @apply order-3 mt-auto ml-auto bg-primary text-white px-4 py-2 hover:bg-light hover:text-black transition-all duration-300;
+    @apply order-3 text-16 mt-auto ml-auto bg-primary text-white px-4 py-2 hover:bg-light hover:text-black transition-all duration-300;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nws-card:first-child .nws-content {
+    grid-template-columns: repeat(4, 1fr);
+    @apply p-4 xl:p-8;
+
+    h3 {
+      grid-column: 1/4;
+      grid-row: span 2;
+    }
+
+    p {
+      grid-column: 4/5;
+      grid-row: 1/2;
+      text-align: right;
+      @apply bg-secondary px-4 py-2 text-white w-fit ml-auto h-fit;
+    }
+
+    a {
+      grid-column: 4/5;
+      grid-row: 2/3;
+      text-align: right;
+      font-weight: 300;
+      @apply text-16 bg-primary text-white px-4 py-2 w-fit h-fit ml-auto;
+    }
+  }
+
+  .nws-card:first-child .img-box img {
+    height: 550px;
+
+  }
+
+  .nws-card:not(:first-child) .img-box {
+    @apply h-full;
+  }
+
+  .nws-card:not(:first-child) {
+    @apply min-h-0
   }
 }
 

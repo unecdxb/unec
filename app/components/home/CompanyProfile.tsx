@@ -15,9 +15,8 @@ const CompanyProfile = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.5fr_1.2fr] gap-6 xl:gap-20">
           <div className="flex flex-col justify-between">
            <div className="space-y-4 font-medium ">
-       
-              <p className="text-20">[<span className="text-primary"> UNEC </span> ] is a multi-award winning general contracting company with more than 40 years of expertise in the region.</p>
-              <p className="text-20">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</p>
+              <p className="text-19 xl:text-20 font-light xl:font-normal">[<span className="text-primary"> UNEC </span> ] is a multi-award winning general contracting company with more than 40 years of expertise in the region.</p>
+              <p className="text-19 xl:text-20 font-light xl:font-normal">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</p>
            </div>
             {/* <button className="bg-black text-white px-4 py-2 mt-auto w-fit">Corporate Profile</button> */}
             <div className="w-fit mt-16 text-center">
@@ -34,7 +33,7 @@ const CompanyProfile = () => {
             </div>
           </div>
           <div>
-            <div className="grid grid-cols-2 gap-[2px]">
+            <div className="grid grid-cols-2 xs:grid-cols-3  md:grid-cols-2 gap-[2px]">
               {stats.map((stat, index) => (
                 <MechanicalCounter
                   key={index}

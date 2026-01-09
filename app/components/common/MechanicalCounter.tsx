@@ -71,18 +71,16 @@ const MechanicalCounter: React.FC<CounterProps> = ({ end, duration = 2, label, s
   };
 
   return (
-    <div ref={counterRef}
-      className="group relative overflow-hidden bg-[#f0f0f0] p-3 xl:py-6 hover:border-white-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-white-500/20"
-    >
+    <div ref={counterRef} className="group relative overflow-hidden bg-[#f0f0f0] p-3 xs:py-4 xl:py-6 hover:border-white-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-white-500/20" >
       {/* Animated background effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-white-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10">
         <div className="flex items-baseline justify-center mb-2 xl:mb-4">
-          <span className="text-xl md:text-4xl">[</span>
-          <span className="text-lg md:text-3xl font-bold text-primary tracking-tight">
+          <span className="text-xl xl:text-4xl">[</span>
+          <span className="text-lg xl:text-3xl font-bold text-primary tracking-tight">
             {formatNumber(count)}
           </span>
-          <span className="text-xl md:text-4xl">]</span>
+          <span className="text-xl xl:text-4xl">]</span>
           {suffix && (
             <span className="text-lg font-bold text-red-500 ml-1">
               {suffix}

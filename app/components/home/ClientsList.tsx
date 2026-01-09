@@ -16,12 +16,12 @@ const ClientsList = ({data}: dataProps) => {
   return ( 
     <section className="sp-py ">
       <div className="container">
-        <SubTitle title="Clients" titleColor="text-black" mClass="mb-12" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-l border-t border-black/10 px-2 xs:px-0">
+        <SubTitle title="Clients" titleColor="text-black" mClass="mb-6 xl:mb-12" />
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 border-l border-t border-black/10 xs:px-0">
           {
             data.items.map((client,index)=>(
               <div key={index} className="w-full h-[145px] xl:h-[218px] border-r border-b border-black/10 flex items-center justify-center overflow-hidden group">
-                <Image src={client.image} alt={client.alt} width={350} height={218} className="w-[250px] h-[145px] xl:w-[280px] xl:h-[200px] object-contain group-hover:scale-110 transition-all duration-300" />
+                <Image src={client.image} alt={client.alt} width={350} height={218} className="w-[250px] h-[120px] xl:w-[280px] xl:h-[200px] object-contain group-hover:scale-110 transition-all duration-300" />
               </div>
             ))
           }
