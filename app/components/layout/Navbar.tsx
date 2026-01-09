@@ -7,7 +7,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between py-2 xl:py-4">
           <div>
             <Link href="/">
-              <Image src="/assets/images/logo-white.png" alt="Logo" width={150} height={150} className="object-contain w-15 xl:w-20" />
+              <Image src="/assets/images/unec-logo.svg" alt="Logo" width={150} height={150} className="object-contain w-15 xl:w-20" />
             </Link>
           </div>
           <div>
@@ -19,7 +19,7 @@ const Navbar = () => {
                 <li><Link href="/news" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">News</Link></li>
                 <li><Link href="/careers" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Careers</Link></li>
                 <li><Link href="/contact-us" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Contact Us</Link></li>
-                <li><Link href="/downloads" className="text-white text-18 uppercase hover:text-primary transition-all duration-200">Downloads</Link></li>
+                <li><Link href="/downloads" className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200">Downloads</Link></li>
               </ul>
             </nav>
           </div>
