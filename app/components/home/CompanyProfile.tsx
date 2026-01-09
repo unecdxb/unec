@@ -21,8 +21,13 @@ const CompanyProfile = () => {
            </div>
             {/* <button className="bg-black text-white px-4 py-2 mt-auto w-fit">Corporate Profile</button> */}
             <div className="w-fit mt-16 text-center">
-              <button className="group cursor-pointer relative px-8 py-4 bg-gradient-to-r from-black to-black  font-semibold 
+              {/* <button className="group cursor-pointer relative px-8 py-4 bg-gradient-to-r from-black to-black  font-semibold 
               text-white text-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105">
+                <span className="relative z-10">Corporate Profile</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </button><br /> */}
+              <button className="group cursor-pointer relative px-8 py-4 bg-transparent border-2 border-black font-semibold 
+              text-black text-lg overflow-hidden transition-all duration-300 hover:text-white hover:shadow-2xl hover:shadow-red-500/50 ">
                 <span className="relative z-10">Corporate Profile</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
               </button>
