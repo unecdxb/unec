@@ -1,5 +1,6 @@
 "use client";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -17,7 +18,7 @@ interface SocialLink {
 const Navbar = () => {
    const socialLinks: SocialLink[] = [
       { icon: FaFacebookF, href: '#', label: 'Facebook' },
-      { icon: FaTwitter, href: '#', label: 'Twitter' },
+      { icon: FaXTwitter, href: '#', label: 'Twitter' },
       { icon: FaInstagram, href: '#', label: 'Instagram' },
       { icon: FaYoutube, href: '#', label: 'YouTube' },
       { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
