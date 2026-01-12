@@ -6,7 +6,7 @@ import { FiSearch } from "react-icons/fi";
 import { gsap } from "gsap";
 import Image from "next/image";
 import { projectsData } from "./data";
-
+import Link from "next/link";
 type Option = {
   value: string;
   label: string;
@@ -219,12 +219,10 @@ const ProjectList = () => {
             No projects found matching your filters.
           </div>
         ) : (
-          <div
-            ref={gridRef}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          >
+          <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item, index) => (
               <div key={`${item.title}-${index}`} className="group relative overflow-hidden">
+                <Link href={`/projects/${index}`} className="absolute inset-0 z-10 w-full h-full" />
                 <Image
                   src={item.image}
                   alt={`${item.title} - ${item.category} project in ${item.region}`}

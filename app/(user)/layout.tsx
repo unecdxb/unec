@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import localFont from 'next/font/local';
 import "../globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import Image from "next/image";
+import BracketTextProcessor from "../components/common/BracketTextProcessor";
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
 //   subsets: ["latin"],
@@ -50,6 +49,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${suisseIntl.variable} antialiased`} >
       <Navbar />
+      <BracketTextProcessor/>
         {children}
         <Footer />
       </body>
