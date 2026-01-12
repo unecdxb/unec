@@ -5,6 +5,7 @@ import Image from "next/image";
 import { NewsData } from "./data";
 import { BsCalendar3, BsArrowRight } from "react-icons/bs";
 import { gsap } from "gsap";
+import Link from "next/link";
 
 const NewsList = () => {
   const [selectedYear, setSelectedYear] = useState<string>("all");
@@ -87,7 +88,8 @@ const NewsList = () => {
         {/* News Grid */}
         <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
           {sortedNews.map((news, index) => (
-            <div key={index} className="news-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer" >
+            <div key={index} className="news-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer relative" >
+              <Link href={`/news/${news.title}`} className="absolute inset-0 w-full h-full z-10" />
               {/* Image Container */}
               <div className="relative h-[220px] xl:h-[260px] overflow-hidden">
                 <Image src={news.image} alt={news.title} width={1200} height={600} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -120,6 +122,7 @@ const NewsList = () => {
                   <BsArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </div>
+
             </div>
           ))}
         </div>
