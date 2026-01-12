@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
 import { IconType } from 'react-icons';
+import { usePathname } from "next/navigation";
 
 interface SocialLink {
   icon: IconType | 'custom';
@@ -15,15 +16,36 @@ interface SocialLink {
   label: string;
   customSrc?: string;
 }
-const Navbar = () => {
-   const socialLinks: SocialLink[] = [
-      { icon: FaFacebookF, href: '#', label: 'Facebook' },
-      { icon: FaXTwitter, href: '#', label: 'Twitter' },
-      { icon: FaInstagram, href: '#', label: 'Instagram' },
-      { icon: FaYoutube, href: '#', label: 'YouTube' },
-      { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-      { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
-    ];
+
+interface NavbarProps {
+  variant?: "light" | "dark";
+}
+
+const Navbar = ({ variant }: NavbarProps) => {
+  const pathname = usePathname();
+
+  // Define routes that should use light variant (pages without dark banners)
+  const lightVariantRoutes = [
+    '/news',
+    '/contact-us',
+    '/downloads',
+  ];
+
+  // Auto-detect variant based on route if not explicitly provided
+  const shouldUseLightVariant = variant
+    ? variant === "light"
+    : lightVariantRoutes.some(route => pathname.startsWith(route));
+
+  const isLight = shouldUseLightVariant;
+  const socialLinks: SocialLink[] = [
+    { icon: FaFacebookF, href: '#', label: 'Facebook' },
+    { icon: FaXTwitter, href: '#', label: 'Twitter' },
+    { icon: FaInstagram, href: '#', label: 'Instagram' },
+    { icon: FaYoutube, href: '#', label: 'YouTube' },
+    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
+    { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
+  ];
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -59,12 +81,18 @@ const Navbar = () => {
   return (
     <>
       {/* Original Header - Always visible on top */}
-      <header className="absolute top-0 left-0 w-full z-50">
+      <header className={`absolute top-0 left-0 w-full z-50 ${isLight ? 'bg-white/95 backdrop-blur-sm shadow-sm' : ''}`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between pt-4 xl:py-4">
             <div>
               <Link href="/">
-                <Image src="/assets/images/unec-logo.svg" alt="Logo" width={150} height={150} className="object-contain w-10 xl:w-20" />
+                <Image
+                  src={isLight ? "/assets/images/unec-logo-dark.svg" : "/assets/images/unec-logo.svg"}
+                  alt="Logo"
+                  width={150}
+                  height={150}
+                  className="object-contain w-10 xl:w-20"
+                />
               </Link>
             </div>
 
@@ -74,11 +102,18 @@ const Navbar = () => {
                 {navLinks.map((link, index) => (
                   <li
                     key={link.href}
-                    className={index < navLinks.length - 1 ? "relative after:content-[''] after:absolute after:right-[-10px] xl:after:right-[-20px] 2xl:after:right-[-24px] after:top-1/2 after:-translate-y-1/2 after:w-[1px] after:h-4 after:bg-white/30" : ""}
+                    className={
+                      index < navLinks.length - 1
+                        ? `relative after:content-[''] after:absolute after:right-[-10px] xl:after:right-[-20px] 2xl:after:right-[-24px] after:top-1/2 after:-translate-y-1/2 after:w-[1px] after:h-4 ${isLight ? 'after:bg-gray-300' : 'after:bg-white/30'}`
+                        : ""
+                    }
                   >
                     <Link
                       href={link.href}
-                      className="text-white text-18 uppercase hover:text-white/80 transition-all duration-200"
+                      className={`text-18 uppercase transition-all duration-200 ${isLight
+                          ? 'text-gray-800 hover:text-primary font-medium'
+                          : 'text-white hover:text-white/80'
+                        }`}
                     >
                       {link.label}
                     </Link>
@@ -90,7 +125,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden text-white text-3xl z-50"
+              className={`lg:hidden text-3xl z-50 ${isLight ? 'text-gray-800' : 'text-white'}`}
               aria-label="Open menu"
             >
               <IoIosMenu />
@@ -173,8 +208,18 @@ const Navbar = () => {
               <div className="flex flex-col h-full">
                 {/* Header with Logo and Close Button */}
                 <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200">
-                  <Image src="/assets/images/unec-logo-dark.svg" alt="Logo" width={100} height={100} className="object-contain w-10" />
-                  <button onClick={closeMobileMenu} className="text-gray-800 text-4xl hover:text-gray-600 transition-colors" aria-label="Close menu" >
+                  <Image
+                    src="/assets/images/unec-logo-dark.svg"
+                    alt="Logo"
+                    width={100}
+                    height={100}
+                    className="object-contain w-10"
+                  />
+                  <button
+                    onClick={closeMobileMenu}
+                    className="text-gray-800 text-4xl hover:text-gray-600 transition-colors"
+                    aria-label="Close menu"
+                  >
                     <IoCloseOutline />
                   </button>
                 </div>
@@ -189,28 +234,45 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1, duration: 0.3 }}
                       >
-                        <Link href={link.href} onClick={closeMobileMenu} className="block text-gray-800 text-sm uppercase hover:bg-gray-100 rounded-lg transition-all duration-200 font-light" >
+                        <Link
+                          href={link.href}
+                          onClick={closeMobileMenu}
+                          className="block text-gray-800 text-sm uppercase hover:bg-gray-100 rounded-lg transition-all duration-200 font-light"
+                        >
                           {link.label}
                         </Link>
                       </motion.li>
                     ))}
                   </ul>
                 </nav>
-                <div className="flex items-center gap-1 flex-wrap px-6 pb-10 pt-10 border-t border-gray-200">
+
+                {/* Social Links */}
+                <div className="flex flex-col px-6 pb-10 pt-10 border-t border-gray-200">
                   <h3 className="text-2xl font-normal mb-4">Connect</h3>
                   <ul className="flex items-center gap-1 flex-wrap">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon;
-                    return (
-                      <Link href={social.href} key={index} aria-label={social.label} className="w-8 h-8 bg-primary  rounded-full border border-white text-white flex items-center justify-center hover:bg-black transition-colors group" >
-                        {social.icon === 'custom' && social.customSrc ? (
-                          <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all " />
-                        ) : (
-                          typeof Icon !== 'string' && <Icon className="text-sm group-hover:scale-110 transition-all " />
-                        )}
-                      </Link>
-                    );
-                  })}
+                    {socialLinks.map((social, index) => {
+                      const Icon = social.icon;
+                      return (
+                        <Link
+                          href={social.href}
+                          key={index}
+                          aria-label={social.label}
+                          className="w-8 h-8 bg-primary rounded-full border border-white text-white flex items-center justify-center hover:bg-black transition-colors group"
+                        >
+                          {social.icon === 'custom' && social.customSrc ? (
+                            <Image
+                              src={social.customSrc}
+                              alt={social.label}
+                              width={20}
+                              height={20}
+                              className="w-4 h-4 group-hover:scale-110 transition-all"
+                            />
+                          ) : (
+                            typeof Icon !== 'string' && <Icon className="text-sm group-hover:scale-110 transition-all" />
+                          )}
+                        </Link>
+                      );
+                    })}
                   </ul>
                 </div>
               </div>

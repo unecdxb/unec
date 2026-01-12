@@ -37,8 +37,11 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
     paths.forEach((path) => {
       currentPath += `/${path}`;
 
+      // Decode URL-encoded characters (e.g., %20 to space)
+      const decodedPath = decodeURIComponent(path);
+
       // Use custom label if provided, otherwise format the path segment
-      const label = customLabels[currentPath] || formatLabel(path);
+      const label = customLabels[currentPath] || formatLabel(decodedPath);
 
       breadcrumbs.push({
         label,
@@ -111,31 +114,15 @@ export default function Page() {
   return (
     <Breadcrumb 
       customLabels={{
-        '/products': 'Our Products',
-        '/products/electronics': 'Tech Devices',
+        '/projects': 'Our Projects',
+        '/projects/Dragon%20Mall%20UAE': 'Dragon Mall UAE',
         '/about-us': 'About Us'
       }}
     />
   );
 }
 
-// With custom home label and styling
-<Breadcrumb 
-  homeLabel="Dashboard"
-  className="mb-4 px-6"
-  customLabels={{
-    '/about-us': 'About Us'
-  }}
-/>
-
-// In your PageBnr component:
-import Breadcrumb from './Breadcrumb';
-
-const PageBnr = () => {
-  return (
-    <div>
-      <Breadcrumb />
-    </div>
-  );
-};
+// Now handles URL-encoded paths correctly:
+// /projects/Dragon%20Mall%20UAE → Home > Projects > Dragon Mall UAE
+// /projects/Al-Ain%20Tower → Home > Projects > Al Ain Tower
 */
