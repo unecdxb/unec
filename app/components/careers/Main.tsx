@@ -3,8 +3,8 @@ import SubTitle from "../common/SubTitle";
 import Image from "next/image";
 const Main = () => {
   return ( 
-    <section className="sp-py">
-      <div className="container">
+    <section className="">
+      <div className="container sp-py">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div>
             <Image src="/assets/images/careers/careers-main.jpg" width={1920} height={1080} alt="" className="w-full max-h-[60dvh] object-cover" />
@@ -15,6 +15,7 @@ const Main = () => {
           </div>
         </div>
       </div>
+      <hr className="h-1 border-gray-200 mb-0" />
     </section> 
    );
 }

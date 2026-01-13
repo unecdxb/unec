@@ -78,37 +78,37 @@ const Footer = () => {
             <h3 className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/about-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary " />
                   <span className="hover:text-white/70 transition-colors duration-200">About us</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/projects" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Projects</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/news" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">News</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/careers" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Careers</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Contact us</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/downloads" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Downloads</span>
                 </Link>
@@ -120,37 +120,37 @@ const Footer = () => {
             <h3 className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Legal</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://unec.co/wp-content/uploads/2025/03/New-UNEC-Draft-Revision-of-QHSE-Policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">QHSE Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://unec.co/wp-content/uploads/2021/10/Code-of-Conduct-and-Business-Ethics-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Code of Conduct</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://unec.co/wp-content/uploads/2021/10/equal-opportunity-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Equal Opportunity Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://unec.co/wp-content/uploads/2021/10/Modern-Slavery-Policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Modern Slavery Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://unec.co/wp-content/uploads/2021/10/Whistleblowing-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Whistleblowing Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="https://unec.co/wp-content/uploads/2022/09/Data-Protection-and-Data-Security-Policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Data Protection Policy</span>
                 </Link>
@@ -158,16 +158,16 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h3 className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Connect</h3>
+            <h3 className="text-xl xl:text-2xl font-normal mb-4 ">Connect</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Connect Us</span>
                 </Link>
               </li>
               <li>
-                <Link href="#" className="flex items-center gap-2">
+                <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Enquiry Form</span>
                 </Link>
