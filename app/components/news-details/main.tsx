@@ -13,7 +13,7 @@ const Main = () => {
             <div>
               <div>
                 <SubTitle title="News Title" mClass="mb-4 xl:mb-6" />
-                <p className="text-18">UNEC have become an approved IOSH training provider authorized to deliver IOSH working safely and IOSH managing safely training courses to satisfy the most stringent health and safety standards and to reinforce the knowledge and experience of our employees in a variety of health and safety-related aspects.</p>
+                <p className="text-18">[UNEC] have become an approved IOSH training provider authorized to deliver IOSH working safely and IOSH managing safely training courses to satisfy the most stringent health and safety standards and to reinforce the knowledge and experience of our employees in a variety of health and safety-related aspects.</p>
               </div>
             </div>
 

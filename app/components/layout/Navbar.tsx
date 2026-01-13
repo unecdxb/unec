@@ -26,7 +26,7 @@ const Navbar = ({ variant }: NavbarProps) => {
 
   // Define routes that should use light variant (pages without dark banners)
   const lightVariantRoutes = [
-    '/news',
+    // '/news',
     '/contact-us',
     '/downloads',
   ];
@@ -110,7 +110,7 @@ const Navbar = ({ variant }: NavbarProps) => {
                   >
                     <Link
                       href={link.href}
-                      className={`text-18 uppercase transition-all duration-200 ${isLight
+                      className={`text-16 uppercase transition-all duration-200 ${isLight
                           ? 'text-gray-800 hover:text-primary font-medium'
                           : 'text-white hover:text-white/80'
                         }`}
@@ -162,7 +162,7 @@ const Navbar = ({ variant }: NavbarProps) => {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-gray-800 text-base xl:text-18 uppercase hover:text-primary transition-all duration-200 font-medium"
+                      className="text-gray-800 text-base xl:text-16 uppercase hover:text-primary transition-all duration-200 font-medium"
                     >
                       {link.label}
                     </Link>
