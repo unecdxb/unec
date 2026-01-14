@@ -88,7 +88,7 @@ const NewsList = () => {
         {/* News Grid */}
         <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
           {sortedNews.map((news, index) => (
-            <div key={index} className="news-card group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-500 cursor-pointer relative" >
+            <div key={index} className="news-card group  overflow-hidden shadow-sm  hover:shadow-md transition-all duration-500 cursor-pointer relative" >
               <Link href={`/news/${news.title}`} className="absolute inset-0 w-full h-full z-10" />
               {/* Image Container */}
               <div className="relative h-[220px] xl:h-[260px] overflow-hidden">
@@ -104,7 +104,7 @@ const NewsList = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-6 h-fit flex flex-col justify-between">
                 {/* Date */}
                 <div className="flex items-center gap-2 text-gray-500 text-sm mb-3">
                   <BsCalendar3 className="w-4 h-4" />
@@ -112,12 +112,12 @@ const NewsList = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-normal !font-suisse-intl text-gray-900 mb-3 line-clamp-3 group-hover:text-black transition-colors duration-300">
+                <h3 className="text-17 font-normal !font-suisse-intl text-gray-900 mb-3 line-clamp-3 group-hover:text-black transition-colors duration-300">
                   {news.title}
                 </h3>
 
                 {/* Read More Link */}
-                <div className="flex items-center gap-2 text-black font-medium group-hover:gap-3 transition-all duration-300">
+                <div className="flex items-center gap-2 text-secondary font-light group-hover:gap-3 transition-all duration-300 mt-auto">
                   <span>Read More</span>
                   <BsArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>

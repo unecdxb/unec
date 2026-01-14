@@ -76,14 +76,11 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 <MdOutlineKeyboardArrowRight className="text-primary mx-1" size={20} />
               )}
               {isLast ? (
-                <span className="text-sm font-medium text-white opacity-100">
+                <span className="text-sm font-light uppercase text-white opacity-100">
                   {item.label}
                 </span>
               ) : (
-                <a
-                  href={item.href}
-                  className="text-sm font-medium text-white opacity-60 hover:opacity-80 hover:text-gray-900 transition-opacity"
-                >
+                <a href={item.href} className="text-sm font-light uppercase text-white opacity-60 hover:opacity-80 hover:text-gray-900 transition-opacity">
                   {item.label}
                 </a>
               )}

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { StaticImageData } from "next/image";
 import SubTitle from "../common/SubTitle";
-import Link from "next/link";
+import Link from "next/link"; 
+import PrimaryBtn from "../common/PrimaryBtn";
 interface ProjectHIghlightsProps {
   data: {
     title: string;
@@ -37,12 +38,8 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
             ))
           }
         </div>
-        <div className="max-w-7xl xl:min-w-[50%] w-full mx-auto mt-8 xl:mt-16 text-center">
-          <Link href="projects" className="group relative px-4 md:px-6 xl:px-8 py-2 md:py-3 xl:py-4 bg-black font-light  text-white text-16 xl:text-lg tracking-wider overflow-hidden transition-all duration-300 
-          hover:shadow-2xl hover:shadow-red-500/50 hover:scale-105 cursor-pointer">
-            <span className="relative z-10">View All Projects</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-red-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-          </Link>
+        <div className="mt-8 xl:mt-16 w-fit mx-auto">
+          <PrimaryBtn href="/projects" text="View All Projects" />
         </div>
       </div>
     </section>

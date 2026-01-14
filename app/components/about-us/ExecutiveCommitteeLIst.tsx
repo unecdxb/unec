@@ -14,8 +14,8 @@ const ExecutiveCommitteeLIst = () => {
                   <Image src={item.image} alt={item.name} width={1920} height={1080} className="w-full h-full object-cover object-top" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">{item.name}</h3>
-                  <p className="text-19">{item.position}</p>
+                  <h3 className="text-25 text-secondary font-light">{item.name}</h3>
+                  <p className="text-primary">{item.position}</p>
                 </div>
               </div>
             ))

@@ -85,21 +85,12 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 via-black/50 to-transparent z-10"></div>
               <div ref={containerRef} className="container h-screen mx-auto px-4">
                 <div className="relative z-20 h-full flex flex-col justify-end xl:gap-5 pb-[35%] xl:pb-[10%] ">
-                  <h2 className={`text-white text-3xl xs:text-5xl  xl:text-6xl 2xl:text-7xl xs:max-w-[70vw] xl:max-w-3xl 
-                  font-normal transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-12'
-                      }`}
-                    style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }}
-                  >
+                  <h2 className={`text-white text-3xl xs:text-5xl  xl:text-6xl 2xl:text-60 xs:max-w-[70vw] xl:max-w-3xl uppercase leading-[1.2] 
+                  font-normal transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }} >
                     {slide.title}
                   </h2>
-                  <p className={`text-white text-sm xl:text-lg xs:max-w-[70vw] xl:max-w-2xl transition-all duration-1000 ease-out mb-3 xs:mb-5 xl:mb-2  ${activeIndex === index
-                        ? 'opacity-100 translate-y-0'
-                        : 'opacity-0 translate-y-12'
-                      }`}
-                    style={{ transitionDelay: activeIndex === index ? '500ms' : '0ms' }}
-                  >
+                  <p className={`text-white text-sm xl:text-lg xs:max-w-[70vw] xl:max-w-2xl transition-all duration-1000 ease-out mb-3 xs:mb-5 xl:mb-2  
+                  ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '500ms' : '0ms' }}>
                     {slide.description}
                   </p>
                   <Link href="#" className={`relative bg-transparent text-white px-4 py-2 xl:px-8 xl:py-3 font-light w-fit overflow-hidden border-2 border-white text-xs xl:text-sm uppercase transition-all duration-700 ease-out group ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '700ms' : '0ms' }}>

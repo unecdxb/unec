@@ -15,7 +15,7 @@ const PageBnr = ({ title, image }: PageBnrProps) => {
       )}
       <div className="container h-full relative z-10">
         <div className="flex flex-col justify-end gap-4 h-full pb-10 md:pb-16 lg:pb-20 xl:pb-24">
-          <h1 className="text-60 font-bold text-white">{title}</h1>
+          <h1 className="text-60 font-light uppercase text-white">{title}</h1>
           <Breadcrumb />
         </div>
       </div>
