@@ -15,7 +15,7 @@ export const projectsData = {
     },
     {
       title: "Dragon Mall UAE",
-      image: "/assets/images/projects/prj-2.jpeg",
+      image: "/assets/images/projects/prj-2.jpg",
       region: "UAE",
       category: "Retail",
       keywords: ["Dragon Mall UAE", "Retail", "Completed", "2022", "UAE"],
@@ -59,7 +59,7 @@ export const projectsData = {
     },
     {
       title: "Villas Al Reeman And Infrastructure Phase II",
-      image: "/assets/images/projects/prj-6.png",
+      image: "/assets/images/projects/prj-6.jpg",
       region: "UAE",
       category: "Residential",
       keywords: ["Villas Al Reeman Phase II", "Residential", "Completed", "2022", "UAE"],
@@ -70,7 +70,7 @@ export const projectsData = {
     },
     {
       title: "Fish, Meat And Vegetables Market (Kalba)",
-      image: "/assets/images/projects/prj-7.png",
+      image: "/assets/images/projects/prj-7.jpg",
       region: "UAE",
       category: "Retail",
       keywords: ["Kalba Market", "Retail", "Completed", "2022", "UAE"],
