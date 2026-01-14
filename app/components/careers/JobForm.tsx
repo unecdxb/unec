@@ -284,12 +284,15 @@ const JobForm: React.FC = () => {
                   render={({ field }) => (
                     <Select
                       {...field}
+                      instanceId="position-select"
                       options={positionOptions}
                       placeholder="Select a position"
                       value={positionOptions.find(opt => opt.value === field.value) || null}
                       onChange={(opt) => field.onChange(opt?.value)}
                       styles={customSelectStyles}
-                      classNamePrefix="react-select"
+                      // classNamePrefix="react-select"
+                      className="custom-select"
+                      classNamePrefix="custom-select"
                     />
                   )}
                 />
@@ -313,12 +316,14 @@ const JobForm: React.FC = () => {
                   render={({ field }) => (
                     <Select
                       {...field}
+                      instanceId="experience-select"
                       options={experienceOptions}
                       placeholder="Select experience level"
                       value={experienceOptions.find(opt => opt.value === field.value) || null}
                       onChange={(opt) => field.onChange(opt?.value)}
                       styles={customSelectStyles}
-                      classNamePrefix="react-select"
+                      className="custom-select"
+                      classNamePrefix="custom-select"
                     />
                   )}
                 />
@@ -451,11 +456,13 @@ const JobForm: React.FC = () => {
                     <Select
                       {...field}
                       options={availabilityOptions}
+                      instanceId="availability-select"
                       placeholder="When can you start?"
                       value={availabilityOptions.find(opt => opt.value === field.value) || null}
                       onChange={(opt) => field.onChange(opt?.value)}
                       styles={customSelectStyles}
-                      classNamePrefix="react-select"
+                      className="custom-select"
+                      classNamePrefix="custom-select"
                     />
                   )}
                 />
