@@ -43,14 +43,15 @@ const VacanciesList = () => {
         {/* React Select */}
         <div className="max-w-sm mb-8">
           <Select<SelectOption, false>
+            instanceId="vacancy-type-filter"
             options={typeOptions}
             placeholder="Filter by Job Type"
             value={selectedType}
             onChange={(option: SingleValue<SelectOption>) =>
               setSelectedType(option)
             }
-            className="text-sm"
-            classNamePrefix="select"
+            className="custom-select"
+            classNamePrefix="custom-select"
           />
         </div>
 

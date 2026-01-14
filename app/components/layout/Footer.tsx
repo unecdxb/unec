@@ -180,7 +180,7 @@ const Footer = () => {
       <div className="py-4 border-t border-white/20 mt-6">
         <div className="container">
           <div className="flex justify-between items-center flex-wrap gap-y-2">
-            <p className="text-white/50 ">© 2025 UNEC. All rights reserved.</p>
+            <p className="text-white/50 ">© {new Date().getFullYear()} UNEC. All rights reserved.</p>
             <div className="items-center gap-3 hidden xl:flex">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
