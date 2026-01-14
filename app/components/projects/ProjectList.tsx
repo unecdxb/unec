@@ -151,49 +151,22 @@ const ProjectList = () => {
 
             <div>
               <label htmlFor="region-select" className="text-sm font-medium mb-1 block">Region</label>
-              <Select
-                inputId="region-select"
-                options={regions}
-                styles={selectStyles}
-                value={region}
-                defaultValue={regions[0]}
-                onChange={setRegion}
-                aria-label="Filter by region"
-              />
+              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" />
             </div>
 
             <div>
               <label htmlFor="category-select" className="text-sm font-medium mb-1 block">Category</label>
-              <Select
-                inputId="category-select"
-                options={categories}
-                styles={selectStyles}
-                value={category}
-                defaultValue={categories[0]}
-                onChange={setCategory}
-                aria-label="Filter by category"
-              />
+              <Select inputId="category-select" options={categories} styles={selectStyles} value={category} defaultValue={categories[0]} onChange={setCategory} aria-label="Filter by category" />
             </div>
 
             <div>
               <label htmlFor="status-select" className="text-sm font-medium mb-1 block">Status</label>
-              <Select
-                inputId="status-select"
-                options={statuses}
-                styles={selectStyles}
-                value={status}
-                defaultValue={statuses[0]}
-                onChange={setStatus}
-                aria-label="Filter by status"
-              />
+              <Select inputId="status-select" options={statuses} styles={selectStyles} value={status} defaultValue={statuses[0]} onChange={setStatus} aria-label="Filter by status" />
             </div>
 
             <div>
               <label htmlFor="keyword-input" className="text-sm font-medium mb-1 block">Keywords</label>
-              <input
-                id="keyword-input"
-                type="text"
-                placeholder="Type keyword…"
+              <input id="keyword-input" type="text" placeholder="Type keyword…"
                 className="w-full h-[48px] px-4 border border-gray-300 rounded-md focus:outline-none focus:border-black"
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
@@ -201,11 +174,7 @@ const ProjectList = () => {
               />
             </div>
 
-            <button
-              className="h-[48px] bg-black text-white flex items-center justify-center gap-2 rounded-md hover:bg-gray-900 transition"
-              onClick={handleSearch}
-              aria-label="Apply search filters"
-            >
+            <button className="h-[48px] bg-black text-white flex items-center justify-center gap-2 rounded-md hover:bg-gray-900 transition" onClick={handleSearch} aria-label="Apply search filters" >
               <FiSearch />
               SEARCH
             </button>
@@ -223,7 +192,8 @@ const ProjectList = () => {
             {filteredItems.map((item, index) => (
               <div key={`${item.title}-${index}`} className="group relative overflow-hidden">
                 <Link href={`/projects/${item.title}`} className="absolute inset-0 z-10 w-full h-full" />
-                <Image src={item.image} alt={`${item.title} - ${item.category} project in ${item.region}`} width={500} height={500} className="group-hover:scale-110 transition-all duration-300" />
+                <Image src={`${item.image}?v=2`} alt={`${item.title} - ${item.category} project in ${item.region}`} width={600} height={600} className="w-full h-[400px] object-cover
+                 group-hover:scale-110 transition-all duration-300" />
                 <div className="absolute bottom-[-100%] left-0 right-0 p-4 bg-gradient-to-r from-black via-red-500 to-transparent group-hover:bottom-0 transition-all duration-500">
                   <h3 className="text-white text-2xl">{item.title}</h3> <hr className="my-2 border-white/40" /> <p className="text-white text-lg">{item.region}</p>
                 </div>
