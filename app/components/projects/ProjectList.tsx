@@ -192,7 +192,7 @@ const ProjectList = () => {
             {filteredItems.map((item, index) => (
               <div key={`${item.title}-${index}`} className="group relative overflow-hidden">
                 <Link href={`/projects/${item.title}`} className="absolute inset-0 z-10 w-full h-full" />
-                <Image src={item.image} alt={`${item.title} - ${item.category} project in ${item.region}`} width={600} height={600} className="w-full h-[400px] object-cover
+                <Image src={`${item.image}?v=2`} alt={`${item.title} - ${item.category} project in ${item.region}`} width={600} height={600} className="w-full h-[400px] object-cover
                  group-hover:scale-110 transition-all duration-300" />
                 <div className="absolute bottom-[-100%] left-0 right-0 p-4 bg-gradient-to-r from-black via-red-500 to-transparent group-hover:bottom-0 transition-all duration-500">
                   <h3 className="text-white text-2xl">{item.title}</h3> <hr className="my-2 border-white/40" /> <p className="text-white text-lg">{item.region}</p>
