@@ -5,7 +5,7 @@ interface Props {
 }
 const SubTitle = ({title, mClass, titleColor}: Props) => {
   return ( 
-    <div className={`inline-block ${mClass?mClass:'mb-6 xl:mb-12'}`}>
+    <div className={`inline-block ${mClass?mClass:'mb-2 xl:mb-6'}`}>
       <h2 className={`text-2xl xs:text-3xl xl:text-5xl 2xl:text-50  uppercase font-light ${titleColor?titleColor:'text-secondary'}`}>
         {title}
       </h2>

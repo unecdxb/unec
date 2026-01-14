@@ -24,7 +24,7 @@ const QHSE = () => {
                       {
                         item.description.map((desc, index) => {
                           return (
-                            <p className="font-light" key={index}>{desc}</p>
+                            <p className="font-light text-secondary/80" key={index}>{desc}</p>
                           )
                         })
                       }
