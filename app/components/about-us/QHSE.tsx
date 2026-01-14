@@ -14,9 +14,9 @@ const QHSE = () => {
                 <div key={index} className="qhse-item">
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-26 font-bold ">{item.title}</h3>
+                      <h3 className="text-25 font-light text-black">{item.title}</h3>
                       <div className="flex items-center ">
-                        <IconComponent className="text-48" />
+                        <IconComponent className="text-50 text-secondary" />
                       </div>
                     </div>
                     <hr className="h-1 bg-gradient-to-r from-black/20 to-transparent border-0 mb-3 xl:mb-6" />
@@ -24,7 +24,7 @@ const QHSE = () => {
                       {
                         item.description.map((desc, index) => {
                           return (
-                            <p className="text-18 font-normal " key={index}>{desc}</p>
+                            <p className="font-light" key={index}>{desc}</p>
                           )
                         })
                       }

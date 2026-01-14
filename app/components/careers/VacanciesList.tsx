@@ -57,20 +57,13 @@ const VacanciesList = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:gap-4">
 
           {filteredList.map((item, index) => (
-            <div
-              key={index}
-              className="group flex flex-col bg-white rounded-2xl overflow-hidden transition-all duration-500 ease-out shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
+            <div key={index}
+              className="group flex flex-col bg-white overflow-hidden transition-all duration-500 ease-out shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
             >
 
               {/* Image */}
               <div className="relative overflow-hidden h-[250px] xl:h-[300px]">
-                <Image
-                  src={item.image}
-                  width={1920}
-                  height={1080}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
+                <Image src={item.image} width={1920} height={1080} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
 
                 {/* Overlay (RESTORED) */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/80 to-black/40 
@@ -85,7 +78,7 @@ const VacanciesList = () => {
 
               {/* Content */}
               <div className="p-4 xl:px-6 xl:py-5">
-                <h3 className="text-2xl font-semibold mb-3 xl:mb-4 text-gray-900">
+                <h3 className="text-25 font-light mb-3 xl:mb-4 text-secondary">
                   {item.title}
                 </h3>
 

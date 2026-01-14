@@ -200,7 +200,7 @@ const Main = () => {
           {/* Project Details */}
           <div>
             <SubTitle title="Project Details" />
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-5 xl:p-10 rounded-lg shadow-lg">
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-5 xl:p-10 ">
               <div className="flex flex-col gap-5">
                 {[
                   { label: 'Client', value: 'Dubai Electricity & Water Authority (DEWA)' },
@@ -209,12 +209,9 @@ const Main = () => {
                   { label: 'Location', value: 'UAE' },
                   { label: 'Status', value: 'On-going' },
                 ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-5 pb-3 border-b border-gray-300 last:border-b-0"
-                  >
-                    <span className="font-semibold text-gray-700">{item.label}</span>
-                    <span className="hidden md:block text-gray-500">:</span>
+                  <div key={index} className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-5 pb-3 border-b border-gray-300 last:border-b-0">
+                    <span className="font-light text-secondary">{item.label}</span>
+                    <span className="hidden md:block text-secondary">:</span>
                     <span className="text-gray-600">{item.value}</span>
                   </div>
                 ))}
