@@ -4,9 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Select from "react-select";
 import { FiSearch } from "react-icons/fi";
 import { gsap } from "gsap";
-import Image from "next/image";
 import { projectsData } from "./data";
 import Link from "next/link";
+import ProjectCard from "../common/ProjectCard";
 type Option = {
   value: string;
   label: string;
@@ -147,7 +147,7 @@ const ProjectList = () => {
         </div>
         {/* FILTER BAR */}
         <div className="bg-light p-4 rounded-md mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 items-end">
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3  2xl:grid-cols-5 gap-4 items-end">
 
             <div>
               <label htmlFor="region-select" className="text-sm font-medium mb-1 block">Region</label>
@@ -190,14 +190,9 @@ const ProjectList = () => {
         ) : (
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item, index) => (
-              <div key={`${item.title}-${index}`} className="group relative overflow-hidden">
-                <Link href={`/projects/${item.title}`} className="absolute inset-0 z-10 w-full h-full" />
-                <Image src={`${item.image}?v=2`} alt={`${item.title} - ${item.category} project in ${item.region}`} width={600} height={600} className="w-full h-[400px] object-cover
-                 group-hover:scale-110 transition-all duration-300" />
-                <div className="absolute bottom-[-100%] left-0 right-0 p-4 bg-gradient-to-r from-black via-red-500 to-transparent group-hover:bottom-0 transition-all duration-500">
-                  <h3 className="text-white text-2xl">{item.title}</h3> <hr className="my-2 border-white/40" /> <p className="text-white text-lg">{item.region}</p>
-                </div>
-              </div>
+              <Link href={`/projects/${item.title}`} key={index}>
+                <ProjectCard image={item.image} title={item.title} location={item.region} height="h-[250px] xl:h-[350px]" />
+              </Link> 
             ))}
           </div>
         )}

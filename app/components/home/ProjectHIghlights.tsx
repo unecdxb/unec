@@ -3,6 +3,7 @@ import { StaticImageData } from "next/image";
 import SubTitle from "../common/SubTitle";
 import Link from "next/link"; 
 import PrimaryBtn from "../common/PrimaryBtn";
+import ProjectCard from "../common/ProjectCard";
 interface ProjectHIghlightsProps {
   data: {
     title: string;
@@ -24,16 +25,9 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
         <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 xl:gap-3 xl:gap-6">
           {
             data.items.map((item, index) => (
-              <div key={index} className="group relative overflow-hidden">
-                <div className="overflow-hidden">
-                  <Image src={item.image} alt="" width={1200} height={1200} className="w-full h-[250px] xl:h-[350px] object-cover group-hover:scale-110 transition-all duration-300" />
-                </div>
-                <div className="absolute bottom-[-100%] left-0 right-0 p-4 bg-gradient-to-r from-black via-red-500 to-transparent group-hover:bottom-0 transition-all duration-500">
-                  <h3 className="text-white text-2xl">{item.title}</h3>
-                  <hr className="my-2 border-white/20 " />
-                  <p className="text-white text-md">{item.location}</p>
-                </div>
-              </div>
+              <Link href={`/projects/${item.title}`} key={index}>
+                <ProjectCard image={item.image} title={item.title} location={item.location} />
+              </Link>
 
             ))
           }

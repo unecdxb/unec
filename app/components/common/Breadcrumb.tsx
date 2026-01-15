@@ -66,7 +66,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   return (
     <nav aria-label="Breadcrumb" className={`flex items-center ${className}`}>
-      <ol className="flex items-center space-x-1">
+      <ol className="flex items-center space-x-1 flex-wrap gap-y-3">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
 

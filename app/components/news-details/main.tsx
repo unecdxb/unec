@@ -7,7 +7,7 @@ const Main = () => {
           <div className="grid grid-cols-1 gap-10">
             <div>
               <div className="bg-light p-4">
-                <Image src="/assets/images/news/news-1.jpg" width={1920} height={1080} alt="" className="w-full max-h-[60dvh] object-cover" />
+                <Image src="/assets/images/news/nws-4.jpg" width={1920} height={1080} alt="" className="w-full h-full max-h-[60dvh] object-cover" />
               </div>
             </div>
             <div>

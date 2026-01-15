@@ -14,7 +14,7 @@ const ChairmanMsg = () => {
                   height={1080}
                   className="w-full h-full object-cover"
                   style={{
-                    clipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 75% 83%, 75% 100%, 61% 84%, 0 84%);",
+                    clipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 75% 83%, 75% 100%, 61% 84%, 0 84%)",
                     WebkitClipPath: "polygon(0% 0%, 100% 0%, 100% 83%, 75% 83%, 75% 100%, 61% 84%, 0 84%)"
                   }}
                 />
