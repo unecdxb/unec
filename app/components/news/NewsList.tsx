@@ -6,6 +6,7 @@ import { NewsData } from "./data";
 import { BsCalendar3, BsArrowRight } from "react-icons/bs";
 import { gsap } from "gsap";
 import Link from "next/link";
+import PrimaryBtn from "../common/PrimaryBtn";
 
 const NewsList = () => {
   const [selectedYear, setSelectedYear] = useState<string>("all");
@@ -74,9 +75,9 @@ const NewsList = () => {
               <button key={year} onClick={() => setSelectedYear(year)} className={`
                   px-6 py-2.5 rounded-xl font-medium transition-all duration-300
                   ${selectedYear === year
-                    ? "bg-black text-white shadow-lg scale-105"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105"
-                  }
+                  ? "bg-black text-white shadow-lg scale-105"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105"
+                }
                 `}
               >
                 {year === "all" ? "All News" : year}
@@ -88,7 +89,7 @@ const NewsList = () => {
         {/* News Grid */}
         <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
           {sortedNews.map((news, index) => (
-            <div key={index} className="news-card group  overflow-hidden shadow-sm  hover:shadow-md transition-all duration-500 cursor-pointer relative" >
+            <div key={index} className="news-card flex flex-col group  overflow-hidden shadow-sm shadow-stone-200 bg-white transition-all duration-500 cursor-pointer relative" >
               <Link href={`/news/${news.title}`} className="absolute inset-0 w-full h-full z-10" />
               {/* Image Container */}
               <div className="relative h-[220px] xl:h-[260px] overflow-hidden">
@@ -96,32 +97,35 @@ const NewsList = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Year Badge */}
-                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                  <span className="text-sm font-semibold text-gray-800">
+                <div className="absolute top-4 right-4 bg-black/90 backdrop-blur-sm px-3 py-[0px] ">
+                  <span className="text-sm font-light text-white">
                     {new Date(news.date).getFullYear()}
                   </span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 h-fit flex flex-col justify-between">
-                {/* Date */}
-                <div className="flex items-center gap-2 text-gray-500 text-sm mb-3">
-                  <BsCalendar3 className="w-4 h-4" />
-                  <span>{formatDate(news.date)}</span>
-                </div>
 
-                {/* Title */}
-                <h3 className="text-17 font-normal !font-suisse-intl text-gray-900 mb-3 line-clamp-3 group-hover:text-black transition-colors duration-300">
+              {/* Date */}
+              <div className="flex items-center gap-2 text-gray-500 text-sm pb-3 px-4 xl:px-6 pt-3 xl:pt-5 xl:pb-5 border-b border-gray-100">
+                <BsCalendar3 className="w-4 h-4" />
+                <span>{formatDate(news.date)}</span>
+              </div>
+
+              {/* Title */}
+              <div className="px-4 xl:px-6 pt-4 ">
+                <h3 className="text-19 font-normal uppercase text-gray-900 mb-3 line-clamp-3 group-hover:text-black transition-colors duration-300">
                   {news.title}
                 </h3>
-
-                {/* Read More Link */}
-                <div className="flex items-center gap-2 text-secondary font-light group-hover:gap-3 transition-all duration-300 mt-auto">
-                  <span>Read More</span>
-                  <BsArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
               </div>
+
+              {/* Read More Link */}
+              <Link href={`/news/${news.title}`} className="flex items-center gap-2 border-t border-gray-100 font-light group-hover:gap-3 transition-all duration-300 mt-auto px-4 xl:px-6 py-2 xl:py-4">
+                <span className="text-primary group-hover:text-black transition-colors duration-300">Read More</span>
+                <BsArrowRight className="w-5 h-5 text-secondary font-bold group-hover:translate-x-[1px] group-hover:text-primary transition-transform duration-300" />
+              </Link>
+              {/* <PrimaryBtn text="Read More" href={`/news/${news.title}`} /> */}
+
 
             </div>
           ))}

@@ -5,9 +5,9 @@ const Main = () => {
   return ( 
     <section className="">
       <div className="container sp-py">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <div>
-            <Image src="/assets/images/careers/careers-main.jpg" width={1920} height={1080} alt="" className="w-full max-h-[60dvh] object-cover" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
+          <div className="h-full">
+            <Image src="/assets/images/careers/careers-main.jpg" width={1920} height={1080} alt="" className="w-full h-full xl:max-h-[60dvh] object-cover" />
           </div>
           <div>
             <SubTitle title="BUILD A PROMISING CAREER THAT LASTS Become an integral part of [UNEC] now!" />

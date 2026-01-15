@@ -99,12 +99,12 @@ const Main = () => {
   const visibleThumbnails = images.slice(thumbnailStartIndex, thumbnailStartIndex + thumbnailsPerView);
 
   return (
-    <section className="relative py-16">
+    <section className="relative sp-py">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-20 items-center">
           {/* Gallery Slider */}
           <div className="relative group">
-            <div className="relative h-[400px] md:h-[500px] bg-black overflow-hidden rounded-lg shadow-2xl">
+            <div className="relative h-[250px] xs:h-[300px] xl:h-[400px] 2xl:h-[500px] bg-black overflow-hidden rounded-lg shadow-2xl">
               <AnimatePresence mode="wait">
                 <motion.div key={currentSlide} initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -100 }} transition={{ duration: 0.5 }} className="absolute inset-0" >
                   <div className="relative w-full h-full cursor-pointer" onClick={() => openLightbox(currentSlide)}>
@@ -158,15 +158,13 @@ const Main = () => {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setCurrentSlide(actualIndex)}
-                          className={`relative h-20 rounded-lg overflow-hidden cursor-pointer shadow-md ${actualIndex === currentSlide ? 'ring-4 ring-blue-500' : ''
+                          className={`relative h-20 rounded-lg overflow-hidden cursor-pointer hover:opacity-100 shadow-md ${actualIndex === currentSlide ? 'opacity-100' : 'opacity-50'
                             }`}
                         >
-                          <Image
-                            src={img}
-                            alt={`Thumbnail ${actualIndex + 1}`}
-                            fill
-                            className="object-cover"
-                          />
+                          {actualIndex !== currentSlide && (
+                            <div className="absolute inset-0 bg-black/30 z-10  bg-opacity-30 hover:bg-opacity-0 transition-all duration-300" />
+                          )}
+                          <Image src={img} alt={`Thumbnail ${actualIndex + 1}`} fill className="object-cover" />
                           {actualIndex !== currentSlide && (
                             <div className="absolute inset-0  bg-opacity-30 hover:bg-opacity-0 transition-all duration-300" />
                           )}
@@ -199,7 +197,7 @@ const Main = () => {
 
           {/* Project Details */}
           <div>
-            <SubTitle title="Project Details" />
+            <SubTitle title="Project Details" mClass="mb-5 xl:mb-10" />
             <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-5 xl:p-10 ">
               <div className="flex flex-col gap-5">
                 {[
@@ -209,9 +207,9 @@ const Main = () => {
                   { label: 'Location', value: 'UAE' },
                   { label: 'Status', value: 'On-going' },
                 ].map((item, index) => (
-                  <div key={index} className="grid grid-cols-1 md:grid-cols-[1fr_auto_2fr] gap-5 pb-3 border-b border-gray-300 last:border-b-0">
+                  <div key={index} className="grid grid-cols-[1fr_auto_3fr] md:grid-cols-[1fr_auto_2fr] gap-5 pb-3 border-b border-gray-300 last:border-b-0">
                     <span className="font-light text-secondary">{item.label}</span>
-                    <span className="hidden md:block text-secondary">:</span>
+                    <span className="text-secondary">:</span>
                     <span className="text-gray-600">{item.value}</span>
                   </div>
                 ))}

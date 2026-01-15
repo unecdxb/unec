@@ -7,7 +7,7 @@ interface PageBnrProps {
 }
 const PageBnr = ({ title, image }: PageBnrProps) => {
   return ( 
-    <section className="h-[250px] md:h-[300px] lg:h-[350px] xl:h-[450px] bg-black/60 w-full relative">
+    <section className="h-[350px] md:h-[300px] lg:h-[350px] xl:h-[450px] bg-black/60 w-full relative">
       <div className="absolute top-0 left-0 w-full h-[30%] bg-linear-to-b from-black/50 to-transparent z-1"></div>
       <div className="absolute bottom-0 left-0 w-full h-[60%] bg-linear-to-t from-black/70 to-transparent z-1"></div>
       {image && (
@@ -15,7 +15,7 @@ const PageBnr = ({ title, image }: PageBnrProps) => {
       )}
       <div className="container h-full relative z-10">
         <div className="flex flex-col justify-end gap-4 h-full pb-10 md:pb-16 lg:pb-20 xl:pb-24">
-          <h1 className="text-60 font-light uppercase text-white">{title}</h1>
+          <h1 className="text-40 xl:text-60 font-light uppercase text-white leading-1.1">{title}</h1>
           <Breadcrumb />
         </div>
       </div>
