@@ -142,41 +142,47 @@ const ProjectList = () => {
   return (
     <section className="sp-pb">
       <div className="container">
-        <div className="bg-light p-4 xl:p-8 sp-my">
+        <div className="bg-light p-4 xl:p-8 my-8 xl:my-12">
           <h3 className="text-19 font-normal text-center">[UNEC]'s contribution to the region can be seen everywhere - in the many public buildings we use by day to the private dwellings we return to at night. The skilled work of our team surrounds us in thousands of expertly-crafted structures that remind us of everything we've achieved and all that's yet to come.</h3>
         </div>
         {/* FILTER BAR */}
-        <div className="bg-light p-4 rounded-md mb-8">
-          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3  2xl:grid-cols-5 gap-4 items-end">
-
+        <div className="bg-light p-4 xl:p-8  mb-8 xl:mb-12">
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4 xl:gap-10 items-end">
             <div>
-              <label htmlFor="region-select" className="text-sm font-medium mb-1 block">Region</label>
-              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" />
+              {/* <label htmlFor="region-select" className="text-sm font-medium mb-1 block">Region</label> */}
+              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" classNamePrefix="cmn-select" className="cmn-select" />
             </div>
 
             <div>
-              <label htmlFor="category-select" className="text-sm font-medium mb-1 block">Category</label>
-              <Select inputId="category-select" options={categories} styles={selectStyles} value={category} defaultValue={categories[0]} onChange={setCategory} aria-label="Filter by category" />
+              {/* <label htmlFor="category-select" className="text-sm font-medium mb-1 block">Category</label> */}
+              <Select inputId="category-select" options={categories} styles={selectStyles} value={category} defaultValue={categories[0]} onChange={setCategory} aria-label="Filter by category"
+                classNamePrefix="cmn-select" className="cmn-select" />
             </div>
 
             <div>
-              <label htmlFor="status-select" className="text-sm font-medium mb-1 block">Status</label>
-              <Select inputId="status-select" options={statuses} styles={selectStyles} value={status} defaultValue={statuses[0]} onChange={setStatus} aria-label="Filter by status" />
+              {/* <label htmlFor="status-select" className="text-sm font-medium mb-1 block">Status</label> */}
+              <Select inputId="status-select" options={statuses} styles={selectStyles} value={status} defaultValue={statuses[0]} onChange={setStatus} aria-label="Filter by status"
+                classNamePrefix="cmn-select" className="cmn-select" />
             </div>
 
             <div>
-              <label htmlFor="keyword-input" className="text-sm font-medium mb-1 block">Keywords</label>
+              {/* <label htmlFor="keyword-input" className="text-sm font-medium mb-1 block">Keywords</label> */}
               <input id="keyword-input" type="text" placeholder="Type keyword…"
-                className="w-full h-[48px] px-4 border border-gray-300 rounded-md focus:outline-none focus:border-black"
+                className="w-full h-[48px] pr-4 border-b border-black/20  focus:outline-none focus:border-black placeholder:text-black"
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
                 aria-label="Search by keyword"
               />
             </div>
 
-            <button className="h-[48px] bg-black text-white flex items-center justify-center gap-2 rounded-md hover:bg-gray-900 transition" onClick={handleSearch} aria-label="Apply search filters" >
-              <FiSearch />
-              SEARCH
+            <button
+              className="h-12 px-8 cursor-pointer bg-black text-white flex items-center justify-center gap-2.5 font-semibold text-sm tracking-[0.15em] uppercase relative overflow-hidden group border-2 border-white"
+              onClick={handleSearch}
+              aria-label="Apply search filters"
+            >
+              <span className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
+              <FiSearch className="w-4 h-4 stroke-[2.5] relative z-10 group-hover:scale-110 transition-all duration-500 group-hover:text-black" />
+              <span className="relative z-10 group-hover:text-black transition-colors duration-500">Search</span>
             </button>
 
           </div>

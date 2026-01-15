@@ -67,8 +67,8 @@
   --spacing-35px: clamp(0.875rem, 1.5vw + 0.5rem, 35px);
   --spacing-50px: clamp(1.4rem, 10vw + 0.1em, 50px);
 
-  --breakpoint-xs: 550px;
-  --breakpoint-sm: 640px;
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 550px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1200px;
@@ -436,9 +436,14 @@ body {
 /* select box styling */
 
 /* Custom React Select Styling */
+
 .custom-select__control {
-  border: 1px solid #d1d5db !important;
-  border-radius: 0.5rem !important;
+  /* border: 1px solid #d1d5db !important; */
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: 1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+  /* border-radius: 0.5rem !important; */
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
   transition: all 0.2s !important;
   /* min-height: 44px !important; */
@@ -471,7 +476,7 @@ body {
 }
 
 .custom-select__indicator-separator {
-  /* display: none !important; */
+  display: none !important;
 }
 
 .custom-select__dropdown-indicator {
@@ -514,4 +519,70 @@ body {
 
 .custom-select__option:active {
   background-color: #e5e7eb !important;
+}
+
+.cmn-select__control{
+  border-top:none !important;
+  border-left:none !important;
+  border-right:none !important;
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+  border-radius:0 !important;
+  background-color:transparent !important;
+  padding-left: 0 !important;
+}
+.cmn-select__indicator-separator{
+  display:none !important;
+}
+.cmn-select__control--is-focused{
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+}
+.cmn-select__control--menu-is-open{
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+}
+.cmn-select .css-tj5bde-Svg{
+  fill:rgb(from var(--color-black) r g b / 0.6) !important;
+}
+.cmn-select__value-container{
+  padding-left: 0 !important;
+}
+.cmn-select__indicator{
+  padding-right: 0 !important;
+}
+
+.cmn-select__menu {
+  border-radius: 0.5rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.02) !important;
+  border: 1px solid #e5e7eb !important;
+  overflow: hidden !important;
+  margin-top: 0.5rem !important;
+}
+
+.cmn-select__menu-list {
+  padding: 0.2rem 0.3rem !important;
+}
+
+.cmn-select__option {
+  border-radius: 0.375rem !important;
+  padding: 0.4rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  transition: all 0.15s !important;
+}
+
+.cmn-select__option--is-focused {
+  background-color: #f3f4f6 !important;
+}
+
+.cmn-select__option--is-selected {
+  background-color: rgb(from var(--color-black) r g b / 0.8) !important;
+  color: white !important;
+}
+
+.cmn-select__option:active {
+  background-color: #e5e7eb !important;
+}
+.cmn-select__control--is-focused {
+  border-color: var(--color-paragraph) !important;
+  box-shadow: none !important;
+  outline: none !important;
 }

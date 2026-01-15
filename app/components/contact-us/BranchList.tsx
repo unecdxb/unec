@@ -36,7 +36,7 @@ const BranchList = () => {
   return (
     <section className="sp-py">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           {contactUsData.branchList.map((branch, index) => (
             <div
               key={index}
@@ -46,13 +46,13 @@ const BranchList = () => {
               className="group relative bg-white rounded-2xl p-6 overflow-hidden border border-gray-100"
             >
               {/* Accent Bar */}
-              <span className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-blue-500"></span>
+              <span className="absolute top-0 left-0 w-full h-1 bg-black"></span>
 
               {/* Title */}
-              <h3 className="text-20 font-light text-gray-900 mb-3">
+              <h3 className="text-20 font-light text-gray-900 mb-3 xl:mb-6">
                 {branch.title}
               </h3>
-              <hr className="h-1 bg-gradient-to-r from-black/20 to-transparent border-0 mb-4" />
+              {/* <hr className="h-1 bg-gradient-to-r from-black/20 to-transparent border-0 mb-4" /> */}
               {/* Info */}
               <div className="space-y-3 text-sm text-gray-600">
 
@@ -83,7 +83,7 @@ const BranchList = () => {
               <div className="grid grid-cols-3 gap-3 mt-6">
                 <Link
                   href={`tel:${branch.phone}`}
-                  className="flex items-center justify-center h-11 rounded-md bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                  className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
                 >
                   <FaPhone />
                 </Link>
@@ -91,14 +91,14 @@ const BranchList = () => {
                 <Link
                   href={branch.gmap}
                   target="_blank"
-                  className="flex items-center justify-center h-11 rounded-md bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                  className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
                 >
                   <FaMapMarkerAlt />
                 </Link>
 
                 <Link
                   href={`mailto:${branch.email}`}
-                  className="flex items-center justify-center h-11 rounded-md bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                  className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
                 >
                   <FaEnvelope />
                 </Link>
