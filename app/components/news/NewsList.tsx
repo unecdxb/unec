@@ -69,11 +69,11 @@ const NewsList = () => {
         <SubTitle title="LATEST NEWS" mClass="mb-6 xl:mb-10" />
 
         {/* Year Filter Buttons */}
-        <div className="bg-black/10 rounded-2xl shadow-sm border border-gray-100 p-4 mb-8">
+        <div className="bg-black/10  shadow-sm border border-gray-100 p-4 mb-8 xl:mb-10 2xl:mb-14">
           <div className="flex flex-wrap gap-3">
             {years.map((year) => (
               <button key={year} onClick={() => setSelectedYear(year)} className={`
-                  px-6 py-2.5 rounded-xl font-medium transition-all duration-300
+                  px-6 py-2.5  font-medium transition-all duration-300
                   ${selectedYear === year
                   ? "bg-black text-white shadow-lg scale-105"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105"
@@ -89,38 +89,36 @@ const NewsList = () => {
         {/* News Grid */}
         <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
           {sortedNews.map((news, index) => (
-            <div key={index} className="news-card flex flex-col group  overflow-hidden shadow-sm shadow-stone-200 bg-white transition-all duration-500 cursor-pointer relative" >
+            <div key={index} className="news-card flex flex-col group  overflow-hidden border border-gray-100 bg-white transition-all duration-500 cursor-pointer relative" >
               <Link href={`/news/${news.title}`} className="absolute inset-0 w-full h-full z-10" />
               {/* Image Container */}
-              <div className="relative h-[220px] xl:h-[260px] overflow-hidden">
+              <div className="relative h-[220px] xl:h-[260px] 2xl:h-[350px] overflow-hidden">
                 <Image src={news.image} alt={news.title} width={1200} height={600} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Year Badge */}
-                <div className="absolute top-4 right-4 bg-black/90 backdrop-blur-sm px-3 py-[0px] ">
-                  <span className="text-sm font-light text-white">
-                    {new Date(news.date).getFullYear()}
-                  </span>
+                <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-2 ">
+                  <div className="flex items-center gap-2 text-white text-sm">
+                    <BsCalendar3 className="w-4 h-4" />
+                    <span>{formatDate(news.date)}</span>
+                  </div>
                 </div>
               </div>
 
               {/* Content */}
 
               {/* Date */}
-              <div className="flex items-center gap-2 text-gray-500 text-sm pb-3 px-4 xl:px-6 pt-3 xl:pt-5 xl:pb-5 border-b border-gray-100">
-                <BsCalendar3 className="w-4 h-4" />
-                <span>{formatDate(news.date)}</span>
-              </div>
+              
 
               {/* Title */}
               <div className="px-4 xl:px-6 pt-4 ">
-                <h3 className="text-19 font-normal uppercase text-gray-900 mb-3 line-clamp-3 group-hover:text-black transition-colors duration-300">
+                <h3 className="text-19 font-normal uppercase text-gray-900 mb-3 line-clamp-2 group-hover:text-black transition-colors duration-300">
                   {news.title}
                 </h3>
               </div>
 
               {/* Read More Link */}
-              <Link href={`/news/${news.title}`} className="flex items-center gap-2 border-t border-gray-100 font-light group-hover:gap-3 transition-all duration-300 mt-auto px-4 xl:px-6 py-2 xl:py-4">
+              <Link href={`/news/${news.title}`} className="flex items-center gap-2 font-light group-hover:gap-3 transition-all duration-300 mt-auto px-4 xl:px-6 py-2 xl:py-4">
                 <span className="text-primary group-hover:text-black transition-colors duration-300">Read More</span>
                 <BsArrowRight className="w-5 h-5 text-secondary font-bold group-hover:translate-x-[1px] group-hover:text-primary transition-transform duration-300" />
               </Link>

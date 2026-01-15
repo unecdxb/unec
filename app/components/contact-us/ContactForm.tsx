@@ -112,7 +112,7 @@ const ContactForm: React.FC = () => {
   return (
     <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-py">
       <div className="max-w-5xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white  overflow-hidden">
 
           {/* Header Section */}
      
@@ -120,9 +120,9 @@ const ContactForm: React.FC = () => {
           {/* Form Section */}
           <div className="p-8">
             {submitStatus && (
-              <div className={`mb-6 p-4 rounded-lg flex gap-3 ${submitStatus.type === 'success'
-                  ? 'bg-green-50 text-green-800 border border-green-200'
-                  : 'bg-red-50 text-red-800 border border-red-200'
+              <div className={`mb-6 p-4 flex gap-3 ${submitStatus.type === 'success'
+                  ? 'bg-green-50 text-green-800 border-bborder-green-200'
+                  : 'bg-red-50 text-red-800 border-bborder-red-200'
                 }`}>
                 {submitStatus.type === 'success'
                   ? <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -134,13 +134,13 @@ const ContactForm: React.FC = () => {
             <div className="space-y-6">
 
               {/* First Row: First Name, Last Name, Email */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-10">
 
                 {/* FIRST NAME */}
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
                     First Name <span className="text-red-500">*</span>
-                  </label>
+                  </label> */}
                   <div className="relative">
                     <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                     <input
@@ -150,9 +150,9 @@ const ContactForm: React.FC = () => {
                         required: 'First name is required',
                         minLength: { value: 2, message: 'Minimum 2 characters' }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
                         }`}
-                      placeholder="John"
+                      placeholder="First Name"
                     />
                   </div>
                   {errors.firstName && (
@@ -165,9 +165,9 @@ const ContactForm: React.FC = () => {
 
                 {/* LAST NAME */}
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
                     Last Name <span className="text-red-500">*</span>
-                  </label>
+                  </label> */}
                   <div className="relative">
                     <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                     <input
@@ -177,9 +177,9 @@ const ContactForm: React.FC = () => {
                         required: 'Last name is required',
                         minLength: { value: 2, message: 'Minimum 2 characters' }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
                         }`}
-                      placeholder="Doe"
+                      placeholder="Last Name"
                     />
                   </div>
                   {errors.lastName && (
@@ -192,9 +192,9 @@ const ContactForm: React.FC = () => {
 
                 {/* EMAIL */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email <span className="text-red-500">*</span>
-                  </label>
+                  </label> */}
                   <div className="relative">
                     <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                     <input
@@ -207,9 +207,9 @@ const ContactForm: React.FC = () => {
                           message: 'Invalid email address'
                         }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
                         }`}
-                      placeholder="john@example.com"
+                      placeholder="Email"
                     />
                   </div>
                   {errors.email && (
@@ -223,13 +223,13 @@ const ContactForm: React.FC = () => {
               </div>
 
               {/* Second Row: Subject and Query */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
 
                 {/* SUBJECT */}
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                     Subject <span className="text-red-500">*</span>
-                  </label>
+                  </label> */}
                   <input
                     type="text"
                     id="subject"
@@ -237,7 +237,7 @@ const ContactForm: React.FC = () => {
                       required: 'Subject is required',
                       minLength: { value: 5, message: 'Minimum 5 characters' }
                     })}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.subject ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border-b focus:ring-none focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
                       }`}
                     placeholder="How can we help you?"
                   />
@@ -251,9 +251,9 @@ const ContactForm: React.FC = () => {
 
                 {/* QUERY - React Select */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                     Query Type <span className="text-red-500">*</span>
-                  </label>
+                  </label> */}
                   <Controller
                     name="query"
                     control={control}
@@ -266,7 +266,8 @@ const ContactForm: React.FC = () => {
                         value={queryOptions.find(opt => opt.value === field.value) || null}
                         onChange={(opt) => field.onChange(opt?.value)}
                         styles={customSelectStyles}
-                        classNamePrefix="react-select"
+                        classNamePrefix="cmn-select"
+                        className="cmn-select"
                       />
                     )}
                   />
@@ -282,9 +283,9 @@ const ContactForm: React.FC = () => {
 
               {/* MESSAGE */}
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message <span className="text-red-500">*</span>
-                </label>
+                </label> */}
                 <div className="relative">
                   <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                   <textarea
@@ -294,7 +295,7 @@ const ContactForm: React.FC = () => {
                       required: 'Message is required',
                       minLength: { value: 20, message: 'Message must be at least 20 characters' }
                     })}
-                    className={`w-full pl-11 pr-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none focus:placeholder:text-black/50 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
                       }`}
                     placeholder="Please provide details about your inquiry..."
                   />
@@ -308,35 +309,37 @@ const ContactForm: React.FC = () => {
               </div>
 
               {/* NEWSLETTER CHECKBOX */}
-              <div className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg border border-blue-100">
-                <input
-                  type="checkbox"
-                  id="newsletter"
-                  {...register('newsletter')}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
-                />
-                <label htmlFor="newsletter" className="text-sm text-gray-700 cursor-pointer">
-                  Subscribe to our newsletter for updates and exclusive content
-                </label>
-              </div>
+             <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center gap-3 p-4 bg-blue-50  border-bborder-blue-100 w-fit">
+                  <input
+                    type="checkbox"
+                    id="newsletter"
+                    {...register('newsletter')}
+                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                  />
+                  <label htmlFor="newsletter" className="text-sm text-gray-700 cursor-pointer">
+                    Subscribe to our newsletter for updates and exclusive content
+                  </label>
+                </div>
 
-              {/* SUBMIT BUTTON */}
-              <div className="flex gap-4">
-                <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg 
+                {/* SUBMIT BUTTON */}
+                <div className="flex gap-4 w-full">
+                  <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6  transition-all duration-200 flex items-center justify-center gap-2 shadow-lg 
                 hover:shadow-xl cursor-pointer" >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" />
-                      Sending Message...
-                    </>
-                  ) : (
-                    <>
-                      <Mail className="w-5 h-5" />
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </div>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending Message...
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </div>
+             </div>
             </div>
           </div>
         </div>
