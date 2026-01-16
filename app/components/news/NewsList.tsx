@@ -67,11 +67,11 @@ const NewsList = () => {
     <section className="sp-py bg-gradient-to-b from-white to-gray-50">
       <div className="container">
         {/* Year Filter Buttons */}
-        <div className="bg-black/10  shadow-sm border border-gray-100 p-4 mb-8 xl:mb-10 2xl:mb-14">
-          <div className="flex flex-wrap gap-3">
+        <div className="bg-black/10  shadow-sm border border-gray-100 p-2 xl:p-4 mb-8 xl:mb-10 2xl:mb-14">
+          <div className="flex flex-wrap gap-2 xl:gap-3">
             {years.map((year) => (
               <button key={year} onClick={() => setSelectedYear(year)} className={`
-                  px-6 py-2.5  font-medium transition-all duration-300
+                  px-3 py-1 xl:px-6 xl:py-2.5  font-medium transition-all duration-300
                   ${selectedYear === year
                   ? "bg-black text-white shadow-lg scale-105"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105"
@@ -96,7 +96,7 @@ const NewsList = () => {
 
                 {/* Year Badge */}
                 <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-2 ">
-                  <div className="flex items-center gap-2 text-white text-sm">
+                  <div className="flex items-center gap-2 text-white text-xs xl:text-sm">
                     <BsCalendar3 className="w-4 h-4" />
                     <span>{formatDate(news.date)}</span>
                   </div>

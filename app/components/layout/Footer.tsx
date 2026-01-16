@@ -35,12 +35,12 @@ const Footer = () => {
             </div>
             <div>
               <h3 className="text-2xl font-normal md:mb-4 mb-2">Subscribe to our newsletter</h3>
-              <div className="relative w-full max-w-[80vw] xs:max-w-[60vw] md:max-w-[70%]">
+              <div className="relative w-full max-w-[80vw] xs:max-w-[300px] 2xl:max-w-[350px]">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                   <MdEmail className="text-gray-400 text-xl" />
                 </div>
-                <input type="email" placeholder="Enter your email address" className="w-full py-3 pl-12 pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
-                <button className="absolute inset-y-0 right-0 flex items-center px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors">
+                <input type="email" placeholder="Enter your email address" className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+                <button className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors">
                   <IoMdSend className="text-xl" />
                 </button>
               </div>
