@@ -4,7 +4,7 @@ const ChairmanMsg = () => {
     return ( 
       <section className="sp-py bg-light" id="chairman-message">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 xl:gap-20 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xs:gap-10 2xl:gap-20 items-stretch">
             <div>
               <div className="relative h-full w-full mx-auto overflow-hidden">
                 <Image
