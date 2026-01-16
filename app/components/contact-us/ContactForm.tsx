@@ -1,6 +1,7 @@
 
 'use client';
-
+import { motion } from 'framer-motion';
+import { moveUp } from '../motionVarients';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import Select from 'react-select';
@@ -112,11 +113,8 @@ const ContactForm: React.FC = () => {
   return (
     <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-py">
       <div className="max-w-5xl mx-auto">
-        <div className="bg-white  overflow-hidden">
-
-          {/* Header Section */}
+        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden">
      
-
           {/* Form Section */}
           <div className="p-8">
             {submitStatus && (
@@ -342,7 +340,7 @@ const ContactForm: React.FC = () => {
              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

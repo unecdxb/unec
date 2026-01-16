@@ -1,5 +1,6 @@
 "use client";
-
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Select from "react-select";
 import { FiSearch } from "react-icons/fi";
@@ -142,27 +143,27 @@ const ProjectList = () => {
   return (
     <section className="sp-pb">
       <div className="container">
-        <div className="bg-light p-4 xl:p-8 my-8 xl:my-12">
+        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-light p-4 xl:p-8 my-8 xl:my-12">
           <h3 className="text-19 font-normal text-center">[UNEC]'s contribution to the region can be seen everywhere - in the many public buildings we use by day to the private dwellings we return to at night. The skilled work of our team surrounds us in thousands of expertly-crafted structures that remind us of everything we've achieved and all that's yet to come.</h3>
-        </div>
+        </motion.div>
         {/* FILTER BAR */}
-        <div className="bg-light p-4 xl:p-8  mb-8 xl:mb-12">
+        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-light p-4 xl:p-8  mb-8 xl:mb-12">
           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4 xl:gap-10 items-end">
             <div>
               {/* <label htmlFor="region-select" className="text-sm font-medium mb-1 block">Region</label> */}
-              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" classNamePrefix="cmn-select" className="cmn-select" />
+              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" classNamePrefix="cmn-select" className="cmn-select" instanceId="region-select" />
             </div>
 
             <div>
               {/* <label htmlFor="category-select" className="text-sm font-medium mb-1 block">Category</label> */}
               <Select inputId="category-select" options={categories} styles={selectStyles} value={category} defaultValue={categories[0]} onChange={setCategory} aria-label="Filter by category"
-                classNamePrefix="cmn-select" className="cmn-select" />
+                classNamePrefix="cmn-select" className="cmn-select" instanceId="category-select" />
             </div>
 
             <div>
               {/* <label htmlFor="status-select" className="text-sm font-medium mb-1 block">Status</label> */}
               <Select inputId="status-select" options={statuses} styles={selectStyles} value={status} defaultValue={statuses[0]} onChange={setStatus} aria-label="Filter by status"
-                classNamePrefix="cmn-select" className="cmn-select" />
+                classNamePrefix="cmn-select" className="cmn-select" instanceId="status-select" />
             </div>
 
             <div>
@@ -186,7 +187,7 @@ const ProjectList = () => {
             </button>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* GRID */}
         {filteredItems.length === 0 ? (
@@ -197,7 +198,9 @@ const ProjectList = () => {
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item, index) => (
               <Link href={`/projects/${item.title}`} key={index}>
+                <motion.div variants={moveUp(0.4+0.1*index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <ProjectCard image={item.image} title={item.title} location={item.region} height="h-[250px] xl:h-[350px]" />
+                </motion.div>
               </Link> 
             ))}
           </div>

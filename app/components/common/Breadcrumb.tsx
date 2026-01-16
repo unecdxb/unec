@@ -1,9 +1,9 @@
 'use client';
-
+import { motion } from 'framer-motion';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
-
+import { moveRight } from '../motionVarients';
 interface BreadcrumbItem {
   label: string;
   href: string;
@@ -71,7 +71,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
           const isLast = index === items.length - 1;
 
           return (
-            <li key={index} className="flex items-center">
+            <motion.li variants={moveRight(0.3+index*0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index} className="flex items-center">
               {index > 0 && (
                 <MdOutlineKeyboardArrowRight className="text-primary mx-1" size={20} />
               )}
@@ -84,7 +84,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                   {item.label}
                 </a>
               )}
-            </li>
+            </motion.li>
           );
         })}
       </ol>

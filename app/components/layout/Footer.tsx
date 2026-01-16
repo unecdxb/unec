@@ -1,12 +1,16 @@
+
+"use client";
 import Image from "next/image";
 import { MdEmail } from 'react-icons/md';
 import { IoMdSend } from 'react-icons/io';
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from "react-icons/fa6";
-import { IoLogoWhatsapp } from 'react-icons/io';
 import Link from "next/link";
 import { IconType } from 'react-icons';
 import { CgBrackets } from "react-icons/cg";
+import { motion } from "framer-motion";
+import { moveUp, moveLeft } from "../motionVarients";
+import { footerData } from "./data";
 // Define the type for social links
 interface SocialLink {
   icon: IconType | 'custom';
@@ -28,14 +32,14 @@ const Footer = () => {
   return (
     <footer className="pt-12 bg-black text-white font-suisse-intl">
       <div className="container">
-        <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_1fr_1fr_1fr] gap-8">
+        <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_1fr_1fr_1fr] gap-8 relative overflow-hidden">
           <div className="col-span-2 xs:col-span-3 xl:col-span-1 border-b border-white/20 xl:border-b-0 pb-6 xl:pb-0">
-            <div className="mb-5 md:mb-6 lg:mb-12">
+            <motion.div className="mb-5 md:mb-6 lg:mb-12" variants={moveUp(0)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
               <Image src="/assets/images/logo-footer.png" alt="" width={489} height={149} className="w-auto h-[70px]" />
-            </div>
+            </motion.div>
             <div>
-              <h3 className="text-2xl font-normal md:mb-4 mb-2">Subscribe to our newsletter</h3>
-              <div className="relative w-full max-w-[80vw] xs:max-w-[300px] 2xl:max-w-[350px]">
+              <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-2xl font-normal md:mb-4 mb-2">Subscribe to our newsletter</motion.h3>
+              <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="relative w-full max-w-[80vw] xs:max-w-[300px] 2xl:max-w-[350px]">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                   <MdEmail className="text-gray-400 text-xl" />
                 </div>
@@ -43,7 +47,7 @@ const Footer = () => {
                 <button className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors">
                   <IoMdSend className="text-xl" />
                 </button>
-              </div>
+              </motion.div>
               {/* <div className="flex items-center gap-3 mt-6">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
@@ -75,106 +79,54 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <h3 className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Quick Links</h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Quick Links</motion.h3>
             <ul className="space-y-3">
-              <li>
-                <Link href="/about-us" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary " />
-                  <span className="hover:text-white/70 transition-colors duration-200">About us</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Projects</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/news" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">News</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/careers" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Careers</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact-us" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Contact us</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/downloads" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Downloads</span>
-                </Link>
-              </li>
+              {
+                footerData.quickLinks.map((item, index) => (
+                  <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                    <Link href={item.href} className="flex items-center gap-2">
+                      <CgBrackets className="text-xl text-primary " />
+                      <span className="hover:text-white/70 transition-colors duration-200">{item.title}</span>
+                    </Link>
+                  </motion.li>
+                ))
+              }
             </ul>
 
           </div>
           <div>
-            <h3 className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Legal</h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Legal</motion.h3>
             <ul className="space-y-3">
-              <li>
-                <Link href="/assets/docs/qhse-policy.pdf" target="_blank" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">QHSE Policy</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/assets/docs/code-of-conduct.pdf" target="_blank" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Code of Conduct</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/assets/docs/equal-opportunity-policy.pdf" target="_blank" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Equal Opportunity Policy</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/assets/docs/modern-slavery-policy.pdf" target="_blank" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Modern Slavery Policy</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/assets/docs/whistleblowing-policy.pdf" target="_blank" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Whistleblowing Policy</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/assets/docs/data-protection-policy.pdf" target="_blank" className="flex items-center gap-2">
-                  <CgBrackets className="text-xl text-primary" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Data Protection Policy</span>
-                </Link>
-              </li>
+              {
+                footerData.documents.map((item, index) => (
+                  <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                    <Link href={item.href} target="_blank" className="flex items-center gap-2">
+                      <CgBrackets className="text-xl text-primary" />
+                      <span className="hover:text-white/70 transition-colors duration-200">{item.title}</span>
+                    </Link>
+                  </motion.li>
+                ))
+              }
             </ul>
           </div>
           <div>
-            <h3 className="text-xl xl:text-2xl font-normal mb-4 ">Connect</h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 ">Connect</motion.h3>
             <ul className="space-y-3">
-              <li>
+              <motion.li variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Connect Us</span>
                 </Link>
-              </li>
-              <li>
+              </motion.li>
+              <motion.li variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Enquiry Form</span>
                 </Link>
-              </li>
+              </motion.li>
             </ul>
           </div>
-          
+
         </div>
       </div>
       <div className="py-4 border-t border-white/20 mt-6">
@@ -185,13 +137,15 @@ const Footer = () => {
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
                 return (
-                  <Link href={social.href} key={index} aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
-                    {social.icon === 'custom' && social.customSrc ? (
-                      <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all " />
-                    ) : (
-                      typeof Icon !== 'string' && <Icon className="text-sm group-hover:scale-110 transition-all " />
-                    )}
-                  </Link>
+                  <motion.div key={index} variants={moveLeft(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                    <Link href={social.href}  aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
+                      {social.icon === 'custom' && social.customSrc ? (
+                        <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all " />
+                      ) : (
+                        typeof Icon !== 'string' && <Icon className="text-sm group-hover:scale-110 transition-all " />
+                      )}
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>

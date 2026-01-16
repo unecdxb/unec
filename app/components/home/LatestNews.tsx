@@ -1,8 +1,12 @@
+
+"use client";
 import { StaticImageData } from "next/image";
 import Image from "next/image";
 import Link from "next/link";
 import SubTitle from "../common/SubTitle";
 import { BsCalendar3 } from "react-icons/bs";
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
 interface Props {
     data:{
         title:string,
@@ -31,7 +35,7 @@ const LatestNews = ({data}: Props) => {
         <SubTitle title="Latest on [UNEC]" mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block">
           {latestThreeNews.map((news,index)=>(
-            <div className="nws-card" key={index}>
+            <motion.div variants={moveUp(index+4 * 0.2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="nws-card" key={index}>
               <div className="img-box">
                 <Image src={news.image} alt="" width={1200} height={600} className="w-full object-cover" />
                 <div className="overlay"></div>
@@ -44,16 +48,16 @@ const LatestNews = ({data}: Props) => {
                 <h3 className="font-light">{news.title}</h3>
                 <Link href="#">Read More</Link>
               </div>
-            </div>
+            </motion.div>
           ))}
-          <div className="nws-btn">
+          <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="nws-btn">
             <Link href="news" className="relative overflow-hidden bg-black text-white w-full py-3 text-center font-medium transition-all duration-300 group" >
               <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">View All News</span>
               {/* Hover overlay */}
               <span className="absolute inset-0 bg-primary translate-y-full transition-transform duration-300 group-hover:translate-y-0"></span>
             </Link>
 
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiChevronLeft, FiChevronRight, FiX, FiZoomIn } from 'react-icons/fi';
 import Image from 'next/image';
 import ProjectInfo from './ProjectInfo';
+import { moveUp, zoomInSlow } from '../motionVarients';
+
 // Constants
 const AUTO_PLAY_INTERVAL = 6500;
 const THUMBNAILS_PER_VIEW = 6;
@@ -148,7 +150,7 @@ const Main = () => {
     <section className="relative sp-py">
       <div className="container mx-auto px-4">
         <ProjectInfo />
-        <div className="xl:gap-20 items-center">
+        <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="xl:gap-20 items-center">
           {/* Gallery Slider */}
           <div className="relative group">
             <div className="relative h-[250px] xs:h-[300px] xl:h-[450px] 2xl:h-[650px] bg-black overflow-hidden  shadow-2xl">
@@ -243,7 +245,7 @@ const Main = () => {
                             }`} 
                         >
                           {!imageErrors.has(actualIndex) ? (
-                            <>
+                            <motion.div variants={zoomInSlow(actualIndex * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                               {actualIndex !== currentSlide && (
                                 <div className="absolute inset-0  z-10  bg-opacity-30 hover:bg-opacity-0 transition-all duration-300" onClick={() => openLightbox(actualIndex)} />
                               )}
@@ -255,7 +257,7 @@ const Main = () => {
                                 sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 15vw"
                                 onError={() => handleImageError(actualIndex)}
                               />
-                            </>
+                            </motion.div>
                           ) : (
                             <div className="flex items-center justify-center h-full text-white text-xs bg-gray-800">
                               Error
@@ -291,7 +293,7 @@ const Main = () => {
           </div>
 
 
-        </div>
+        </motion.div>
       </div>
 
       {/* Lightbox Modal */}

@@ -5,6 +5,8 @@ import { contactUsData } from "./data";
 import Link from "next/link";
 import { FaPhone, FaMapMarkerAlt, FaEnvelope, FaFax } from "react-icons/fa";
 import gsap from "gsap";
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
 
 const BranchList = () => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
@@ -38,72 +40,74 @@ const BranchList = () => {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
           {contactUsData.branchList.map((branch, index) => (
-            <div
-              key={index}
-              ref={(el) => {
-                if (el) cardsRef.current[index] = el;
-              }}
-              className="group relative bg-white  p-6 overflow-hidden border border-gray-100"
-            >
-              {/* Accent Bar */}
-              <span className="absolute top-0 left-0 w-full h-1 bg-black/60"></span>
+            <motion.div variants={moveUp(0.2*index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index}>
+              <div
+                key={index}
+                ref={(el) => {
+                  if (el) cardsRef.current[index] = el;
+                }}
+                className="group relative bg-white  p-6 overflow-hidden border border-gray-100"
+              >
+                {/* Accent Bar */}
+                <span className="absolute top-0 left-0 w-full h-1 bg-black/60"></span>
 
-              {/* Title */}
-              <h3 className="text-20 font-light text-gray-900 mb-3 xl:mb-6">
-                {branch.title}
-              </h3>
-              {/* <hr className="h-1 bg-gradient-to-r from-black/20 to-transparent border-0 mb-4" /> */}
-              {/* Info */}
-              <div className="space-y-3 text-sm text-gray-600">
+                {/* Title */}
+                <h3 className="text-20 font-light text-gray-900 mb-3 xl:mb-6">
+                  {branch.title}
+                </h3>
+                {/* <hr className="h-1 bg-gradient-to-r from-black/20 to-transparent border-0 mb-4" /> */}
+                {/* Info */}
+                <div className="space-y-3 text-sm text-gray-600">
 
-                <div className="grid grid-cols-[auto_1fr] gap-3">
-                  <FaMapMarkerAlt className="text-black mt-1" />
-                  <p>{branch.address}</p>
+                  <div className="grid grid-cols-[auto_1fr] gap-3">
+                    <FaMapMarkerAlt className="text-black mt-1" />
+                    <p>{branch.address}</p>
+                  </div>
+
+                  <div className="grid grid-cols-[auto_1fr] gap-3">
+                    <FaPhone className="text-black mt-1" />
+                    <p>{branch.phone}</p>
+                  </div>
+
+                  <div className="grid grid-cols-[auto_1fr] gap-3">
+                    <FaFax className="text-black mt-1" />
+                    <p>{branch.fax}</p>
+                  </div>
+
+                  <div className="grid grid-cols-[auto_1fr] gap-3">
+                    <FaEnvelope className="text-black mt-1" />
+                    <p>{branch.email}</p>
+                  </div>
+
                 </div>
 
-                <div className="grid grid-cols-[auto_1fr] gap-3">
-                  <FaPhone className="text-black mt-1" />
-                  <p>{branch.phone}</p>
-                </div>
 
-                <div className="grid grid-cols-[auto_1fr] gap-3">
-                  <FaFax className="text-black mt-1" />
-                  <p>{branch.fax}</p>
-                </div>
+                {/* Actions */}
+                <div className="grid grid-cols-3 gap-3 mt-6">
+                  <Link
+                    href={`tel:${branch.phone}`}
+                    className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                  >
+                    <FaPhone />
+                  </Link>
 
-                <div className="grid grid-cols-[auto_1fr] gap-3">
-                  <FaEnvelope className="text-black mt-1" />
-                  <p>{branch.email}</p>
-                </div>
+                  <Link
+                    href={branch.gmap}
+                    target="_blank"
+                    className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                  >
+                    <FaMapMarkerAlt />
+                  </Link>
 
+                  <Link
+                    href={`mailto:${branch.email}`}
+                    className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                  >
+                    <FaEnvelope />
+                  </Link>
+                </div>
               </div>
-
-
-              {/* Actions */}
-              <div className="grid grid-cols-3 gap-3 mt-6">
-                <Link
-                  href={`tel:${branch.phone}`}
-                  className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
-                >
-                  <FaPhone />
-                </Link>
-
-                <Link
-                  href={branch.gmap}
-                  target="_blank"
-                  className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
-                >
-                  <FaMapMarkerAlt />
-                </Link>
-
-                <Link
-                  href={`mailto:${branch.email}`}
-                  className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
-                >
-                  <FaEnvelope />
-                </Link>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
