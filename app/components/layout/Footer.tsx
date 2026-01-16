@@ -120,37 +120,37 @@ const Footer = () => {
             <h3 className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Legal</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="https://unec.co/wp-content/uploads/2025/03/New-UNEC-Draft-Revision-of-QHSE-Policy.pdf" target="_blank" className="flex items-center gap-2">
+                <Link href="/assets/docs/qhse-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">QHSE Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://unec.co/wp-content/uploads/2021/10/Code-of-Conduct-and-Business-Ethics-policy.pdf" target="_blank" className="flex items-center gap-2">
+                <Link href="/assets/docs/code-of-conduct.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Code of Conduct</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://unec.co/wp-content/uploads/2021/10/equal-opportunity-policy.pdf" target="_blank" className="flex items-center gap-2">
+                <Link href="/assets/docs/equal-opportunity-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Equal Opportunity Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://unec.co/wp-content/uploads/2021/10/Modern-Slavery-Policy.pdf" target="_blank" className="flex items-center gap-2">
+                <Link href="/assets/docs/modern-slavery-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Modern Slavery Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://unec.co/wp-content/uploads/2021/10/Whistleblowing-policy.pdf" target="_blank" className="flex items-center gap-2">
+                <Link href="/assets/docs/whistleblowing-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Whistleblowing Policy</span>
                 </Link>
               </li>
               <li>
-                <Link href="https://unec.co/wp-content/uploads/2022/09/Data-Protection-and-Data-Security-Policy.pdf" target="_blank" className="flex items-center gap-2">
+                <Link href="/assets/docs/data-protection-policy.pdf" target="_blank" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Data Protection Policy</span>
                 </Link>
