@@ -112,13 +112,13 @@ const Footer = () => {
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 ">Connect</motion.h3>
             <ul className="space-y-3">
-              <motion.li variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+              <motion.li variants={moveUp(0.4)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Connect Us</span>
                 </Link>
               </motion.li>
-              <motion.li variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+              <motion.li variants={moveUp(0.6)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="/contact-us" className="flex items-center gap-2">
                   <CgBrackets className="text-xl text-primary" />
                   <span className="hover:text-white/70 transition-colors duration-200">Enquiry Form</span>
