@@ -1,8 +1,11 @@
+"use client";
 import { projectData } from "./data";
+import { motion } from "framer-motion";
+import { moveUp, zoomInUp } from "../motionVarients";
 
 const ProjectInfo = () => {
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-gray-100 mb-10 xl:mb-15">
+    <motion.div variants={zoomInUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-gradient-to-br from-gray-50 to-gray-100 mb-10 xl:mb-15">
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 2xl:gap-5 p-3 2xl:p-0">
         <div className="2xl:border-r 2xl:border-gray-200 px-4 py-2 xs:p-4 xl:pb-0 xl:p-6  2xl:p-10">
           <div className='pb-2 xl:pb-4 '>
@@ -36,7 +39,7 @@ const ProjectInfo = () => {
           <p className="text-gray-600">{projectData.status}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

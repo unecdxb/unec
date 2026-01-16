@@ -1,5 +1,6 @@
 'use client';
-
+import { motion } from 'framer-motion';
+import { moveUp } from '../motionVarients';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import Select from 'react-select';
@@ -171,7 +172,7 @@ const JobForm: React.FC = () => {
     <section className="sp-py bg-light" id="apply-for-job">
       <div className="container">
             <SubTitle title="Join Our Team" />
-        <div className="bg-white/60 p-4 xl:p-10">
+        <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white/60 p-4 xl:p-10">
             <p className="text-gray-600 ">* Fill out the form below to apply and take the next step in your career with us!</p>
             <hr className="h-1 border-gray-200 w-[50%] mt-2" />
           <div className="mb-8">
@@ -480,7 +481,7 @@ const JobForm: React.FC = () => {
                   })}
                   className={`w-full pr-4 py-3 border-b placeholder-black/60 focus:border-black/50 focus:outline-none focus:placeholder-black/40 ${errors.expectedSalary ? 'border-red-500' : 'border-gray-300'
                     }`}
-                  placeholder="e.g., $80,000 - $100,000"
+                  placeholder="Expected salary"
                 />
                 {errors.expectedSalary && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -528,9 +529,8 @@ const JobForm: React.FC = () => {
                 'Submit Application'
               )}
             </button>
-
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

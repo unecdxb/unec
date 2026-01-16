@@ -1,6 +1,8 @@
-
+"use client";
 import SubTitle from "../common/SubTitle";
 import { aboutUsData } from "./data";
+import { motion } from "framer-motion";
+import { moveUp } from "../motionVarients";
 const QHSE = () => {
   return (
     <section className="border-t border-gray-300 sp-py" id="qhse">
@@ -11,7 +13,7 @@ const QHSE = () => {
             aboutUsData.QHSEData.items.map((item, index) => {
               const IconComponent = item.icon;
               return (
-                <div key={index} className="qhse-item">
+                <motion.div variants={moveUp(index * 0.2+0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index} className="qhse-item">
                   <div>
                     <div className="flex items-center justify-between mb-4 xl:mb-6">
                       <h3 className="text-25 font-light text-black ">{item.title}</h3>
@@ -29,7 +31,7 @@ const QHSE = () => {
                       }
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )
             })
           }
