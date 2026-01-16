@@ -66,8 +66,6 @@ const NewsList = () => {
   return (
     <section className="sp-py bg-gradient-to-b from-white to-gray-50">
       <div className="container">
-        <SubTitle title="LATEST NEWS" mClass="mb-6 xl:mb-10" />
-
         {/* Year Filter Buttons */}
         <div className="bg-black/10  shadow-sm border border-gray-100 p-4 mb-8 xl:mb-10 2xl:mb-14">
           <div className="flex flex-wrap gap-3">
@@ -87,7 +85,7 @@ const NewsList = () => {
         </div>
 
         {/* News Grid */}
-        <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" >
+        <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-10" >
           {sortedNews.map((news, index) => (
             <div key={index} className="news-card flex flex-col group  overflow-hidden border border-gray-100 bg-white transition-all duration-500 cursor-pointer relative" >
               <Link href={`/news/${news.title}`} className="absolute inset-0 w-full h-full z-10" />

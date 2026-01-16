@@ -15,7 +15,7 @@ const CompanyProfile = () => {
     <section className="sp-py">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.5fr_1.2fr] gap-y-10 gap-x-10 xl:gap-x-20 ">
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between gap-4">
            <div className="space-y-2 xl:space-y-4 font-medium ">
               <p className="text-19 xl:text-20 font-light xl:font-normal text-secondary">[ UNEC ] is a multi-award winning general contracting company with more than 40 years of expertise in the region.</p>
               <p className="text-19 xl:text-20 font-light xl:font-normal text-secondary">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</p>
