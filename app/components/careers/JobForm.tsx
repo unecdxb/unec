@@ -190,13 +190,10 @@ const JobForm: React.FC = () => {
           )}
 
           <div className="space-y-6">
-
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* FULL NAME */}
-              <div>
-                <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name <span className="text-red-500">*</span>
-                </label>
+              <div> 
+                {/* <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2"> Full Name <span className="text-red-500">*</span> </label> */}
                 <input
                   type="text"
                   id="fullName"
@@ -204,9 +201,9 @@ const JobForm: React.FC = () => {
                     required: 'Full name is required',
                     minLength: { value: 2, message: 'Name must be at least 2 characters' }
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.fullName ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:border-black/50 focus:outline-none placeholder-black/60 focus:placeholder-black/40 ${errors.fullName ? 'border-red-500' : 'border-gray-300'
                     }`}
-                  placeholder="John Doe"
+                  placeholder="Enter your full name"
                 />
                 {errors.fullName && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -218,9 +215,9 @@ const JobForm: React.FC = () => {
 
               {/* EMAIL */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address <span className="text-red-500">*</span>
-                </label>
+                </label> */}
                 <input
                   type="email"
                   id="email"
@@ -231,9 +228,9 @@ const JobForm: React.FC = () => {
                       message: 'Invalid email address'
                     }
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:outline-none focus:border-black/50 placeholder-black/60 focus:placeholder-black/40 ${errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
-                  placeholder="john.doe@example.com"
+                  placeholder="Enter your email"
                 />
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -245,9 +242,9 @@ const JobForm: React.FC = () => {
 
               {/* PHONE */}
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                   Phone Number <span className="text-red-500">*</span>
-                </label>
+                </label> */}
                 <input
                   type="tel"
                   id="phone"
@@ -258,9 +255,9 @@ const JobForm: React.FC = () => {
                       message: 'Invalid phone number'
                     }
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:border-black/50 placeholder-black/60 focus:outline-none focus:placeholder-black/40 ${errors.phone ? 'border-red-500' : 'border-gray-300'
                     }`}
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="Enter your phone number"
                 />
                 {errors.phone && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -274,9 +271,9 @@ const JobForm: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* POSITION - React Select */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                   Position <span className="text-red-500">*</span>
-                </label>
+                </label> */}
                 <Controller
                   name="position"
                   control={control}
@@ -306,14 +303,10 @@ const JobForm: React.FC = () => {
 
               {/* EXPERIENCE - React Select */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                   Years of Experience <span className="text-red-500">*</span>
-                </label>
-                <Controller
-                  name="experience"
-                  control={control}
-                  rules={{ required: 'Please select your experience level' }}
-                  render={({ field }) => (
+                </label> */}
+                <Controller name="experience" control={control} rules={{ required: 'Please select your experience level' }} render={({ field }) => (
                     <Select
                       {...field}
                       instanceId="experience-select"
@@ -337,9 +330,9 @@ const JobForm: React.FC = () => {
 
               {/* LINKEDIN */}
               <div>
-                <label htmlFor="linkedIn" className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label htmlFor="linkedIn" className="block text-sm font-medium text-gray-700 mb-2">
                   LinkedIn Profile (Optional)
-                </label>
+                </label> */}
                 <input
                   type="url"
                   id="linkedIn"
@@ -349,9 +342,9 @@ const JobForm: React.FC = () => {
                       message: 'Please enter a valid LinkedIn URL'
                     }
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.linkedIn ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:border-black/50 placeholder-black/60 focus:outline-none focus:placeholder-black/40 ${errors.linkedIn ? 'border-red-500' : 'border-gray-300'
                     }`}
-                  placeholder="https://linkedin.com/in/yourprofile"
+                  placeholder="LinkedIn Profile (Optional)"
                 />
                 {errors.linkedIn && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -376,7 +369,7 @@ const JobForm: React.FC = () => {
                     required: 'Cover letter is required',
                     minLength: { value: 50, message: 'Cover letter must be at least 50 characters' }
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.coverLetter ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:outline-none focus:placeholder-black/60 ${errors.coverLetter ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Tell us why you're a great fit for this position..."
                 />
@@ -445,9 +438,9 @@ const JobForm: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* AVAILABILITY - React Select */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                   Availability <span className="text-red-500">*</span>
-                </label>
+                </label> */}
                 <Controller
                   name="availability"
                   control={control}
@@ -476,16 +469,16 @@ const JobForm: React.FC = () => {
 
               {/* EXPECTED SALARY */}
               <div>
-                <label htmlFor="expectedSalary" className="block text-sm font-medium text-gray-700 mb-2">
+                {/* <label htmlFor="expectedSalary" className="block text-sm font-medium text-gray-700 mb-2">
                   Expected Salary <span className="text-red-500">*</span>
-                </label>
+                </label> */}
                 <input
                   type="text"
                   id="expectedSalary"
                   {...register('expectedSalary', {
                     required: 'Expected salary is required'
                   })}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.expectedSalary ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b placeholder-black/60 focus:border-black/50 focus:outline-none focus:placeholder-black/40 ${errors.expectedSalary ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="e.g., $80,000 - $100,000"
                 />
@@ -497,9 +490,7 @@ const JobForm: React.FC = () => {
                 )}
               </div>
             </div>
-
             
-
             {/* TERMS */}
             <div className="flex items-start gap-3">
               <input

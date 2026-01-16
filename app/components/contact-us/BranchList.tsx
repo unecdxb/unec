@@ -43,10 +43,10 @@ const BranchList = () => {
               ref={(el) => {
                 if (el) cardsRef.current[index] = el;
               }}
-              className="group relative bg-white rounded-2xl p-6 overflow-hidden border border-gray-100"
+              className="group relative bg-white  p-6 overflow-hidden border border-gray-100"
             >
               {/* Accent Bar */}
-              <span className="absolute top-0 left-0 w-full h-1 bg-black"></span>
+              <span className="absolute top-0 left-0 w-full h-1 bg-black/60"></span>
 
               {/* Title */}
               <h3 className="text-20 font-light text-gray-900 mb-3 xl:mb-6">

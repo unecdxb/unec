@@ -142,7 +142,7 @@ const ContactForm: React.FC = () => {
                     First Name <span className="text-red-500">*</span>
                   </label> */}
                   <div className="relative">
-                    <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                    {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
                     <input
                       type="text"
                       id="firstName"
@@ -150,7 +150,7 @@ const ContactForm: React.FC = () => {
                         required: 'First name is required',
                         minLength: { value: 2, message: 'Minimum 2 characters' }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="First Name"
                     />
@@ -169,7 +169,7 @@ const ContactForm: React.FC = () => {
                     Last Name <span className="text-red-500">*</span>
                   </label> */}
                   <div className="relative">
-                    <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                    {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
                     <input
                       type="text"
                       id="lastName"
@@ -177,7 +177,7 @@ const ContactForm: React.FC = () => {
                         required: 'Last name is required',
                         minLength: { value: 2, message: 'Minimum 2 characters' }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="Last Name"
                     />
@@ -196,7 +196,7 @@ const ContactForm: React.FC = () => {
                     Email <span className="text-red-500">*</span>
                   </label> */}
                   <div className="relative">
-                    <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                    {/* <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
                     <input
                       type="email"
                       id="email"
@@ -207,7 +207,7 @@ const ContactForm: React.FC = () => {
                           message: 'Invalid email address'
                         }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="Email"
                     />
