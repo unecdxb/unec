@@ -202,7 +202,7 @@ const JobForm: React.FC = () => {
                     required: 'Full name is required',
                     minLength: { value: 2, message: 'Name must be at least 2 characters' }
                   })}
-                  className={`w-full pr-4 py-3 border-b focus:border-black/50 focus:outline-none placeholder-black/60 focus:placeholder-black/40 ${errors.fullName ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:border-black/40 focus:outline-none placeholder-black/60 focus:placeholder-black/40 ${errors.fullName ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Enter your full name"
                 />
@@ -229,7 +229,7 @@ const JobForm: React.FC = () => {
                       message: 'Invalid email address'
                     }
                   })}
-                  className={`w-full pr-4 py-3 border-b focus:outline-none focus:border-black/50 placeholder-black/60 focus:placeholder-black/40 ${errors.email ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:outline-none focus:border-black/40 placeholder-black/60 focus:placeholder-black/40 ${errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Enter your email"
                 />
@@ -256,7 +256,7 @@ const JobForm: React.FC = () => {
                       message: 'Invalid phone number'
                     }
                   })}
-                  className={`w-full pr-4 py-3 border-b focus:border-black/50 placeholder-black/60 focus:outline-none focus:placeholder-black/40 ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:border-black/40 placeholder-black/60 focus:outline-none focus:placeholder-black/40 ${errors.phone ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Enter your phone number"
                 />
@@ -343,7 +343,7 @@ const JobForm: React.FC = () => {
                       message: 'Please enter a valid LinkedIn URL'
                     }
                   })}
-                  className={`w-full pr-4 py-3 border-b focus:border-black/50 placeholder-black/60 focus:outline-none focus:placeholder-black/40 ${errors.linkedIn ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:border-black/40 placeholder-black/60 focus:outline-none focus:placeholder-black/40 ${errors.linkedIn ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="LinkedIn Profile (Optional)"
                 />
@@ -370,7 +370,7 @@ const JobForm: React.FC = () => {
                     required: 'Cover letter is required',
                     minLength: { value: 50, message: 'Cover letter must be at least 50 characters' }
                   })}
-                  className={`w-full pr-4 py-3 border-b focus:outline-none placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 ${errors.coverLetter ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:outline-none placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 ${errors.coverLetter ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Tell us why you're a great fit for this position..."
                 />
@@ -479,7 +479,7 @@ const JobForm: React.FC = () => {
                   {...register('expectedSalary', {
                     required: 'Expected salary is required'
                   })}
-                  className={`w-full pr-4 py-3 border-b placeholder-black/60 focus:border-black/50 focus:outline-none focus:placeholder-black/40 ${errors.expectedSalary ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b placeholder-black/60 focus:border-black/40 focus:outline-none focus:placeholder-black/40 ${errors.expectedSalary ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Expected salary"
                 />
