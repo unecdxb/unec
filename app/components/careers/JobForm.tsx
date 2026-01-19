@@ -370,7 +370,7 @@ const JobForm: React.FC = () => {
                     required: 'Cover letter is required',
                     minLength: { value: 50, message: 'Cover letter must be at least 50 characters' }
                   })}
-                  className={`w-full pr-4 py-3 border-b focus:outline-none focus:placeholder-black/60 ${errors.coverLetter ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full pr-4 py-3 border-b focus:outline-none placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 ${errors.coverLetter ? 'border-red-500' : 'border-gray-300'
                     }`}
                   placeholder="Tell us why you're a great fit for this position..."
                 />
