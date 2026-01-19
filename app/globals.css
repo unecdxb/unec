@@ -529,7 +529,6 @@ body {
   border-radius:0 !important;
   background-color:transparent !important;
   padding-left: 0 !important;
-  
 }
 .cmn-select__control:hover {
   border-color: rgb(from var(--color-black) r g b / 0.4) !important;
