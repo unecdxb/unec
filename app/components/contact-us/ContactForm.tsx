@@ -112,235 +112,251 @@ const ContactForm: React.FC = () => {
 
   return (
     <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-py">
-      <div className="max-w-5xl mx-auto">
-        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden">
-     
-          {/* Form Section */}
-          <div className="p-8">
-            {submitStatus && (
-              <div className={`mb-6 p-4 flex gap-3 ${submitStatus.type === 'success'
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="h-full">
+            <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+              <iframe className='h-full min-h-[500px]'
+                src="https://www.google.com/maps/d/embed?mid=1sJaPSk6dkzxLcOaPnPYyI0jNUJQ-TS4"
+                width="100%"
+                height="450"
+                style={{ border: '0' }}
+                allowFullScreen
+                loading="lazy">
+              </iframe>
+
+            </motion.div>
+          </div>
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden">
+
+            {/* Form Section */}
+            <div className="p-8">
+              {submitStatus && (
+                <div className={`mb-6 p-4 flex gap-3 ${submitStatus.type === 'success'
                   ? 'bg-green-50 text-green-800 border-bborder-green-200'
                   : 'bg-red-50 text-red-800 border-bborder-red-200'
-                }`}>
-                {submitStatus.type === 'success'
-                  ? <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                  : <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />}
-                <span>{submitStatus.message}</span>
-              </div>
-            )}
+                  }`}>
+                  {submitStatus.type === 'success'
+                    ? <CheckCircle2 className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    : <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />}
+                  <span>{submitStatus.message}</span>
+                </div>
+              )}
 
-            <div className="space-y-6">
+              <div className="space-y-6">
 
-              {/* First Row: First Name, Last Name, Email */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-10">
+                {/* First Row: First Name, Last Name, Email */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-10">
 
-                {/* FIRST NAME */}
-                <div>
-                  {/* <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* FIRST NAME */}
+                  <div>
+                    {/* <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
                     First Name <span className="text-red-500">*</span>
                   </label> */}
-                  <div className="relative">
-                    {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                    <input
-                      type="text"
-                      id="firstName"
-                      {...register('firstName', {
-                        required: 'First name is required',
-                        minLength: { value: 2, message: 'Minimum 2 characters' }
-                      })}
-                      className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      placeholder="First Name"
-                    />
+                    <div className="relative">
+                      {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
+                      <input
+                        type="text"
+                        id="firstName"
+                        {...register('firstName', {
+                          required: 'First name is required',
+                          minLength: { value: 2, message: 'Minimum 2 characters' }
+                        })}
+                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder="First Name"
+                      />
+                    </div>
+                    {errors.firstName && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.firstName.message}
+                      </p>
+                    )}
                   </div>
-                  {errors.firstName && (
-                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.firstName.message}
-                    </p>
-                  )}
-                </div>
 
-                {/* LAST NAME */}
-                <div>
-                  {/* <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* LAST NAME */}
+                  <div>
+                    {/* <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
                     Last Name <span className="text-red-500">*</span>
                   </label> */}
-                  <div className="relative">
-                    {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                    <input
-                      type="text"
-                      id="lastName"
-                      {...register('lastName', {
-                        required: 'Last name is required',
-                        minLength: { value: 2, message: 'Minimum 2 characters' }
-                      })}
-                      className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      placeholder="Last Name"
-                    />
+                    <div className="relative">
+                      {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
+                      <input
+                        type="text"
+                        id="lastName"
+                        {...register('lastName', {
+                          required: 'Last name is required',
+                          minLength: { value: 2, message: 'Minimum 2 characters' }
+                        })}
+                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder="Last Name"
+                      />
+                    </div>
+                    {errors.lastName && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.lastName.message}
+                      </p>
+                    )}
                   </div>
-                  {errors.lastName && (
-                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.lastName.message}
-                    </p>
-                  )}
-                </div>
 
-                {/* EMAIL */}
-                <div>
-                  {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* EMAIL */}
+                  <div>
+                    {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email <span className="text-red-500">*</span>
                   </label> */}
-                  <div className="relative">
-                    {/* <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                    <input
-                      type="email"
-                      id="email"
-                      {...register('email', {
-                        required: 'Email is required',
-                        pattern: {
-                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                          message: 'Invalid email address'
-                        }
-                      })}
-                      className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
-                        }`}
-                      placeholder="Email"
-                    />
+                    <div className="relative">
+                      {/* <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
+                      <input
+                        type="email"
+                        id="email"
+                        {...register('email', {
+                          required: 'Email is required',
+                          pattern: {
+                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                            message: 'Invalid email address'
+                          }
+                        })}
+                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
+                          }`}
+                        placeholder="Email"
+                      />
+                    </div>
+                    {errors.email && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.email.message}
+                      </p>
+                    )}
                   </div>
-                  {errors.email && (
-                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.email.message}
-                    </p>
-                  )}
+
                 </div>
 
-              </div>
+                {/* Second Row: Subject and Query */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
 
-              {/* Second Row: Subject and Query */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
-
-                {/* SUBJECT */}
-                <div>
-                  {/* <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* SUBJECT */}
+                  <div>
+                    {/* <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                     Subject <span className="text-red-500">*</span>
                   </label> */}
-                  <input
-                    type="text"
-                    id="subject"
-                    {...register('subject', {
-                      required: 'Subject is required',
-                      minLength: { value: 5, message: 'Minimum 5 characters' }
-                    })}
-                    className={`w-full px-4 py-3 border-b focus:ring-none focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                    placeholder="How can we help you?"
-                  />
-                  {errors.subject && (
-                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                      <AlertCircle className="w-4 h-4" />
-                      {errors.subject.message}
-                    </p>
-                  )}
-                </div>
+                    <input
+                      type="text"
+                      id="subject"
+                      {...register('subject', {
+                        required: 'Subject is required',
+                        minLength: { value: 5, message: 'Minimum 5 characters' }
+                      })}
+                      className={`w-full px-4 py-3 border-b focus:ring-none focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
+                        }`}
+                      placeholder="How can we help you?"
+                    />
+                    {errors.subject && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.subject.message}
+                      </p>
+                    )}
+                  </div>
 
-                {/* QUERY - React Select */}
-                <div>
-                  {/* <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {/* QUERY - React Select */}
+                  <div>
+                    {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                     Query Type <span className="text-red-500">*</span>
                   </label> */}
-                  <Controller
-                    name="query"
-                    control={control}
-                    rules={{ required: 'Please select a query type' }}
-                    render={({ field }) => (
-                      <Select
-                        {...field}
-                        options={queryOptions}
-                        placeholder="Select query type"
-                        value={queryOptions.find(opt => opt.value === field.value) || null}
-                        onChange={(opt) => field.onChange(opt?.value)}
-                        styles={customSelectStyles}
-                        classNamePrefix="cmn-select"
-                        className="cmn-select"
-                      />
+                    <Controller
+                      name="query"
+                      control={control}
+                      rules={{ required: 'Please select a query type' }}
+                      render={({ field }) => (
+                        <Select
+                          {...field}
+                          options={queryOptions}
+                          placeholder="Select query type"
+                          value={queryOptions.find(opt => opt.value === field.value) || null}
+                          onChange={(opt) => field.onChange(opt?.value)}
+                          styles={customSelectStyles}
+                          classNamePrefix="cmn-select"
+                          className="cmn-select"
+                        />
+                      )}
+                    />
+                    {errors.query && (
+                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.query.message}
+                      </p>
                     )}
-                  />
-                  {errors.query && (
+                  </div>
+
+                </div>
+
+                {/* MESSAGE */}
+                <div>
+                  {/* <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  Message <span className="text-red-500">*</span>
+                </label> */}
+                  <div className="relative">
+                    <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                    <textarea
+                      id="message"
+                      rows={6}
+                      {...register('message', {
+                        required: 'Message is required',
+                        minLength: { value: 20, message: 'Message must be at least 20 characters' }
+                      })}
+                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none focus:placeholder:text-black/50 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
+                        }`}
+                      placeholder="Please provide details about your inquiry..."
+                    />
+                  </div>
+                  {errors.message && (
                     <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
-                      {errors.query.message}
+                      {errors.message.message}
                     </p>
                   )}
                 </div>
 
-              </div>
+                {/* NEWSLETTER CHECKBOX */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 p-4 bg-blue-50  border-bborder-blue-100 w-fit">
+                    <input
+                      type="checkbox"
+                      id="newsletter"
+                      {...register('newsletter')}
+                      className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
+                    />
+                    <label htmlFor="newsletter" className="text-sm text-gray-700 cursor-pointer">
+                      Subscribe to our newsletter for updates and exclusive content
+                    </label>
+                  </div>
 
-              {/* MESSAGE */}
-              <div>
-                {/* <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message <span className="text-red-500">*</span>
-                </label> */}
-                <div className="relative">
-                  <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
-                  <textarea
-                    id="message"
-                    rows={6}
-                    {...register('message', {
-                      required: 'Message is required',
-                      minLength: { value: 20, message: 'Message must be at least 20 characters' }
-                    })}
-                    className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none focus:placeholder:text-black/50 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
-                      }`}
-                    placeholder="Please provide details about your inquiry..."
-                  />
-                </div>
-                {errors.message && (
-                  <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                    <AlertCircle className="w-4 h-4" />
-                    {errors.message.message}
-                  </p>
-                )}
-              </div>
-
-              {/* NEWSLETTER CHECKBOX */}
-             <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 bg-blue-50  border-bborder-blue-100 w-fit">
-                  <input
-                    type="checkbox"
-                    id="newsletter"
-                    {...register('newsletter')}
-                    className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
-                  />
-                  <label htmlFor="newsletter" className="text-sm text-gray-700 cursor-pointer">
-                    Subscribe to our newsletter for updates and exclusive content
-                  </label>
-                </div>
-
-                {/* SUBMIT BUTTON */}
-                <div className="flex gap-4 w-full">
-                  <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6  transition-all duration-200 flex items-center justify-center gap-2 shadow-lg 
+                  {/* SUBMIT BUTTON */}
+                  <div className="flex gap-4 w-full">
+                    <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6  transition-all duration-200 flex items-center justify-center gap-2 shadow-lg 
                 hover:shadow-xl cursor-pointer" >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-5 h-5 animate-spin" />
-                        Sending Message...
-                      </>
-                    ) : (
-                      <>
-                        <Mail className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Sending Message...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-5 h-5" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
-             </div>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );
