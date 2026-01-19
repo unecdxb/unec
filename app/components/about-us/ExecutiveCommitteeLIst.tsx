@@ -14,7 +14,7 @@ const ExecutiveCommitteeLIst = () => {
           {
             aboutUsData.executiveCommittee.items.map((item, index) => (
               <motion.div variants={moveUp(0.2 + index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index}>
-                <div className="flex flex-col gap-4 border-b border-black/20 pb-4 xl:pb-6 transition-all duration-300" >
+                <div className="flex flex-col gap-4 2xl:gap-6 border-b border-black/20 pb-4 xl:pb-6 transition-all duration-300" >
                   <div className="w-full h-[150px] xs:h-[150px] md:h-[200px] lg:h-[300px] xl:h-[350px] 3xl:h-[450px] bg-[#424155] overflow-hidden">
                     <Image src={item.image} alt={item.name} width={1920} height={1080} className="w-full h-full object-cover object-top" />
                   </div>

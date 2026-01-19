@@ -72,7 +72,7 @@ const NewsList = () => {
             {years.map((year,index) => (
               <motion.div key={index} variants={moveUp(0.4 + 0.2 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
               <button  onClick={() => setSelectedYear(year)} className={`
-                  px-3 py-1 xl:px-6 xl:py-2.5  font-medium transition-all duration-300
+                  px-3 py-1 xl:px-6 xl:py-2.5  font-medium transition-all duration-300 cursor-pointer
                   ${selectedYear === year
                   ? "bg-black text-white shadow-lg scale-105"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105"
@@ -89,8 +89,8 @@ const NewsList = () => {
         {/* News Grid */}
         <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-10" >
           {sortedNews.map((news, index) => (
-           <motion.div key={index} variants={moveUp(0.6 + 0.2 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-              <div className="news-card flex flex-col group  overflow-hidden border border-gray-100 bg-white transition-all duration-500 cursor-pointer relative" >
+           <motion.div key={index} variants={moveUp(0.6 + index * 0.1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="h-full">
+              <div className="news-card flex flex-col group  overflow-hidden border border-gray-100 bg-white transition-all duration-500 cursor-pointer relative h-full" >
                 <Link href={`/news/${news.title}`} className="absolute inset-0 w-full h-full z-10" />
                 {/* Image Container */}
                 <div className="relative h-[220px] xl:h-[260px] 2xl:h-[350px] overflow-hidden">
@@ -113,7 +113,7 @@ const NewsList = () => {
 
                 {/* Title */}
                 <div className="px-4 xl:px-6 pt-4 ">
-                  <h3 className="text-19 font-normal uppercase text-gray-900 mb-3 line-clamp-2 group-hover:text-black transition-colors duration-300">
+                  <h3 className="text-19 font-normal uppercase text-gray-900  line-clamp-2 group-hover:text-black transition-colors duration-300">
                     {news.title}
                   </h3>
                 </div>

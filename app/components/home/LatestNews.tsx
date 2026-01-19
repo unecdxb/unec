@@ -35,7 +35,7 @@ const LatestNews = ({data}: Props) => {
         <SubTitle title="Latest on [UNEC]" mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block">
           {latestThreeNews.map((news,index)=>(
-            <motion.div variants={moveUp(index+4 * 0.2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="nws-card" key={index}>
+            <motion.div variants={moveUp(2 + index * 0.1)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="nws-card" key={index}>
               <div className="img-box">
                 <Image src={news.image} alt="" width={1200} height={600} className="w-full object-cover" />
                 <div className="overlay"></div>

@@ -249,7 +249,7 @@ const ContactForm: React.FC = () => {
                         required: 'Subject is required',
                         minLength: { value: 5, message: 'Minimum 5 characters' }
                       })}
-                      className={`w-full px-4 py-3 border-b focus:ring-none focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pr-4 pt-3 pb-2 xl:pb-[10px] border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="How can we help you?"
                     />
@@ -299,7 +299,7 @@ const ContactForm: React.FC = () => {
                   Message <span className="text-red-500">*</span>
                 </label> */}
                   <div className="relative">
-                    <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
+                    {/* <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
                     <textarea
                       id="message"
                       rows={6}
@@ -307,7 +307,7 @@ const ContactForm: React.FC = () => {
                         required: 'Message is required',
                         minLength: { value: 20, message: 'Message must be at least 20 characters' }
                       })}
-                      className={`w-full pl-11 pr-4 py-3 border-b focus:outline-none focus:placeholder:text-black/50 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-0 pr-4 py-3 border-b placeholder:text-black/60 focus-placeholder:text-black/40 focus:outline-none focus:placeholder:text-black/40 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="Please provide details about your inquiry..."
                     />
@@ -321,7 +321,7 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 {/* NEWSLETTER CHECKBOX */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
                   <div className="flex items-center gap-3 p-4 bg-blue-50  border-bborder-blue-100 w-fit">
                     <input
                       type="checkbox"
@@ -336,8 +336,7 @@ const ContactForm: React.FC = () => {
 
                   {/* SUBMIT BUTTON */}
                   <div className="flex gap-4 w-full">
-                    <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6  transition-all duration-200 flex items-center justify-center gap-2 shadow-lg 
-                hover:shadow-xl cursor-pointer" >
+                    <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6  transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl cursor-pointer" >
                       {isSubmitting ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
