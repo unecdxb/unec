@@ -71,7 +71,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
           const isLast = index === items.length - 1;
 
           return (
-            <motion.li variants={moveRight(0.3+index*0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index} className="flex items-center">
+            <motion.li variants={moveRight(0.3+index*0.2)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} key={index} className="flex items-center">
               {index > 0 && (
                 <MdOutlineKeyboardArrowRight className="text-primary mx-1" size={20} />
               )}
