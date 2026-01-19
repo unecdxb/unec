@@ -149,7 +149,7 @@ const ContactForm: React.FC = () => {
                           required: 'First name is required',
                           minLength: { value: 2, message: 'Minimum 2 characters' }
                         })}
-                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder="First Name"
                       />
@@ -176,7 +176,7 @@ const ContactForm: React.FC = () => {
                           required: 'Last name is required',
                           minLength: { value: 2, message: 'Minimum 2 characters' }
                         })}
-                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder="Last Name"
                       />
@@ -206,7 +206,7 @@ const ContactForm: React.FC = () => {
                             message: 'Invalid email address'
                           }
                         })}
-                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
+                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none ${errors.email ? 'border-red-500' : 'border-gray-300'
                           }`}
                         placeholder="Email"
                       />
@@ -236,7 +236,7 @@ const ContactForm: React.FC = () => {
                         required: 'Subject is required',
                         minLength: { value: 5, message: 'Minimum 5 characters' }
                       })}
-                      className={`w-full pr-4 pt-3 pb-2 xl:pb-[10px] border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/50 focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pr-4 pt-3 pb-2 xl:pb-[10px] border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="How can we help you?"
                     />
@@ -294,7 +294,7 @@ const ContactForm: React.FC = () => {
                         required: 'Message is required',
                         minLength: { value: 20, message: 'Message must be at least 20 characters' }
                       })}
-                      className={`w-full pl-0 pr-4 py-3 border-b placeholder:text-black/60 focus-placeholder:text-black/40 focus:outline-none focus:placeholder:text-black/40 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
+                      className={`w-full pl-0 pr-4 py-3 border-b placeholder:text-black/60 focus:border-black/40 focus-placeholder:text-black/40 focus:outline-none focus:placeholder:text-black/40 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'
                         }`}
                       placeholder="Please provide details about your inquiry..."
                     />
