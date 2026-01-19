@@ -27,7 +27,7 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
           {
             data.items.map((item, index) => (
               <Link href={`/projects/${item.title}`} key={index}>
-                <motion.div variants={moveUp((index+4) * 0.2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}}>
+                <motion.div variants={moveUp((index+4) * 0.1)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}}>
                   <ProjectCard  image={item.image} title={item.title} location={item.location} />
                 </motion.div>
               </Link>
@@ -35,7 +35,7 @@ const ProjectHIghlights = ({ data }: ProjectHIghlightsProps) => {
             ))
           }
         </div>
-        <motion.div variants={moveUp((data.items.length +2) * 0.2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="mt-8 xl:mt-16 w-fit mx-auto">
+        <motion.div variants={moveUp((data.items.length +2) * 0.05)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="mt-8 xl:mt-16 w-fit mx-auto">
           <PrimaryBtn href="/projects" text="View All Projects" />
         </motion.div>
       </div>

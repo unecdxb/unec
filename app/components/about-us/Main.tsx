@@ -24,22 +24,22 @@ const Main = () => {
               </div>
 
               <div className="flex items-center flex-wrap gap-1 xl:gap-4 ">
-                <motion.div variants={moveUp(1.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="#chairman-message" className="text-white text-xs md:text-sm xl:text-base bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Chairman Message</span></Link>
                 </motion.div>
-                <motion.div variants={moveUp(1.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="#executive-committee" className="text-white text-xs md:text-sm xl:text-base bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Executive Committee</span></Link>
                 </motion.div>
-                <motion.div variants={moveUp(1.8)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="#our-values" className="text-white text-xs md:text-sm xl:text-base bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Our Values</span></Link>
                 </motion.div>
-                <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                <motion.div variants={moveUp(0.8)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="#awards-recognition" className="text-white text-xs md:text-sm xl:text-base bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Awards & Recognition</span></Link>
                 </motion.div>
-                <motion.div variants={moveUp(2.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                <motion.div variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="#associated-business" className="text-white text-xs md:text-sm xl:text-base bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">Associated Business</span></Link>
                 </motion.div>
-                <motion.div variants={moveUp(2.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                <motion.div variants={moveUp(1.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                 <Link href="#qhse" className="text-white text-xs md:text-sm xl:text-base bg-black px-4 py-2 hover:bg-primary hover:translate-y-[-2px] group transition-all"><span className="inline-block transition-all duration-300">QHSE</span></Link>
                 </motion.div>
               </div>

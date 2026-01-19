@@ -525,7 +525,7 @@ body {
   border-top:none !important;
   border-left:none !important;
   border-right:none !important;
-  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.6) !important;
   border-radius:0 !important;
   background-color:transparent !important;
   padding-left: 0 !important;
@@ -591,9 +591,7 @@ body {
 /* keyframes */
 
  @keyframes flip {
-
-   0%,
-   100% {
+   0%, 100% {
      transform: rotateX(0deg);
    }
 
