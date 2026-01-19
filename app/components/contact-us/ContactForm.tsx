@@ -113,21 +113,8 @@ const ContactForm: React.FC = () => {
   return (
     <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-py">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="h-full">
-            <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-              <iframe className='h-full min-h-[500px]'
-                src="https://www.google.com/maps/d/embed?mid=1sJaPSk6dkzxLcOaPnPYyI0jNUJQ-TS4"
-                width="100%"
-                height="450"
-                style={{ border: '0' }}
-                allowFullScreen
-                loading="lazy">
-              </iframe>
-
-            </motion.div>
-          </div>
-          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-10 xl:gap-0">
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden xl:order-2">
 
             {/* Form Section */}
             <div className="p-8">
@@ -321,8 +308,8 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 {/* NEWSLETTER CHECKBOX */}
-                <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4">
-                  <div className="flex items-center gap-3 p-4 bg-blue-50  border-bborder-blue-100 w-fit">
+                <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] xl:grid-cols-1 3xl:grid-cols-[auto_1fr] gap-4">
+                  <div className="flex flex-wrap items-center gap-3 p-4 bg-blue-50  border-b border-blue-100 w-fit">
                     <input
                       type="checkbox"
                       id="newsletter"
@@ -345,7 +332,7 @@ const ContactForm: React.FC = () => {
                       ) : (
                         <>
                           <Mail className="w-5 h-5" />
-                          Send Message
+                            <span className="uppercase font-light text-17">Send Message</span>
                         </>
                       )}
                     </button>
@@ -354,6 +341,20 @@ const ContactForm: React.FC = () => {
               </div>
             </div>
           </motion.div>
+          <div className="h-full xl:order-1">
+            <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+              <iframe className='h-full min-h-[350px] xl:min-h-[500px]'
+                src="https://www.google.com/maps/d/embed?mid=1sJaPSk6dkzxLcOaPnPYyI0jNUJQ-TS4"
+                width="100%"
+                height="450"
+                style={{ border: '0' }}
+                allowFullScreen
+                loading="lazy">
+              </iframe>
+
+            </motion.div>
+          </div>
+          
 
         </div>
       </div>

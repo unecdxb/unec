@@ -451,11 +451,11 @@ body {
 }
 
 .custom-select__control:hover {
-  border-color: #9ca3af !important;
+  border-color: rgb(from var(--color-black) r g b / 0.4) !important;
 }
 
 .custom-select__control--is-focused {
-  border-color: var(--color-paragraph) !important;
+  border-color: rgb(from var(--color-black) r g b / 0.4) !important;
   box-shadow:none !important;
   outline: none !important;
 }
@@ -465,8 +465,8 @@ body {
 }
 
 .custom-select__placeholder {
-  color: #6b7280 !important;
-  font-size: 0.95rem !important;
+  /* color: #6b7280 !important; */
+  font-size: var(--text-17) !important;
 }
 
 .custom-select__single-value {
@@ -525,19 +525,32 @@ body {
   border-top:none !important;
   border-left:none !important;
   border-right:none !important;
-  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.6) !important;
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
   border-radius:0 !important;
   background-color:transparent !important;
   padding-left: 0 !important;
+  
+}
+.cmn-select__control:hover {
+  border-color: rgb(from var(--color-black) r g b / 0.4) !important;
+}
+
+.cmn-select__control--is-focused {
+  border-color: rgb(from var(--color-black) r g b / 0.4) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.cmn-select__placeholder {
+  font-size: var(--text-17) !important;
 }
 .cmn-select__indicator-separator{
   display:none !important;
 }
 .cmn-select__control--is-focused{
-  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.4) !important;
 }
 .cmn-select__control--menu-is-open{
-  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.2) !important;
+  border-bottom:1px solid rgb(from var(--color-black) r g b / 0.4) !important;
 }
 .cmn-select .css-tj5bde-Svg{
   fill:rgb(from var(--color-black) r g b / 0.6) !important;
@@ -582,7 +595,7 @@ body {
   background-color: #e5e7eb !important;
 }
 .cmn-select__control--is-focused {
-  border-color: var(--color-paragraph) !important;
+  border-color: rgb(from var(--color-black) r g b / 0.4) !important;
   box-shadow: none !important;
   outline: none !important;
 }
