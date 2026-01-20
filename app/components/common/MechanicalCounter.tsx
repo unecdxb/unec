@@ -75,16 +75,16 @@ const MechanicalCounter: React.FC<CounterProps> = ({keyIndex, end, duration = 2,
 
   return (
     <motion.div variants={moveUp(keyIndex * 0.2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} ref={counterRef} key={keyIndex}>
-    <div className="group h-full relative overflow-hidden bg-[#f0f0f0] p-3 xs:py-4 xl:py-6 hover:border-white-500/50 transition-all duration-500 hover:shadow-xl hover:shadow-white-500/20" >
+    <div className="group h-full relative overflow-hidden bg-light hover:bg-secondary p-3 xs:py-4 xl:py-6 hover:border-white-500/50 transition-all duration-500" >
       {/* Animated background effect */}
         <div className="absolute inset-0 h-full bg-gradient-to-br from-white-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10">
-        <div className="flex items-baseline justify-center mb-2 xl:mb-4 ">
-          <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl text-secondary">[</span>
-          <span className="text-lg xs:text-xl lg:text-2xl xl:text-3xl font-bold text-primary tracking-tight">
+        <div className="flex items-baseline justify-center mb-2 xl:mb-4 gap-1">
+          <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl text-secondary group-hover:text-white font-semibold">[</span>
+          <span className="text-lg xs:text-29 font-semibold font-suisse-intl text-primary">
             {formatNumber(count)}
           </span>
-          <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl text-secondary">]</span>
+          <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl text-secondary group-hover:text-white font-semibold">]</span>
           {suffix && (
             <span className="text-lg font-bold text-red-500 ml-1">
               {suffix}
@@ -93,8 +93,8 @@ const MechanicalCounter: React.FC<CounterProps> = ({keyIndex, end, duration = 2,
         </div>
 
         <div className="text-center">
-          <div className="inline-block px-0 xl:px-4 py-1 xl:py-1.5">
-            <p className="text-xs lg:text-sm font-normal xl:font-semibold  uppercase tracking-wider text-black xl:text-black/70">
+          <div className="inline-block px-0  pt-1 xl:pt-1.5">
+            <p className="text-13 font-normal xl:font-semibold  uppercase text-black group-hover:text-white">
               {label}
             </p>
           </div>

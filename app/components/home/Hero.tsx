@@ -32,17 +32,20 @@ const Hero = () => {
       window.removeEventListener('resize', updatePaginationPosition);
     };
   }, []);
-
   useEffect(() => {
     const updatePaginationPosition = () => {
       if (containerRef.current) {
         const containerStyles = window.getComputedStyle(containerRef.current);
-        const paddingLeft = parseFloat(containerStyles.paddingLeft);
+        const paddingRight = parseFloat(containerStyles.paddingRight);
         const rect = containerRef.current.getBoundingClientRect();
 
         const pagination = document.querySelector('.swiper-pagination');
         if (pagination) {
-          (pagination as HTMLElement).style.left = `${rect.left + paddingLeft}px`;
+          const viewportWidth = window.innerWidth;
+          const rightValue = viewportWidth - (rect.right - paddingRight);
+
+          (pagination as HTMLElement).style.right = `${rightValue}px`;
+          (pagination as HTMLElement).style.left = 'auto'; // important
         }
       }
     };
@@ -54,6 +57,7 @@ const Hero = () => {
       window.removeEventListener('resize', updatePaginationPosition);
     };
   }, []);
+
 
   return (
     <section>
@@ -84,12 +88,13 @@ const Hero = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10"></div>
               <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 via-black/50 to-transparent z-10"></div>
               <div ref={containerRef} className="container h-screen mx-auto px-4">
-                <div className="relative z-20 h-full flex flex-col justify-end xl:gap-5 pb-[35%] xl:pb-[10%] ">
-                  <h2 className={`text-white text-3xl xs:text-5xl  xl:text-6xl 2xl:text-60 xs:max-w-[70vw] xl:max-w-3xl uppercase leading-[1.2] 
-                  font-normal transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }} >
-                    {slide.title}
+                <div className="relative z-20 h-full flex flex-col justify-end  pb-[35%] xl:pb-[10%] ">
+                  <h2 className={`text-white text-28 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
+                  transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }} >
+                    "{slide.title}"
                   </h2>
-                  <p className={`text-white text-sm xl:text-lg xs:max-w-[70vw] xl:max-w-2xl transition-all duration-1000 ease-out mb-3 xs:mb-5 xl:mb-2  
+                  <div className={`w-10 h-1 bg-primary mb-5 xl:mb-7 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '400ms' : '0ms' }}/>
+                  <p className={`text-white text-sm font-bold xl:text-lg xs:max-w-[70vw] xl:max-w-2xl transition-all duration-1000 ease-out mb-3 xs:mb-5 xl:mb-8  
                   ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '500ms' : '0ms' }}>
                     {slide.description}
                   </p>
