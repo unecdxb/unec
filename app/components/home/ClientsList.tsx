@@ -17,9 +17,9 @@ interface dataProps{
 
 const ClientsList = ({data}: dataProps) => {
   return ( 
-    <section className="sp-py ">
+    <section className="sp-pb ">
       <div className="container">
-        <SubTitle title="Clients" titleColor="text-black" mClass="mb-6 xl:mb-12" />
+        <SubTitle title="[UNEC] Clients" titleColor="text-black" mClass="mb-6 xl:mb-12" />
         <div className="grid grid-cols-2 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 border-l border-t border-black/10 xs:px-0">
           {
             data.items.map((client,index)=>(
