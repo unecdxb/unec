@@ -11,7 +11,7 @@
   --color-paragraph: #656565;
   --cmn-border-color: #cccccc;
 
-  --font-suisse-intl: "SuisseIntl", sans-serif;
+
   /* --text-12: clamp(0.60rem, 1.2vw + 0.35rem, 12px);
   --text-13: clamp(0.65rem, 1.4vw + 0.4rem, 13px);
   --text-14: clamp(0.70rem, 1.6vw + 0.4rem, 14px);
@@ -85,6 +85,9 @@
   --breakpoint-xl: 1200px;
   --breakpoint-2xl: 1360px;
   --breakpoint-3xl: 1680px;
+
+
+  --font-family-sans: var(--font-suisse-intl), sans-serif;
 }
 
 @utility container {
@@ -164,6 +167,7 @@
   --spacing-30px: var(--spacing-30px);
   --spacing-35px: var(--spacing-35px);
   --spacing-50px: var(--spacing-50px);
+  --font-family-sans: var(--font-suisse-intl), sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -172,14 +176,16 @@
     --foreground: #000000;
   }
 }
-
+ 
 body {
   background: var(--background);
   color: var(--foreground);
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: var(--font-suisse-intl);
+  /* font-variant-numeric: lining-nums tabular-nums; */
   font-size: var(--text-17);
   color: var(--color-paragraph);
+  font-weight: 500;
 }
 
 @media (width < 1400px) {

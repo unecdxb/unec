@@ -81,9 +81,7 @@ const MechanicalCounter: React.FC<CounterProps> = ({keyIndex, end, duration = 2,
       <div className="relative z-10">
         <div className="flex items-baseline justify-center mb-2 xl:mb-4 gap-1">
           <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl text-secondary group-hover:text-white font-semibold">[</span>
-          <span className="text-lg xs:text-29 font-semibold font-suisse-intl text-primary">
-            {formatNumber(count)}
-          </span>
+          <p className="text-lg xs:text-29 font-[700] text-primary"> {formatNumber(count)} </p>
           <span className="text-xl xs:text-2xl lg:text-3xl xl:text-4xl text-secondary group-hover:text-white font-semibold">]</span>
           {suffix && (
             <span className="text-lg font-bold text-red-500 ml-1">
