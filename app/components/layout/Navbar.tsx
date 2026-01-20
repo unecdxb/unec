@@ -83,35 +83,21 @@ const Navbar = ({ variant }: NavbarProps) => {
       {/* Original Header - Always visible on top */}
       <header className={`absolute top-0 left-0 w-full z-50 ${isLight ? 'bg-white/95 backdrop-blur-sm shadow-sm' : ''}`}>
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between pt-4 xl:py-4">
+          <div className="flex items-center justify-between pt-4 xl:py-4 2xl:py-5">
             <div>
               <Link href="/">
-                <Image
-                  src={isLight ? "/assets/images/unec-logo-dark.svg" : "/assets/images/unec-logo.svg"}
-                  alt="Logo"
-                  width={150}
-                  height={150}
-                  className="object-contain w-10 xl:w-20"
-                />
+                <Image src={isLight ? "/assets/images/unec-logo-dark.svg" : "/assets/images/unec-logo.svg"} alt="Logo" width={150} height={150} className="object-contain w-auto h-10 xl:h-[67px]" />
               </Link>
             </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:block">
-              <ul className="flex gap-5 xl:gap-10 2xl:gap-12">
+              <ul className="flex ">
                 {navLinks.map((link, index) => (
-                  <li
-                    key={link.href}
-                    className={
-                      index < navLinks.length - 1
-                        ? `relative after:content-[''] after:absolute after:right-[-10px] xl:after:right-[-20px] 2xl:after:right-[-24px] after:top-1/2 after:-translate-y-1/2 after:w-[1px] after:h-4 ${isLight ? 'after:bg-gray-300' : 'after:bg-white/30'}`
-                        : ""
-                    }
-                  >
-                    <Link
-                      href={link.href}
-                      className={`text-16 uppercase transition-all duration-200 ${isLight
-                        ? 'text-gray-800 hover:text-primary font-medium'
+                  <li key={index} className={`border-r px-[15px] last:border-r-0 last:pr-0 block py-0  ${isLight ? 'border-white' : 'border-gray-300'}`}>
+                    <Link href={link.href}
+                      className={`text-12 leading-3 block uppercase transition-all duration-200 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-0  hover:after:w-full focus:after:w-full after:h-[2px] after:bg-primary  ${isLight
+                        ? 'text-gray-800 hover:text-primary font-semibold'
                         : 'text-white hover:text-white/80'
                         }`}
                     >

@@ -8,21 +8,23 @@
 .swiper-pagination {
   z-index: 40 !important;
   position: absolute !important;
-  right: auto !important;
+  left: auto !important;
   width: auto !important;
   text-align: left !important;
   margin-bottom: 1em;
+  display: flex;
+  gap: 0.3rem;
   @media (min-width: 1400px) {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
   }
   @media (min-width: 1600px) {
-    margin-bottom: 4em;
+    margin-bottom: 2em;
   }
 }
 
 .swiper-pagination-bullet-custom {
-  width: 2rem;
-  height: 0.1rem;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 0;
   background: rgba(255, 255, 255, 0.5);
   opacity: 1;
@@ -33,11 +35,11 @@
 
 .swiper-pagination-bullet-custom:hover {
   background: rgba(255, 255, 255, 0.75);
-  width: 2.5rem;
+  width: 0.4rem;
 }
 
 .swiper-pagination-bullet-active-custom {
-  width: 3rem;
+  width: 0.4rem;
   background: #fc1312;
 }
 
