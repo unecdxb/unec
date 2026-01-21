@@ -131,24 +131,20 @@ const Navbar = ({ variant }: NavbarProps) => {
           <div className="flex items-center justify-between py-3 xl:py-4">
             <div>
               <Link href="/">
-                <Image
-                  src="/assets/images/unec-logo-dark.svg"
-                  alt="Logo"
-                  width={120}
-                  height={120}
-                  className="object-contain w-10 xl:w-12"
-                />
+                <Image src="/assets/images/unec-logo-dark.svg" alt="Logo" width={120} height={120} className="object-contain w-10 xl:w-12" />
               </Link>
             </div>
 
             {/* Desktop Navigation - Scrolled */}
             <nav className="hidden lg:block">
-              <ul className="flex gap-5 xl:gap-8 2xl:gap-10">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-gray-800 text-base xl:text-16 uppercase hover:text-primary transition-all duration-200 font-medium"
+              <ul className="flex">
+                {navLinks.map((link, index) => (
+                  <li key={index} className={`border-r px-[15px] last:border-r-0 last:pr-0 block py-0  ${isLight ? 'border-white' : 'border-gray-300'}`}>
+                    <Link href={link.href}
+                      className={`text-12 leading-3 block uppercase transition-all duration-200 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-0  hover:after:w-full focus:after:w-full after:h-[2px] after:bg-primary  ${isLight
+                        ? 'text-gray-800 hover:text-primary font-semibold'
+                        : 'text-secondary hover:text-black/80'
+                        }`}
                     >
                       {link.label}
                     </Link>
