@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
         pathname: "/assets/images/**",
       },
     ],
+    dangerouslyAllowSVG:true,
+    unoptimized:true,
+    domains: ["dl.dropboxusercontent.com"]
   },
 };
 
