@@ -8,12 +8,13 @@ import { gsap } from "gsap";
 import { projectsData } from "./data";
 import Link from "next/link";
 import ProjectCard from "../common/ProjectCard";
+import { statusData } from "../AdminProject/statusData";
 type Option = {
-  value: string;
+  value: string | number;
   label: string;
 };
 
-const ProjectList = () => {
+const ProjectList = ({ data, regionData, categoryData }: { data: any, regionData: { name: string }[], categoryData: { name: string }[] }) => {
   const gridRef = useRef<HTMLDivElement>(null);
 
   /* ----------------------------------------
@@ -21,8 +22,8 @@ const ProjectList = () => {
   ---------------------------------------- */
   const regions = useMemo(
     () => [
-      { value: "ALL", label: "All Regions" },
-      ...Array.from(new Set(projectsData.items.map(i => i.region))).map(r => ({
+      { value: "ALL", label: "All" },
+      ...Array.from(new Set(regionData.map((i: { name: string }) => i.name))).map(r => ({
         value: r,
         label: r
       }))
@@ -32,8 +33,8 @@ const ProjectList = () => {
 
   const categories = useMemo(
     () => [
-      { value: "ALL", label: "All Categories" },
-      ...Array.from(new Set(projectsData.items.map(i => i.category))).map(c => ({
+      { value: "ALL", label: "All" },
+      ...Array.from(new Set(categoryData.map((i: { name: string }) => i.name))).map(c => ({
         value: c,
         label: c
       }))
@@ -43,10 +44,10 @@ const ProjectList = () => {
 
   const statuses = useMemo(
     () => [
-      { value: "ALL", label: "All Status" },
-      ...Array.from(new Set(projectsData.items.map(i => i.status))).map(s => ({
-        value: s,
-        label: s
+      { value: "ALL", label: "All" },
+      ...Array.from(new Set(statusData.map((i: { name: string, value: number }) => i))).map(s => ({
+        value: s.value,
+        label: s.name
       }))
     ],
     []
@@ -69,28 +70,38 @@ const ProjectList = () => {
   ---------------------------------------- */
   const filteredItems = useMemo(() => {
     // Handle empty or undefined data
-    if (!projectsData?.items || projectsData.items.length === 0) {
+    if (!data?.projects || data.projects.length === 0) {
       return [];
     }
 
-    return projectsData.items.filter(item => {
+
+    return data.projects.filter((item: any) => {
       const regionMatch =
-        !appliedRegion || appliedRegion.value === "ALL" || item.region === appliedRegion.value;
+        !appliedRegion || appliedRegion.value === "ALL" || item.firstSection.location.name === appliedRegion.value;
 
       const categoryMatch =
-        !appliedCategory || appliedCategory.value === "ALL" || item.category === appliedCategory.value;
+        !appliedCategory || appliedCategory.value === "ALL" || item.firstSection.category.name === appliedCategory.value;
 
       const statusMatch =
-        !appliedStatus || appliedStatus.value === "ALL" || item.status === appliedStatus.value;
+        !appliedStatus || appliedStatus.value === "ALL" || item.firstSection.status === appliedStatus.value.toString();
 
       const keywordMatch =
         appliedKeyword.trim() === "" ||
-        item.keywords.some(k =>
-          k.toLowerCase().includes(appliedKeyword.toLowerCase())
-        );
+        [
+          item.title,
+          item.firstSection.category?.name,
+          item.firstSection.location?.name,
+        ]
+          .filter(Boolean) // remove undefined/null values
+          .some((field: string) =>
+            field.toLowerCase().includes(appliedKeyword.toLowerCase())
+          );
+
 
       return regionMatch && categoryMatch && statusMatch && keywordMatch;
     });
+
+
   }, [appliedRegion, appliedCategory, appliedStatus, appliedKeyword]);
 
   /* ----------------------------------------
@@ -143,48 +154,51 @@ const ProjectList = () => {
   return (
     <section className="sp-pb">
       <div className="container">
-        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-light p-4 xl:p-8 my-8 xl:my-12">
-          <h3 className="text-19 font-normal text-center">[UNEC]'s contribution to the region can be seen everywhere - in the many public buildings we use by day to the private dwellings we return to at night. The skilled work of our team surrounds us in thousands of expertly-crafted structures that remind us of everything we've achieved and all that's yet to come.</h3>
-        </motion.div>
+        {/* <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-light p-4 xl:p-8 my-8 xl:my-12">
+          <h3 className="text-19 font-normal text-center">{data.pageDescription}</h3>
+        </motion.div> */}
         {/* FILTER BAR */}
-        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-light p-4 xl:p-8  mb-8 xl:mb-12">
-          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4 xl:gap-10 items-end">
+        <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="mt-8  mb-8 xl:mb-12">
+          <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 gap-4 xl:gap-10 items-end">
             <div>
-              {/* <label htmlFor="region-select" className="text-sm font-medium mb-1 block">Region</label> */}
-              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" classNamePrefix="cmn-select" className="cmn-select" instanceId="region-select" />
+              <label htmlFor="region-select" className="text-sm font-medium mb-3 block text-secondary uppercase">Region</label>
+              <Select inputId="region-select" options={regions} styles={selectStyles} value={region} defaultValue={regions[0]} onChange={setRegion} aria-label="Filter by region" classNamePrefix="cmn-select-old" className="cmn-select-old" instanceId="region-select" />
             </div>
 
             <div>
-              {/* <label htmlFor="category-select" className="text-sm font-medium mb-1 block">Category</label> */}
+              <label htmlFor="category-select" className="text-sm font-medium mb-3 block text-secondary uppercase">Category</label>
               <Select inputId="category-select" options={categories} styles={selectStyles} value={category} defaultValue={categories[0]} onChange={setCategory} aria-label="Filter by category"
-                classNamePrefix="cmn-select" className="cmn-select" instanceId="category-select" />
+                classNamePrefix="cmn-select-old" className="cmn-select-old" instanceId="category-select" />
             </div>
 
             <div>
-              {/* <label htmlFor="status-select" className="text-sm font-medium mb-1 block">Status</label> */}
+              <label htmlFor="status-select" className="text-sm font-medium mb-3 block text-secondary uppercase">Status</label>
               <Select inputId="status-select" options={statuses} styles={selectStyles} value={status} defaultValue={statuses[0]} onChange={setStatus} aria-label="Filter by status"
-                classNamePrefix="cmn-select" className="cmn-select" instanceId="status-select" />
+                classNamePrefix="cmn-select-old" className="cmn-select-old" instanceId="status-select" />
             </div>
 
             <div>
-              {/* <label htmlFor="keyword-input" className="text-sm font-medium mb-1 block">Keywords</label> */}
-              <input id="keyword-input" type="text" placeholder="Type keyword…"
-                className="w-full h-[48px] pr-4 border-b border-black/20  focus:outline-none focus:border-black placeholder:text-black"
+              <label htmlFor="keyword-input" className="text-sm font-medium mb-3 block text-secondary uppercase">Keywords</label>
+              <input id="keyword-input" type="text" placeholder=""
+                className="w-full h-[48px] p-3 border-2 border-black  focus:outline-none focus:border-black placeholder:text-black"
                 value={keyword}
                 onChange={e => setKeyword(e.target.value)}
                 aria-label="Search by keyword"
               />
             </div>
 
-            <button
-              className="h-12 px-8 cursor-pointer bg-black text-white flex items-center justify-center gap-2.5 font-semibold text-sm tracking-[0.15em] uppercase relative overflow-hidden group border-2 border-white"
-              onClick={handleSearch}
-              aria-label="Apply search filters"
-            >
-              <span className="absolute inset-0 bg-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out"></span>
-              <FiSearch className="w-4 h-4 stroke-[2.5] relative z-10 group-hover:scale-110 transition-all duration-500 group-hover:text-black" />
-              <span className="relative z-10 group-hover:text-black transition-colors duration-500">Search</span>
-            </button>
+            <div className="md:col-span-4 flex justify-center">
+              <button
+                className="h-12  w-[30%] px-8 cursor-pointer bg-black text-white flex items-center justify-center gap-2.5 font-semibold text-sm tracking-[0.15em] uppercase relative overflow-hidden group border-2 border-white"
+                onClick={handleSearch}
+                aria-label="Apply search filters"
+              >
+                <span className="absolute inset-0 bg-white transform translate-y-full  transition-transform duration-500 ease-out"></span>
+                <FiSearch className="w-4 h-4 stroke-[2.5] relative  group-hover:scale-110 transition-all duration-500 " />
+                <span className="relative transition-all duration-500">Search</span>
+              </button>
+
+            </div>
 
           </div>
         </motion.div>
@@ -196,12 +210,12 @@ const ProjectList = () => {
           </div>
         ) : (
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map((item, index) => (
-              <Link href={`/projects/${item.title}`} key={index}>
-                <motion.div variants={moveUp(0.4+0.1*index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-                <ProjectCard image={item.image} title={item.title} location={item.region} height="h-[250px] xl:h-[350px]" />
+            {filteredItems.map((item: any, index: number) => (
+              <Link href={`/projects/${item.slug}`} key={index}>
+                <motion.div variants={moveUp(0.4 + 0.1 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                  <ProjectCard image={item.thumbnail} title={item.title} location={item.firstSection.location.name} height="h-[250px] xl:h-[350px]" />
                 </motion.div>
-              </Link> 
+              </Link>
             ))}
           </div>
         )}

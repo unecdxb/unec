@@ -26,7 +26,6 @@ export async function GET(request: NextRequest) {
             }
             return NextResponse.json({ data: foundProject, message: "Project fetched successfully" }, { status: 200 });
         } else {
-            console.log("hereeee")
             const project = await Project.findOne({}).populate("projects.firstSection.location", "name _id").populate("projects.firstSection.category", "name _id");
             if (!project) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
@@ -67,6 +66,7 @@ export async function PATCH(request: NextRequest) {
             foundProject.thumbnailAlt = body.thumbnailAlt;
             foundProject.metaTitle = body.metaTitle;
             foundProject.metaDescription = body.metaDescription;
+            foundProject.highlight = body.highlight;
             await project.save();
             return NextResponse.json({ data: project, message: "Project updated successfully" }, { status: 200 });
         }

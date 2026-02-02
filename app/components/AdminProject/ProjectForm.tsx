@@ -48,6 +48,7 @@ interface ProjectFormProps {
     slug: string;
     thumbnail: string;
     thumbnailAlt: string;
+    highlight: string;
     metaTitle: string;
     metaDescription: string;
 }
@@ -108,6 +109,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("thumbnailAlt", data.data.thumbnailAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
+                setValue("highlight", data.data.highlight.toString());
                 setImageUrls(data.data.images);
             } else {
                 const data = await response.json();
@@ -465,6 +467,37 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     </div>
 
 
+
+                </div>
+
+
+                <div className='flex flex-col gap-2'>
+                    <Label className=''>Highlight</Label>
+                    <Controller
+                        name="highlight"
+                        control={control}
+                        render={({ field }) => (
+                            <Select
+                                onValueChange={field.onChange}
+                                value={field.value}
+                                defaultValue={"false"}
+                            >
+                                <SelectTrigger className="w-full bg-white">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+
+                                    <SelectItem value={"true"}>
+                                        Yes
+                                    </SelectItem>
+                                    <SelectItem value={"false"}>
+                                        No
+                                    </SelectItem>
+
+                                </SelectContent>
+                            </Select>
+                        )}
+                    />
 
                 </div>
 

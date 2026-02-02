@@ -7,8 +7,9 @@ import { FaPhone, FaMapMarkerAlt, FaEnvelope, FaFax } from "react-icons/fa";
 import gsap from "gsap";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
+import { ContactData } from "./type";
 
-const BranchList = () => {
+const BranchList = ({ data }: { data: ContactData['firstSection']['items'] }) => {
   const cardsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
@@ -39,8 +40,8 @@ const BranchList = () => {
     <section className="sp-py">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
-          {contactUsData.branchList.map((branch, index) => (
-            <motion.div variants={moveUp(0.2*index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index}>
+          {data.map((branch, index) => (
+            <motion.div variants={moveUp(0.2 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index}>
               <div
                 key={index}
                 ref={(el) => {
@@ -92,7 +93,7 @@ const BranchList = () => {
                   </Link>
 
                   <Link
-                    href={branch.gmap}
+                    href={branch.map}
                     target="_blank"
                     className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
                   >

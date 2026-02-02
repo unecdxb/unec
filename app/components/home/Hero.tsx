@@ -9,8 +9,9 @@ import 'swiper/css/effect-fade';
 import { HomeData } from './data';
 import Image from 'next/image';
 import "./hero.css";
+import { HomeDataType } from './type';
 
-const Hero = () => {
+const Hero = ({ data }: { data: HomeDataType['bannerSection'] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paginationLeft, setPaginationLeft] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,26 +82,26 @@ const Hero = () => {
         onSlideChangeTransitionEnd={(swiper) => setActiveIndex(swiper.activeIndex)}
         className="h-screen"
       >
-        {HomeData.HeroData.items.map((slide, index) => (
+        {data.items.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative w-full h-screen">
-              <Image src={slide.image} alt={slide.title} fill className="object-cover" priority={index === 0} />
+              <Image src={slide.image} alt={slide.imageAlt} fill className="object-cover" priority={index === 0} />
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10"></div>
               <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 via-black/50 to-transparent z-10"></div>
               <div ref={containerRef} className="container h-screen mx-auto px-4">
                 <div className="relative z-20 h-full flex flex-col justify-end  pb-[35%] xl:pb-[10%] ">
                   <h2 className={`text-white text-28 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
-                  transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }} >
-                    "{slide.title}"
+                  transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }} >
+                    {slide.title}
                   </h2>
-                  <div className={`w-10 h-1 bg-primary mb-5 xl:mb-7 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '400ms' : '0ms' }}/>
+                  <div className={`w-10 h-1 bg-primary mb-5 xl:mb-7 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '400ms' : '0ms' }} />
                   <p className={`text-white text-sm font-bold xl:text-lg xs:max-w-[70vw] xl:max-w-2xl transition-all duration-1000 ease-out mb-3 xs:mb-5 xl:mb-8  
-                  ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12' }`} style={{ transitionDelay: activeIndex === index ? '500ms' : '0ms' }}>
+                  ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '500ms' : '0ms' }}>
                     {slide.description}
                   </p>
                   <Link href="#" className={`relative bg-transparent text-white px-4 py-2 xl:px-8 xl:py-3 font-light w-fit overflow-hidden border-2 border-white text-xs xl:text-sm uppercase transition-all duration-700 ease-out group ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '700ms' : '0ms' }}>
                     <span className="relative z-10 transition-colors duration-500 group-hover:text-black">
-                      {slide.button}
+                      Know More
                     </span>
 
                     {/* Sliding background */}

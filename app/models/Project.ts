@@ -72,6 +72,9 @@ const projectSchema = new mongoose.Schema({
         metaDescription: {
             type: String,
         },
+        highlight: {
+            type: Boolean,
+        }
     }],
 })
 

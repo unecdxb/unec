@@ -20,6 +20,10 @@ const aboutSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    pageDescription: {
+        type: String,
+        required: true
+    },
     firstSection: {
         items: [{
             title: {

@@ -133,29 +133,41 @@ const JobForm: React.FC = () => {
 
     try {
       const formData = new FormData();
-
-      Object.keys(data).forEach((key) => {
-        const value = data[key as keyof JobFormData];
-        if (key === 'resume' && value instanceof FileList && value[0]) {
-          formData.append(key, value[0]);
-        } else if (key !== 'resume') {
-          formData.append(key, String(value));
+      console.log(data)
+      if (uploadedFile) {
+        formData.append("file", uploadedFile as File);
+        formData.append("fileType", "file");
+        const response = await fetch("/api/admin/upload", {
+          method: "POST",
+          body: formData,
+        });
+        if (response.status !== 200) {
+          alert("Something went wrong, please try again");
+          return;
         }
-      });
-
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      setSubmitStatus({
-        type: 'success',
-        message: 'Application submitted successfully! We will review your application and get back to you soon.'
-      });
-
-      reset();
-      setUploadedFile(null);
-
-      setTimeout(() => setSubmitStatus(null), 5000);
-
+        const fileData = await response.json();
+        if (fileData.url) {
+          const formResponse = await fetch("/api/admin/career/enquiry", {
+            method: "POST",
+            body: JSON.stringify({ ...data, file: fileData.url }),
+          });
+          const res = await formResponse.json();
+          if (res.success) {
+            alert(res.message);
+            setSubmitStatus({
+              type: 'success',
+              message: 'Thank you for your interest in us! We will get back to you within 24 hours.'
+            });
+            reset();
+          } else {
+            alert(res.message);
+            setSubmitStatus({
+              type: 'error',
+              message: 'Failed to send your message. Please try again.'
+            });
+          }
+        }
+      }
     } catch {
       setSubmitStatus({
         type: 'error',
@@ -171,17 +183,17 @@ const JobForm: React.FC = () => {
   return (
     <section className="sp-py bg-light" id="apply-for-job">
       <div className="container">
-            <SubTitle title="Join Our Team" />
+        <SubTitle title="Join Our Team" />
         <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white/60 p-4 xl:p-10">
-            <p className="text-gray-600 ">* Fill out the form below to apply and take the next step in your career with us!</p>
-            <hr className="h-1 border-gray-200 w-[50%] mt-2" />
+          <p className="text-gray-600 ">* Fill out the form below to apply and take the next step in your career with us!</p>
+          <hr className="h-1 border-gray-200 w-[50%] mt-2" />
           <div className="mb-8">
           </div>
 
           {submitStatus && (
             <div className={`mb-6 p-4 rounded-lg flex gap-3 ${submitStatus.type === 'success'
-                ? 'bg-green-50 text-green-800 border border-green-200'
-                : 'bg-red-50 text-red-800 border border-red-200'
+              ? 'bg-green-50 text-green-800 border border-green-200'
+              : 'bg-red-50 text-red-800 border border-red-200'
               }`}>
               {submitStatus.type === 'success'
                 ? <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
@@ -191,9 +203,9 @@ const JobForm: React.FC = () => {
           )}
 
           <div className="space-y-6">
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* FULL NAME */}
-              <div> 
+              <div>
                 {/* <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2"> Full Name <span className="text-red-500">*</span> </label> */}
                 <input
                   type="text"
@@ -267,7 +279,7 @@ const JobForm: React.FC = () => {
                   </p>
                 )}
               </div>
-           </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* POSITION - React Select */}
@@ -308,18 +320,18 @@ const JobForm: React.FC = () => {
                   Years of Experience <span className="text-red-500">*</span>
                 </label> */}
                 <Controller name="experience" control={control} rules={{ required: 'Please select your experience level' }} render={({ field }) => (
-                    <Select
-                      {...field}
-                      instanceId="experience-select"
-                      options={experienceOptions}
-                      placeholder="Select experience level"
-                      value={experienceOptions.find(opt => opt.value === field.value) || null}
-                      onChange={(opt) => field.onChange(opt?.value)}
-                      styles={customSelectStyles}
-                      className="custom-select"
-                      classNamePrefix="custom-select"
-                    />
-                  )}
+                  <Select
+                    {...field}
+                    instanceId="experience-select"
+                    options={experienceOptions}
+                    placeholder="Select experience level"
+                    value={experienceOptions.find(opt => opt.value === field.value) || null}
+                    onChange={(opt) => field.onChange(opt?.value)}
+                    styles={customSelectStyles}
+                    className="custom-select"
+                    classNamePrefix="custom-select"
+                  />
+                )}
                 />
                 {errors.experience && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -357,7 +369,7 @@ const JobForm: React.FC = () => {
             </div>
 
 
-           <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
               {/* COVER LETTER */}
               <div>
                 <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700 mb-2">
@@ -434,7 +446,7 @@ const JobForm: React.FC = () => {
                   </p>
                 )}
               </div>
-           </div>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* AVAILABILITY - React Select */}
@@ -491,7 +503,7 @@ const JobForm: React.FC = () => {
                 )}
               </div>
             </div>
-            
+
             {/* TERMS */}
             <div className="flex items-start gap-3">
               <input

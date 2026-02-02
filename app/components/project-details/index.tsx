@@ -1,12 +1,17 @@
-import PageBnr from "../common/PageBnr";
+import Banner from "./Banner";
 import Main from "./Main";
-const Index = () => {
-  return ( 
+import SimilarProjects from "./SimilarProjects";
+import { Project, ProjectData } from "./type";
+
+const Index = ({ data, allProjectData }: { data: Project, allProjectData: ProjectData }) => {
+  return (
     <main className="min-h-screen">
-      <PageBnr title="DEWA Headquarters" image="/assets/images/projects/bnr.jpg" /> 
-      <Main/>
+      {/* <PageBnr title={data.title} image={data.banner} imageAlt={data.bannerAlt} /> */}
+      <Banner title={data.title} image={data.banner} imageAlt={data.bannerAlt} />
+      <Main data={data} />
+      <SimilarProjects data={allProjectData} />
     </main>
-   );
+  );
 }
- 
+
 export default Index;

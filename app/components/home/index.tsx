@@ -3,19 +3,22 @@ import CompanyProfile from "./CompanyProfile";
 import ProjectHIghlights from "./ProjectHIghlights";
 import { HomeData } from "./data";
 import LatestNews from "./LatestNews";
-import { NewsData } from "../news/data";
 import ClientsList from "./ClientsList";
-const Home = () => {
-  return ( 
+import { HomeDataType } from "./type";
+import { ProjectType } from "../projects/type";
+import { NewsData } from "../news/type";
+
+const Home = ({ data, projectData, newsData }: { data: HomeDataType, projectData: ProjectType, newsData: NewsData }) => {
+  return (
     <main>
-      <Hero/>
+      <Hero data={data.bannerSection} />
       {/* <CompanyStats/> */}
-      <CompanyProfile/>
-      <ProjectHIghlights data={HomeData.ProjectHighlights} />
-      <LatestNews data={NewsData.news} />
-      <ClientsList data={HomeData.clientsData}/>
+      <CompanyProfile data={data.firstSection} />
+      <ProjectHIghlights data={projectData.projects.filter((project) => project.highlight)} title={data.secondSection.title} />
+      <LatestNews data={newsData.news} title={data.thirdSection.title} />
+      <ClientsList data={data.fourthSection} />
     </main>
-   );
+  );
 }
- 
+
 export default Home;

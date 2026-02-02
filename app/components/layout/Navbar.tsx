@@ -46,17 +46,28 @@ const Navbar = ({ variant }: NavbarProps) => {
     { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
   ];
 
+  const isContactPage = pathname === '/contact-us';
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (isContactPage) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  }, [pathname])
+
+  useEffect(() => {
+    if (isContactPage) return;
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -125,7 +136,7 @@ const Navbar = ({ variant }: NavbarProps) => {
         initial={{ y: "-100%" }}
         animate={{ y: isScrolled ? 0 : "-100%" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-0 left-0 w-full z-40 bg-white shadow-md"
+        className="fixed top-0 left-0 w-full z-1000 bg-white shadow-md"
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-3 xl:py-4">

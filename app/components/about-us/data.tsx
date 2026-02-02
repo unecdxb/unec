@@ -115,6 +115,7 @@ export const aboutUsData = {
         description: ["[UNEC] strives to make a positive and lasting contribution to the communities we serve by participating in many social initiatives. Recently, [UNEC] has been awarded the prestigious Dubai Chamber CSR Label & Taqdeer award multiple times for our commitment to corporate social responsibility and employee welfare.", "[ Community ] We believe everyone should have a chance to succeed – that’s why we support local & international charities that promote education and health in less fortunate countries. Safer communities are happier communities. [UNEC] is also a proud participant in Governmental awareness initiatives."]
       },
 
+
     ]
   }
 }

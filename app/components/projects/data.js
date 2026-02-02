@@ -1,5 +1,5 @@
 export const projectsData = {
-  desc:"[UNEC]’s contribution to the region can be seen everywhere - in the many public buildings we use by day to the private dwellings we return to at night. The skilled work of our team surrounds us in thousands of expertly-crafted structures that remind us of everything we’ve achieved and all that’s yet to come.",
+  desc: "[UNEC]’s contribution to the region can be seen everywhere - in the many public buildings we use by day to the private dwellings we return to at night. The skilled work of our team surrounds us in thousands of expertly-crafted structures that remind us of everything we’ve achieved and all that’s yet to come.",
   items: [
     {
       title: "Al Safa One",
@@ -7,11 +7,10 @@ export const projectsData = {
       region: "UAE",
       category: "Residential",
       keywords: ["Al Safa One", "Residential", "Completed", "2022", "UAE"],
-      client:"Dubai Electricity & Water Authority (DEWA)",
-      consultant:"",
-      BUA:"",
+      client: "Dubai Electricity & Water Authority (DEWA)",
+      consultant: "",
+      BUA: "",
       status: "Completed",
-      
     },
     {
       title: "Dragon Mall UAE",
