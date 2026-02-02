@@ -20,6 +20,7 @@ import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import Image from 'next/image'
 import { RiAiGenerateText } from 'react-icons/ri'
+import TinyEditor from "@/app/components/TinyMce/TinyEditor";
 
 
 
@@ -185,10 +186,10 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
 
                 </div>
 
-                <div>
+                <div className="flex flex-col gap-1">
                     <Label className=''>Content</Label>
                     <Controller name="content" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
-                        return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                        return <TinyEditor setNewsContent={field.onChange} newsContent={field.value} />
                     }} />
                     {errors.content && <p className='text-red-500'>{errors.content.message}</p>}
                 </div>

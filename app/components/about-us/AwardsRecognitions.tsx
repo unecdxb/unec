@@ -27,7 +27,7 @@ const AwardsRecognitions = () => {
               };
 
               return (
-                <div key={index} className="relative flex flex-col pb-4 xl:pb-10 transition-all duration-300 group ">
+                <div key={index} className="relative flex flex-col pb-4 xl:pb-10 transition-all duration-300 group">
                   {/* Right border - only show on md and lg, hide on last items in row */}
                   <div className={`absolute top-0 right-0 w-[1px] h-[80%] bg-white/70 z-10 hidden
                     ${isLastInRow.tablet ? 'xs:hidden' : 'xs:block'} 

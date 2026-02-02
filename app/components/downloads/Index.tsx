@@ -1,13 +1,13 @@
-import PageBnr from "../common/PageBnr";
-import DownloadsList from "./DownloadsList";
+import Main from "./Main";
 
 const Index = () => {
-  return ( 
+  return (
     <main className="min-h-screen">
-      <PageBnr  title="Downloads" image="/assets/images/downloads/bnr.jpg" />
-      <DownloadsList />
+      {/* <PageBnr  title="Downloads" image="/assets/images/downloads/bnr.jpg" /> */}
+      <Main fileName="Corporate Profile" image="/assets/images/downloads/bnr.jpg" imageAlt="Downloads" file="" />
+      {/* <DownloadsList /> */}
     </main>
-   );
+  );
 }
- 
+
 export default Index;

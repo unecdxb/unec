@@ -27,14 +27,12 @@ export async function PATCH(req: NextRequest) {
         await connectDB();
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
-        const { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage } = await req.json();
-        console.log(date)
+        const { banner, bannerAlt, title, slug, content, metaTitle, metaDescription, thumbnail, thumbnailAlt, date } = await req.json();
         const news = await News.findOne({});
         if (news) {
             news.news = news.news.map((news: { _id: string }) => {
                 if (news._id.toString() === id) {
-                    console.log(date)
-                    return { mainTitle, subTitle, slug, content, images, category, metaTitle, metaDescription, thumbnail, thumbnailAlt, coverImage, coverImageAlt, date, ogType, ogImage }
+                    return { banner, bannerAlt, title, slug, content, metaTitle, metaDescription, thumbnail, thumbnailAlt, date }
                 }
                 return news
             })
@@ -60,6 +58,7 @@ export async function GET(req: NextRequest) {
         if (slug) {
             if (news) {
                 const newsData = news.news.find((news: { _id: string, slug: string }) => news.slug === slug)
+
                 return NextResponse.json({ message: "News fetched successfully", data: newsData }, { status: 200 });
             } else {
                 return NextResponse.json({ message: "Error in fetching news" }, { status: 500 });

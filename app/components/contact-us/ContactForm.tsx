@@ -6,6 +6,9 @@ import React, { useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import Select from 'react-select';
 import { AlertCircle, CheckCircle2, Loader2, Mail, User, MessageSquare } from 'lucide-react';
+import { components } from "react-select";
+import Image from "next/image";
+
 
 /* ---------------- TYPES ---------------- */
 
@@ -84,21 +87,28 @@ const ContactForm: React.FC = () => {
     setSubmitStatus(null);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      console.log('Form Data:', data);
-
-      setSubmitStatus({
-        type: 'success',
-        message: 'Thank you for contacting us! We will get back to you within 24 hours.'
+      const response = await fetch("/api/admin/contact/enquiry", {
+        method: "POST",
+        body: JSON.stringify(data),
       });
-
-      reset();
-
-      setTimeout(() => setSubmitStatus(null), 6000);
-
-    } catch {
+      const res = await response.json();
+      if (res.success) {
+        alert(res.message);
+        setSubmitStatus({
+          type: 'success',
+          message: 'Thank you for contacting us! We will get back to you within 24 hours.'
+        });
+        reset();
+      } else {
+        alert(res.message);
+        setSubmitStatus({
+          type: 'error',
+          message: 'Failed to send your message. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.log("Error sending message", error);
+      alert("Sorry, something went wrong. Please try again later.");
       setSubmitStatus({
         type: 'error',
         message: 'Failed to send your message. Please try again.'
@@ -111,13 +121,28 @@ const ContactForm: React.FC = () => {
   /* ---------------- UI ---------------- */
 
   return (
-    <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-py">
-      <div className="container">
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-10 xl:gap-0">
+    <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-pb">
+      <div className='bg-black text-white text-29 text-center py-6'>
+        CONTACT BY EMAIL
+      </div>
+      <div className="container sp-pt">
+        <div className="grid grid-cols-1">
           <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden xl:order-2">
 
-            {/* Form Section */}
-            <div className="p-8">
+
+
+            <form className="max-w-7xl mx-auto px-6 py-10 text-black" onSubmit={handleSubmit(onSubmit)}>
+              {/* Intro */}
+              <p className="font-semibold mb-2">
+                Please fill out the form below and we will get back to you shortly.
+              </p>
+              <p className="mb-10">
+                For employment-related queries, please visit{" "}
+                <a href="#" className="text-red-600 font-semibold">
+                  [UNEC] CAREERS
+                </a>
+              </p>
+
               {submitStatus && (
                 <div className={`mb-6 p-4 flex gap-3 ${submitStatus.type === 'success'
                   ? 'bg-green-50 text-green-800 border-bborder-green-200'
@@ -130,175 +155,129 @@ const ContactForm: React.FC = () => {
                 </div>
               )}
 
-              <div className="space-y-6">
-
-                {/* First Row: First Name, Last Name, Email */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-10">
-
-                  {/* FIRST NAME */}
-                  <div>
-                    {/* <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                    First Name <span className="text-red-500">*</span>
-                  </label> */}
-                    <div className="relative">
-                      {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                      <input
-                        type="text"
-                        id="firstName"
-                        {...register('firstName', {
-                          required: 'First name is required',
-                          minLength: { value: 2, message: 'Minimum 2 characters' }
-                        })}
-                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none ${errors.firstName ? 'border-red-500' : 'border-black/20'
-                          }`}
-                        placeholder="First Name"
-                      />
-                    </div>
-                    {errors.firstName && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.firstName.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* LAST NAME */}
-                  <div>
-                    {/* <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Last Name <span className="text-red-500">*</span>
-                  </label> */}
-                    <div className="relative">
-                      {/* <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                      <input
-                        type="text"
-                        id="lastName"
-                        {...register('lastName', {
-                          required: 'Last name is required',
-                          minLength: { value: 2, message: 'Minimum 2 characters' }
-                        })}
-                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none ${errors.lastName ? 'border-red-500' : 'border-black/20'
-                          }`}
-                        placeholder="Last Name"
-                      />
-                    </div>
-                    {errors.lastName && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.lastName.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* EMAIL */}
-                  <div>
-                    {/* <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email <span className="text-red-500">*</span>
-                  </label> */}
-                    <div className="relative">
-                      {/* <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                      <input
-                        type="email"
-                        id="email"
-                        {...register('email', {
-                          required: 'Email is required',
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: 'Invalid email address'
-                          }
-                        })}
-                        className={`w-full pl-0 pr-4 py-3 border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none ${errors.email ? 'border-red-500' : 'border-black/20'
-                          }`}
-                        placeholder="Email"
-                      />
-                    </div>
-                    {errors.email && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.email.message}
-                      </p>
-                    )}
-                  </div>
-
+              {/* Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* First Name */}
+                <div>
+                  <label className="block mb-2 font-medium">
+                    First Name<span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    {...register('firstName', {
+                      required: 'First name is required',
+                      minLength: { value: 2, message: 'Minimum 2 characters' }
+                    })}
+                    className="w-full border-2 border-black px-4 py-3 focus:outline-none"
+                  />
+                  {errors.firstName && (
+                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.firstName.message}
+                    </p>
+                  )}
                 </div>
 
-                {/* Second Row: Subject and Query */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 xl:gap-10">
+                {/* Subject */}
+                <div>
+                  <label className="block mb-2 font-medium">
+                    Subject<span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    {...register('subject', {
+                      required: 'Subject is required',
+                      minLength: { value: 5, message: 'Minimum 5 characters' }
+                    })}
+                    className="w-full border-2 border-black px-4 py-3 focus:outline-none"
+                  />
+                  {errors.subject && (
+                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.subject.message}
+                    </p>
+                  )}
+                </div>
 
-                  {/* SUBJECT */}
-                  <div>
-                    {/* <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                    Subject <span className="text-red-500">*</span>
-                  </label> */}
-                    <input
-                      type="text"
-                      id="subject"
-                      {...register('subject', {
-                        required: 'Subject is required',
-                        minLength: { value: 5, message: 'Minimum 5 characters' }
-                      })}
-                      className={`w-full pr-4 pt-3 pb-2 xl:pb-[10px] border-b placeholder-black/60 focus:placeholder-black/40 focus:border-black/40 focus:outline-none  ${errors.subject ? 'border-red-500' : 'border-black/20'
-                        }`}
-                      placeholder="How can we help you?"
-                    />
-                    {errors.subject && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.subject.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* QUERY - React Select */}
-                  <div>
-                    {/* <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div>
+                  {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                     Query Type <span className="text-red-500">*</span>
                   </label> */}
-                    <Controller
-                      name="query"
-                      control={control}
-                      rules={{ required: 'Please select a query type' }}
-                      render={({ field }) => (
-                        <Select
-                          {...field}
-                          options={queryOptions}
-                          placeholder="Select query type"
-                          value={queryOptions.find(opt => opt.value === field.value) || null}
-                          onChange={(opt) => field.onChange(opt?.value)}
-                          styles={customSelectStyles}
-                          classNamePrefix="cmn-select"
-                          className="cmn-select"
-                        />
-                      )}
-                    />
-                    {errors.query && (
-                      <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
-                        <AlertCircle className="w-4 h-4" />
-                        {errors.query.message}
-                      </p>
+                  <Controller
+                    name="query"
+                    control={control}
+                    rules={{ required: 'Please select a query type' }}
+                    render={({ field }) => (
+                      <Select
+                        {...field}
+                        options={queryOptions}
+                        placeholder="Select query type"
+                        value={queryOptions.find(opt => opt.value === field.value) || null}
+                        onChange={(opt) => field.onChange(opt?.value)}
+                        classNamePrefix="contact-form-select"
+                        components={{
+                          DropdownIndicator,
+                          IndicatorSeparator: () => null, // removes the vertical line
+                        }}
+                      />
                     )}
-                  </div>
-
+                  />
+                  {errors.query && (
+                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.query.message}
+                    </p>
+                  )}
                 </div>
 
-                {/* MESSAGE */}
+                {/* Query */}
+                {/* <div>
+                  <label className="block mb-2 font-medium">
+                    Query<span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    className="w-full border border-black px-4 py-3 focus:outline-none"
+                  >
+                    <option>GENERAL ENQUIRY</option>
+                    <option>SUPPORT</option>
+                    <option>PARTNERSHIP</option>
+                  </select>
+                </div> */}
+
+                {/* Last Name */}
                 <div>
-                  {/* <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message <span className="text-red-500">*</span>
-                </label> */}
-                  <div className="relative">
-                    {/* <MessageSquare className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" /> */}
-                    <textarea
-                      id="message"
-                      rows={6}
-                      {...register('message', {
-                        required: 'Message is required',
-                        minLength: { value: 20, message: 'Message must be at least 20 characters' }
-                      })}
-                      className={`w-full pl-0 pr-4 py-3 border-b placeholder:text-black/60 focus:border-black/40 focus-placeholder:text-black/40 focus:outline-none focus:placeholder:text-black/40 resize-none ${errors.message ? 'border-red-500' : 'border-black/20'
-                        }`}
-                      placeholder="Please provide details about your inquiry..."
-                    />
-                  </div>
+                  <label className="block mb-2 font-medium">
+                    Last Name<span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    {...register('lastName', {
+                      required: 'Last name is required',
+                      minLength: { value: 2, message: 'Minimum 2 characters' }
+                    })}
+                    className="w-full border-2 border-black px-4 py-3 focus:outline-none"
+                  />
+                  {errors.lastName && (
+                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.lastName.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Message */}
+                <div className="md:col-span-2">
+                  <label className="block mb-2 font-medium">
+                    Message<span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    rows={6}
+                    {...register('message', {
+                      required: 'Message is required',
+                      minLength: { value: 20, message: 'Message must be at least 20 characters' }
+                    })}
+                    className="w-full border-2 border-black px-4 py-3 focus:outline-none resize-none"
+                  />
                   {errors.message && (
                     <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
                       <AlertCircle className="w-4 h-4" />
@@ -307,43 +286,54 @@ const ContactForm: React.FC = () => {
                   )}
                 </div>
 
-                {/* NEWSLETTER CHECKBOX */}
-                <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] xl:grid-cols-1 3xl:grid-cols-[auto_1fr] gap-4">
-                  <div className="flex flex-wrap items-center gap-3 p-4 bg-blue-50  border-b border-blue-100 w-fit">
-                    <input
-                      type="checkbox"
-                      id="newsletter"
-                      {...register('newsletter')}
-                      className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 cursor-pointer"
-                    />
-                    <label htmlFor="newsletter" className="text-sm text-gray-700 cursor-pointer">
-                      Subscribe to our newsletter for updates and exclusive content
-                    </label>
-                  </div>
-
-                  {/* SUBMIT BUTTON */}
-                  <div className="flex gap-4 w-full">
-                    <button type="button" onClick={handleSubmit(onSubmit)} disabled={isSubmitting} className="flex-1 bg-gradient-to-r from-black/50 to-black hover:from-black hover:to-black disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-4 px-6  transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl cursor-pointer" >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Sending Message...
-                        </>
-                      ) : (
-                        <>
-                          <Mail className="w-5 h-5" />
-                            <span className="uppercase font-light text-17">Send Message</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
+                {/* Email */}
+                <div>
+                  <label className="block mb-2 font-medium">
+                    Email<span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    {...register('email', {
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Invalid email address'
+                      }
+                    })}
+                    className="w-full border-2 border-black px-4 py-3 focus:outline-none"
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
               </div>
-            </div>
+
+              {/* Subscribe */}
+              <div className="flex items-center gap-3 mt-10">
+                <input type="checkbox" className="w-5 h-5 border border-black" />
+                <label className="uppercase text-sm tracking-wide">
+                  Subscribe to our newsletter
+                </label>
+              </div>
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="mt-10 bg-black text-white px-14 py-4 font-semibold tracking-widest hover:bg-neutral-800 transition"
+              >
+                SUBMIT
+              </button>
+            </form>
+
+
+
           </motion.div>
-          <div className="h-full xl:order-1">
+          {/* <div className="h-[550px] xl:order-1 overflow-hidden relative">
             <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-              <iframe className='h-full min-h-[350px] xl:min-h-[500px]'
+              <iframe className='absolute top-[-80px] left-0 h-full min-h-[350px] xl:min-h-[500px]'
                 src="https://www.google.com/maps/d/embed?mid=1sJaPSk6dkzxLcOaPnPYyI0jNUJQ-TS4"
                 width="100%"
                 height="450"
@@ -353,8 +343,8 @@ const ContactForm: React.FC = () => {
               </iframe>
 
             </motion.div>
-          </div>
-          
+          </div> */}
+
 
         </div>
       </div>
@@ -363,3 +353,19 @@ const ContactForm: React.FC = () => {
 };
 
 export default ContactForm;
+
+
+const DropdownIndicator = (props: any) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <Image
+        src="/assets/images/contact-us/arrow_down.svg"
+        alt="arrow"
+        width={14}
+        height={14}
+        className={`transition-transform duration-200 ${props.selectProps.menuIsOpen ? "rotate-180" : ""
+          }`}
+      />
+    </components.DropdownIndicator>
+  );
+};

@@ -7,15 +7,10 @@ import SubTitle from "../common/SubTitle";
 import { BsCalendar3 } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
-interface Props {
-    data:{
-        title:string,
-        image:string | StaticImageData,
-        date:string
-    }[]
-}
+import { NewsData } from "../news/type";
 
-const LatestNews = ({data}: Props) => {
+
+const LatestNews = ({ data, title }: { data: NewsData['news'], title: string }) => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -29,15 +24,15 @@ const LatestNews = ({data}: Props) => {
   const latestThreeNews = [...data]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
-  return ( 
+  return (
     <section className="sp-pt">
       <div className="container">
-        <SubTitle title="Latest on [UNEC]" mClass="mb-6 xl:mb-12" titleColor="text-black " />
+        <SubTitle title={title} mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block ">
-          {latestThreeNews.map((news,index)=>(
-            <motion.div variants={moveUp(2 + index * 0.1)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="nws-card border-2 border-secondary" key={index}>
+          {latestThreeNews.map((news, index) => (
+            <motion.div variants={moveUp(2 + index * 0.1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="nws-card border-2 border-secondary" key={index}>
               <div className="img-box">
-                <Image src={news.image} alt="" width={1200} height={600} className="w-full object-cover" />
+                <Image src={news.banner} alt={news.bannerAlt} width={1200} height={600} className="w-full object-cover" />
                 <div className="overlay"></div>
               </div>
               <div className="nws-content">
@@ -46,11 +41,11 @@ const LatestNews = ({data}: Props) => {
                   {/* <BsCalendar3 className="w-4 h-4" /> */}
                   <span>{formatDate(news.date)}</span>
                 </div>
-                <Link href="#">Read More</Link>
+                <Link href={`/news/${news.slug}`}>Read More</Link>
               </div>
             </motion.div>
           ))}
-          <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{amount: 0.1, once: true}} className="nws-btn">
+          <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="nws-btn">
             <Link href="news" className="relative overflow-hidden bg-black text-white w-full py-3 text-center font-medium transition-all duration-300 group text-14 tracking-wider" >
               <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 uppercase">View All News</span>
               {/* Hover overlay */}
@@ -62,7 +57,7 @@ const LatestNews = ({data}: Props) => {
         <hr className="border-2 border-t border-gray-300 my-6 xl:my-12 2xl:my-20" />
       </div>
     </section>
-   );
+  );
 }
- 
+
 export default LatestNews;

@@ -8,7 +8,7 @@ import { BsHouseCheck } from "react-icons/bs";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 const OurValue = () => {
-  return ( 
+  return (
     <section className="sp-py bg-light" id="our-values">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-[4fr_6fr] pb-10 md:pb-16 lg:pb-20 xl:pb-24 border-b border-gray-300">
@@ -17,7 +17,7 @@ const OurValue = () => {
           </div>
           <div>
             <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="mb-3 xl:mb-6">
-              <IoInfiniteOutline className="text-50 text-secondary" />
+              <IoInfiniteOutline className="text-24 text-secondary" />
             </motion.div>
             <div>
               <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-25 font-light text-secondary mb-2 xl:mb-4">[ United ] in Approach</motion.h3>
@@ -28,7 +28,7 @@ const OurValue = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-20 sp-pt">
           <div>
             <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="mb-3 xl:mb-6">
-              <BsMagic className="text-50 text-secondary" />
+              <BsMagic className="text-24 text-secondary" />
             </motion.div>
             <div>
               <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-25 font-light text-secondary mb-2 xl:mb-4">[ Engineering ] Solutions</motion.h3>
@@ -37,7 +37,7 @@ const OurValue = () => {
           </div>
           <div>
             <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="mb-3 xl:mb-6">
-              <BsHouseCheck className="text-50 text-secondary" />
+              <BsHouseCheck className="text-24 text-secondary" />
             </motion.div>
             <div>
               <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-25 font-light text-secondary mb-2 xl:mb-4">[ Construction ] Done Well</motion.h3>
@@ -46,7 +46,7 @@ const OurValue = () => {
           </div>
           <div>
             <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="mb-3 xl:mb-6">
-              <GoLog className="text-50 text-secondary" />
+              <GoLog className="text-24 text-secondary" />
             </motion.div>
             <div>
               <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-25 font-light text-secondary mb-2 xl:mb-4">[ Company ] Unlimited</motion.h3>
@@ -56,7 +56,7 @@ const OurValue = () => {
         </div>
       </div>
     </section>
-   );
+  );
 }
- 
+
 export default OurValue;

@@ -167,6 +167,7 @@ const AboutPage = () => {
         setValue("banner", data.data.banner);
         setValue("bannerAlt", data.data.bannerAlt);
         setValue("pageTitle", data.data.pageTitle);
+        setValue("pageDescription", data.data.pageDescription);
         setValue("metaTitle", data.data.metaTitle);
         setValue("metaDescription", data.data.metaDescription);
         setValue("firstSection.items", data.data.firstSection.items);

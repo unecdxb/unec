@@ -17,7 +17,7 @@ const suisseIntl = localFont({
       path: '../../public/fonts/suisseIntl/SuisseIntl-Regular.woff2',
       weight: '400',
       style: 'normal',
-    }, 
+    },
     {
       path: '../../public/fonts/suisseIntl/SuisseIntl-Medium.woff2',
       weight: '500',
@@ -42,6 +42,8 @@ export const metadata: Metadata = {
   description: "UNEC is one of the top Construction Companies in UAE. Established in 1976, We are a multi-award-winning General Contracting Company with a portfolio spanning local &amp; regional markets: Dubai, Abu Dhabi, and Sharjah.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,8 +52,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${suisseIntl.variable} font-sans antialiased`} >
-      <Navbar />
-      <BracketTextProcessor/>
+        <Navbar />
+        <BracketTextProcessor />
         {children}
         <Footer />
       </body>
