@@ -354,14 +354,14 @@ const AboutPage = () => {
               </div>
               <div className='flex flex-col gap-1'>
                 <Label className='font-bold'>Title</Label>
-                <Input type='text' placeholder='Title' {...register("thirdSection.title", {
+                <Textarea placeholder='Title' {...register("thirdSection.title", {
                   required: "Title is required"
                 })} />
               </div>
               <div>
                 <Label className="text-sm font-bold">Description</Label>
                 <Controller name="thirdSection.description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
-                  return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                  return <Textarea value={field.value} onChange={field.onChange} />
                 }} />
               </div>
             </div>
@@ -584,7 +584,7 @@ const AboutPage = () => {
                       <div>
                         <Label className="text-sm font-bold">Description</Label>
                         <Controller name={`fifthSection.items.${index}.description`} control={control} rules={{ required: "Description is required" }} render={({ field }) => {
-                          return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                          return <Textarea value={field.value} onChange={field.onChange} />
                         }} />
                       </div>
                     </div>
@@ -773,7 +773,7 @@ const AboutPage = () => {
                       <div>
                         <Label className="text-sm font-bold">Description</Label>
                         <Controller name={`seventhSection.items.${index}.description`} control={control} rules={{ required: "Description is required" }} render={({ field }) => {
-                          return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                          return <Textarea value={field.value} onChange={field.onChange} />
                         }} />
                       </div>
 
@@ -881,7 +881,7 @@ const AboutPage = () => {
                       <div>
                         <Label className="text-sm font-bold">Description</Label>
                         <Controller name={`eighthSection.items.${index}.description`} control={control} rules={{ required: "Description is required" }} render={({ field }) => {
-                          return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                          return <Textarea value={field.value} onChange={field.onChange} />
                         }} />
                       </div>
                     </div>

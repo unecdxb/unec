@@ -10,6 +10,7 @@ import { ImageUploader } from '@/components/ui/image-uploader'
 import { RiDeleteBinLine } from "react-icons/ri";
 import { Textarea } from '@/components/ui/textarea'
 import AdminItemContainer from '@/app/components/common/AdminItemContainer';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface CareerFormProps {
     metaTitle: string;
@@ -26,6 +27,14 @@ interface CareerFormProps {
             imageAlt: string;
         }[];
     };
+    secondSection: {
+        title: string;
+        items: {
+            title: string;
+            mode: string;
+            jobType: string;
+        }[];
+    };
 }
 
 const CareerPage = () => {
@@ -37,6 +46,11 @@ const CareerPage = () => {
     const { fields: firstSectionItems, append: firstSectionAppend, remove: firstSectionRemove } = useFieldArray({
         control,
         name: "firstSection.items"
+    });
+
+    const { fields: secondSectionItems, append: secondSectionAppend, remove: secondSectionRemove } = useFieldArray({
+        control,
+        name: "secondSection.items"
     });
 
 
@@ -67,6 +81,8 @@ const CareerPage = () => {
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
                 setValue("firstSection.items", data.data.firstSection.items);
+                setValue("secondSection.title", data.data.secondSection.title);
+                setValue("secondSection.items", data.data.secondSection.items);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -200,6 +216,124 @@ const CareerPage = () => {
 
 
                     </div>
+                </AdminItemContainer>
+
+
+                <AdminItemContainer>
+                    <Label main>Second Section</Label>
+                    <div className='p-5 rounded-md flex flex-col gap-2'>
+                        <div className='flex flex-col gap-1'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='Title' {...register("secondSection.title", {
+                                required: "Title is required"
+                            })} />
+                            {errors.secondSection?.title && <p className='text-red-500'>{errors.secondSection?.title.message}</p>}
+                        </div>
+
+                        <div>
+                            <Label className=' font-bold'>Items</Label>
+                            <div className='border p-2 rounded-md flex flex-col gap-5'>
+
+
+                                {secondSectionItems.map((field, index) => (
+                                    <div key={field.id} className='grid grid-cols-2 gap-2 relative border-b pb-5 last:border-b-0'>
+                                        <div className='absolute top-2 right-2'>
+                                            <RiDeleteBinLine onClick={() => secondSectionRemove(index)} className='cursor-pointer text-red-600' />
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <div className='flex flex-col gap-2'>
+                                                <Label className='font-bold'>Title</Label>
+                                                <Input type='text' placeholder='Title' {...register(`secondSection.items.${index}.title`, {
+                                                    required: "Title is required"
+                                                })} />
+                                                {errors.secondSection?.items?.[index]?.title && <p className='text-red-500'>{errors.secondSection.items?.[index]?.title.message}</p>}
+                                            </div>
+                                            <div className='flex flex-col gap-2'>
+                                                <Label className='font-bold'>Mode</Label>
+                                                <Controller
+                                                    name={`secondSection.items.${index}.mode`}
+                                                    control={control}
+                                                    rules={{ required: "Mode is required" }}
+                                                    render={({ field }) => (
+                                                        <Select
+                                                            onValueChange={field.onChange}
+                                                            value={field.value}
+                                                            defaultValue=""
+                                                        >
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select Mode" />
+                                                            </SelectTrigger>
+                                                            <SelectContent>
+
+                                                                <SelectItem key={"Onsite"} value="Onsite">
+                                                                    Onsite
+                                                                </SelectItem>
+                                                                <SelectItem key={"Remote"} value="Remote">
+                                                                    Remote
+                                                                </SelectItem>
+                                                                <SelectItem key={"Hybrid"} value="Hybrid">
+                                                                    Hybrid
+                                                                </SelectItem>
+
+                                                            </SelectContent>
+                                                        </Select>
+                                                    )}
+                                                />
+                                                {errors.secondSection?.items?.[index]?.mode && <p className="text-red-500">{errors.secondSection.items?.[index]?.mode.message}</p>}
+
+                                            </div>
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <Label className='font-bold'>Type</Label>
+                                            <Controller
+                                                name={`secondSection.items.${index}.jobType`}
+                                                control={control}
+                                                rules={{ required: "Type is required" }}
+                                                render={({ field }) => (
+                                                    <Select
+                                                        onValueChange={field.onChange}
+                                                        value={field.value}
+                                                        defaultValue=""
+                                                    >
+                                                        <SelectTrigger className="w-full">
+                                                            <SelectValue placeholder="Select Type" />
+                                                        </SelectTrigger>
+                                                        <SelectContent>
+
+                                                            <SelectItem key={"Fulltime"} value="Fulltime">
+                                                                Fulltime
+                                                            </SelectItem>
+                                                            <SelectItem key={"Parttime"} value="Parttime">
+                                                                Parttime
+                                                            </SelectItem>
+                                                            <SelectItem key={"Contract"} value="Contract">
+                                                                Contract
+                                                            </SelectItem>
+
+                                                        </SelectContent>
+                                                    </Select>
+                                                )}
+                                            />
+                                            {errors.secondSection?.items?.[index]?.jobType && <p className="text-red-500">{errors.secondSection.items?.[index]?.jobType.message}</p>}
+
+                                        </div>
+
+                                    </div>
+                                ))}
+
+
+
+                            </div>
+                            <div className='flex justify-end mt-2'>
+                                <Button type='button' className="cursor-pointer" addItem onClick={() => secondSectionAppend({ title: "", mode: "", jobType: "" })}>Add Item</Button>
+                            </div>
+                        </div>
+
+
+                    </div>
+
                 </AdminItemContainer>
 
                 <div className='flex flex-col gap-2'>

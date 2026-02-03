@@ -22,24 +22,29 @@ export default function News() {
 
     const [banner, setBanner] = useState<string>("");
     const [bannerAlt, setBannerAlt] = useState<string>("");
-    const [downloadList, setDownloadList] = useState<{ _id: string, title: string, file: string }[]>([]);
+    const [downloadList, setDownloadList] = useState<{ _id: string, title: string, file: string, image: string, imageAlt: string }[]>([]);
     const [metaTitle, setMetaTitle] = useState<string>("");
     const [metaDescription, setMetaDescription] = useState<string>("");
     const router = useRouter();
     const [title, setTitle] = useState<string>("");
     const [file, setFile] = useState<string>("");
+    const [image, setImage] = useState<string>("");
+    const [imageAlt, setImageAlt] = useState<string>("");
+    const [pageTitle, setPageTitle] = useState<string>("");
 
 
     const handleAddDownload = async () => {
         try {
             const response = await fetch("/api/admin/downloads", {
                 method: "POST",
-                body: JSON.stringify({ title, file }),
+                body: JSON.stringify({ title, file, image, imageAlt }),
             });
             if (response.ok) {
                 const data = await response.json();
                 setTitle("");
                 setFile("");
+                setImage("");
+                setImageAlt("");
                 alert(data.message);
                 handleFetchDownload();
             } else {
@@ -55,7 +60,7 @@ export default function News() {
         try {
             const response = await fetch(`/api/admin/downloads?id=${id}`, {
                 method: "PATCH",
-                body: JSON.stringify({ title, file }),
+                body: JSON.stringify({ title, file, image, imageAlt }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -63,6 +68,8 @@ export default function News() {
                 handleFetchDownload();
                 setTitle("");
                 setFile("");
+                setImage("");
+                setImageAlt("");
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -97,6 +104,7 @@ export default function News() {
                 setBannerAlt(data.data.bannerAlt);
                 setMetaTitle(data.data.metaTitle);
                 setMetaDescription(data.data.metaDescription);
+                setPageTitle(data.data.pageTitle);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -130,7 +138,7 @@ export default function News() {
         try {
             const response = await fetch("/api/admin/downloads/intrometa", {
                 method: "POST",
-                body: JSON.stringify({ metaTitle, metaDescription, banner, bannerAlt }),
+                body: JSON.stringify({ metaTitle, metaDescription, banner, bannerAlt, pageTitle }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -166,6 +174,10 @@ export default function News() {
                         <div>
                             <Label className=''>Banner Alt</Label>
                             <Input type='text' placeholder='Alt Tag' value={bannerAlt} onChange={(e) => setBannerAlt(e.target.value)} />
+                        </div>
+                        <div>
+                            <Label className=''>Page Title</Label>
+                            <Input type='text' placeholder='Title' value={pageTitle} onChange={(e) => setPageTitle(e.target.value)} />
                         </div>
                     </div>
 
@@ -203,6 +215,17 @@ export default function News() {
                                             value={file}
                                         />
                                     </div>
+                                    <div>
+                                        <Label>Image</Label>
+                                        <ImageUploader
+                                            onChange={(url) => setImage(url)}
+                                            value={image}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label>Image Alt</Label>
+                                        <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                    </div>
                                 </div>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddDownload}>Save</DialogClose>
@@ -220,7 +243,7 @@ export default function News() {
                             </div>
                             <div className="flex gap-5">
                                 <Dialog>
-                                    <DialogTrigger onClick={() => { setTitle(item.title); setFile(item.file) }}><MdEdit /></DialogTrigger>
+                                    <DialogTrigger onClick={() => { setTitle(item.title); setFile(item.file); setImage(item.image); setImageAlt(item.imageAlt) }}><MdEdit /></DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle>Edit Download</DialogTitle>
@@ -235,6 +258,17 @@ export default function News() {
                                                         onChange={(url) => setFile(url)}
                                                         value={file}
                                                     />
+                                                </div>
+                                                <div>
+                                                    <Label>Image</Label>
+                                                    <ImageUploader
+                                                        onChange={(url) => setImage(url)}
+                                                        value={image}
+                                                    />
+                                                </div>
+                                                <div>
+                                                    <Label>Image Alt</Label>
+                                                    <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
                                                 </div>
                                             </div>
                                         </DialogHeader>

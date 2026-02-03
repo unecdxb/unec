@@ -11,6 +11,7 @@ const PageBanner = ({ title, image, imageAlt, description, date }: { title: stri
     const containerRef = useRef<HTMLDivElement>(null);
     const [leftOffset, setLeftOffset] = useState(0);
     const pathname = usePathname();
+    const [isMobile, setIsMobile] = useState(false);
     const isNewsDetails = pathname.includes("/news/");
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const PageBanner = ({ title, image, imageAlt, description, date }: { title: stri
                 const rect = containerRef.current.getBoundingClientRect();
                 setLeftOffset(rect.left - 15);
             }
+            setIsMobile(window.innerWidth < 1024);
         };
         updateOffset();
         window.addEventListener("resize", updateOffset);
@@ -39,7 +41,7 @@ const PageBanner = ({ title, image, imageAlt, description, date }: { title: stri
                             ref={containerRef}
                             className="container invisible pointer-events-none"
                         />
-                        <div className="h-screen mx-auto" style={{ paddingLeft: window.innerWidth < 1024 ? 0 : `${leftOffset}px` }}>
+                        <div className="h-screen mx-auto" style={{ paddingLeft: isMobile ? 0 : `${leftOffset}px` }}>
                             <div className="relative z-20 h-full flex flex-col justify-end">
                                 <div className='xl:w-[44%] p-[28px] bg-black/50 '>
                                     <h2 className={`text-white text-25 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
