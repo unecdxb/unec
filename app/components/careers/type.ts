@@ -12,5 +12,13 @@ export type CareerData = {
             image: string;
             imageAlt: string;
         }[]
+    },
+    secondSection: {
+        title: string;
+        items: {
+            title: string;
+            mode: string;
+            jobType: string;
+        }[]
     }
 }

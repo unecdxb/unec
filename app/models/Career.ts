@@ -40,6 +40,26 @@ const careerSchema = new mongoose.Schema({
                 type: String,
             },
         }]
+    },
+    secondSection: {
+        title: {
+            type: String,
+            required: true
+        },
+        items: [{
+            title: {
+                type: String,
+                required: true
+            },
+            mode: {
+                type: String,
+                required: true
+            },
+            jobType: {
+                type: String,
+                required: true
+            },
+        }]
     }
 })
 

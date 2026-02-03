@@ -6,10 +6,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
     try {
         await connectDB();
-        const { title, file } = await req.json();
+        const { title, file, image, imageAlt } = await req.json();
         const downloads = await Download.findOne({})
         if (downloads) {
-            downloads.downloads.push({ title, file })
+            downloads.downloads.push({ title, file, image, imageAlt })
             await downloads.save()
             return NextResponse.json({ message: "Download added successfully" }, { status: 200 });
         }
@@ -27,12 +27,12 @@ export async function PATCH(req: NextRequest) {
         await connectDB();
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
-        const { title, file } = await req.json();
+        const { title, file, image, imageAlt } = await req.json();
         const downloads = await Download.findOne({});
         if (downloads) {
             downloads.downloads = downloads.downloads.map((downloads: { _id: string }) => {
                 if (downloads._id.toString() === id) {
-                    return { title, file }
+                    return { title, file, image, imageAlt }
                 }
                 return downloads
             })

@@ -12,14 +12,14 @@ import SubContents2 from "./SubContents2";
 const Index = ({ data }: { data: CareerData }) => {
   return (
     <main>
-      {/* <PageBnr title={data.pageTitle} image={data.banner} imageAlt={data.bannerAlt} /> */}
-      <PageBanner title={data.pageTitle} image={data.banner} imageAlt={data.bannerAlt} />
-      {/* <Main data={data.firstSection.items[0]} /> */}
-      <Main2 data={data.firstSection.items[0]} />
-      {/* <SubContents data={data.firstSection.items.slice(1,)} /> */}
-      <SubContents2 data={data.firstSection.items.slice(1,)} />
-      <VacanciesList />
-      <JobForm />
+      <PageBnr title={data.pageTitle} image={data.banner} imageAlt={data.bannerAlt} />
+      {/* <PageBanner title={data.pageTitle} image={data.banner} imageAlt={data.bannerAlt} /> */}
+      <Main data={data.firstSection.items[0]} />
+      {/* <Main2 data={data.firstSection.items[0]} /> */}
+      <SubContents data={data.firstSection.items.slice(1,)} />
+      {/* <SubContents2 data={data.firstSection.items.slice(1,)} /> */}
+      <VacanciesList data={data.secondSection} />
+      <JobForm openings={data.secondSection.items} />
     </main>
   );
 }

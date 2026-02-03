@@ -4,6 +4,7 @@ import "../globals.css";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import BracketTextProcessor from "../components/common/BracketTextProcessor";
+import { JobSelectContextProvider } from "@/contexts/jobSelectContext";
 
 
 const suisseIntl = localFont({
@@ -52,10 +53,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${suisseIntl.variable} font-sans antialiased`} >
-        <Navbar />
-        <BracketTextProcessor />
-        {children}
-        <Footer />
+        <JobSelectContextProvider>
+          <Navbar />
+          <BracketTextProcessor />
+          {children}
+          <Footer />
+        </JobSelectContextProvider>
       </body>
     </html>
   );

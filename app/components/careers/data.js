@@ -4,14 +4,14 @@ export const vacanciesList = {
     {
       title: "Vacancy 1",
       location: "Doha, Qatar",
-      type: "Full Time , Work From Home",
+      type: "Full Time",
       description: "lorem ipsum dolor sit amet consectetur adipisicing elit lorem ipsum dolor sit amet consectetur adipisicing elit",
       image: "/assets/images/careers/vacancies/vacancy-1.jpg"
     },
     {
       title: "Vacancy 2",
       location: "UAE",
-      type: "Full Time , Work From Home",
+      type: "Full Time",
       description: "lorem ipsum dolor sit amet consectetur adipisicing elit lorem ipsum dolor sit amet consectetur adipisicing elit",
       image: "/assets/images/careers/vacancies/vacancy-2.jpg"
     },

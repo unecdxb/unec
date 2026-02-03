@@ -1,11 +1,13 @@
 'use client';
 import { motion } from 'framer-motion';
 import { moveUp } from '../motionVarients';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import Select from 'react-select';
 import { AlertCircle, CheckCircle2, Upload, X, Loader2 } from 'lucide-react';
 import SubTitle from '../common/SubTitle';
+import { CareerData } from './type';
+import { useJobSelectContext } from '@/contexts/jobSelectContext';
 
 /* ---------------- TYPES ---------------- */
 
@@ -80,11 +82,12 @@ const customSelectStyles = {
   })
 };
 
-const JobForm: React.FC = () => {
+const JobForm: React.FC<{ openings: CareerData['secondSection']['items'] }> = ({ openings }) => {
 
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const { jobSelect, setJobSelect } = useJobSelectContext();
 
   const {
     register,
@@ -92,6 +95,7 @@ const JobForm: React.FC = () => {
     control,
     formState: { errors },
     reset,
+    setValue
   } = useForm<JobFormData>({
     mode: 'onBlur'
   });
@@ -178,10 +182,17 @@ const JobForm: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (jobSelect) {
+      setValue("position", jobSelect, { shouldValidate: true });
+    }
+    console.log(jobSelect)
+  }, [jobSelect]);
+
   /* ---------------- UI ---------------- */
 
   return (
-    <section className="sp-py bg-light" id="apply-for-job">
+    <section className="sp-py bg-light" id="wantToJoin">
       <div className="container">
         <SubTitle title="Join Our Team" />
         <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white/60 p-4 xl:p-10">
@@ -295,10 +306,19 @@ const JobForm: React.FC = () => {
                     <Select
                       {...field}
                       instanceId="position-select"
-                      options={positionOptions}
+                      options={openings.map((opening) => ({
+                        value: opening.title,
+                        label: opening.title,
+                      }))}
                       placeholder="Select a position"
-                      value={positionOptions.find(opt => opt.value === field.value) || null}
-                      onChange={(opt) => field.onChange(opt?.value)}
+                      value={openings.map((opening) => ({
+                        value: opening.title,
+                        label: opening.title,
+                      })).find(opt => opt.value === field.value) || null}
+                      onChange={(opt) => {
+                        field.onChange(opt?.value);
+                        setJobSelect(opt?.value || "");
+                      }}
                       styles={customSelectStyles}
                       // classNamePrefix="react-select"
                       className="custom-select"

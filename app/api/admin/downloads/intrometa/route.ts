@@ -5,17 +5,18 @@ import Download from "@/app/models/Downloads";
 export async function POST(req: NextRequest) {
     try {
         await connectDB();
-        const { metaTitle, metaDescription, banner, bannerAlt } = await req.json();
+        const { metaTitle, metaDescription, banner, bannerAlt, pageTitle } = await req.json();
         const download = await Download.findOne({});
         if (download) {
             download.metaTitle = metaTitle;
             download.metaDescription = metaDescription;
             download.banner = banner;
             download.bannerAlt = bannerAlt;
+            download.pageTitle = pageTitle;
             await download.save();
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         } else {
-            const download = new Download({ metaTitle, metaDescription, banner, bannerAlt });
+            const download = new Download({ metaTitle, metaDescription, banner, bannerAlt, pageTitle });
             await download.save();
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }
