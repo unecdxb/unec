@@ -121,22 +121,22 @@ const ContactForm: React.FC = () => {
   /* ---------------- UI ---------------- */
 
   return (
-    <section className=" bg-gradient-to-br from-slate-50 to-blue-50 sp-pb">
+    <section className=" bg-white sp-pb">
       <div className='bg-black text-white text-29 text-center py-6'>
         CONTACT BY EMAIL
       </div>
       <div className="container sp-pt">
         <div className="grid grid-cols-1">
-          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-white  overflow-hidden xl:order-2">
+          <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" overflow-hidden xl:order-2">
 
 
 
             <form className="max-w-7xl mx-auto px-6 py-10 text-black" onSubmit={handleSubmit(onSubmit)}>
               {/* Intro */}
-              <p className="font-semibold mb-2">
+              <p className="font-bold mb-2 text-16">
                 Please fill out the form below and we will get back to you shortly.
               </p>
-              <p className="mb-10">
+              <p className="mb-10 text-16 font-bold">
                 For employment-related queries, please visit{" "}
                 <a href="#" className="text-red-600 font-semibold">
                   [UNEC] CAREERS
@@ -159,7 +159,7 @@ const ContactForm: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* First Name */}
                 <div>
-                  <label className="block mb-2 font-medium">
+                  <label className="block mb-2 font-medium text-14">
                     First Name<span className="text-red-500">*</span>
                   </label>
                   <input
@@ -180,7 +180,7 @@ const ContactForm: React.FC = () => {
 
                 {/* Subject */}
                 <div>
-                  <label className="block mb-2 font-medium">
+                  <label className="block mb-2 font-medium text-14">
                     Subject<span className="text-red-500">*</span>
                   </label>
                   <input
@@ -200,9 +200,9 @@ const ContactForm: React.FC = () => {
                 </div>
 
                 <div>
-                  {/* <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Query Type <span className="text-red-500">*</span>
-                  </label> */}
+                  <label className="block font-medium text-14">
+                    Query <span className="text-red-500">*</span>
+                  </label>
                   <Controller
                     name="query"
                     control={control}
@@ -246,7 +246,7 @@ const ContactForm: React.FC = () => {
 
                 {/* Last Name */}
                 <div>
-                  <label className="block mb-2 font-medium">
+                  <label className="block mb-2 font-medium text-14">
                     Last Name<span className="text-red-500">*</span>
                   </label>
                   <input
@@ -267,7 +267,7 @@ const ContactForm: React.FC = () => {
 
                 {/* Message */}
                 <div className="md:col-span-2">
-                  <label className="block mb-2 font-medium">
+                  <label className="block mb-2 font-medium text-14">
                     Message<span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -288,7 +288,7 @@ const ContactForm: React.FC = () => {
 
                 {/* Email */}
                 <div>
-                  <label className="block mb-2 font-medium">
+                  <label className="block mb-2 md:-mt-16 lg:-mt-20 xl:-mt-23 font-medium text-14">
                     Email<span className="text-red-500">*</span>
                   </label>
                   <input
@@ -320,12 +320,16 @@ const ContactForm: React.FC = () => {
               </div>
 
               {/* Submit */}
-              <button
-                type="submit"
-                className="mt-10 bg-black text-white px-14 py-4 font-semibold tracking-widest hover:bg-neutral-800 transition"
-              >
-                SUBMIT
-              </button>
+              <div className='w-full grid grid-cols-3 max-md:grid-cols-1'>
+                <div className='col-span-1 md:mr-5'>
+                  <button
+                    type="submit"
+                    className="mt-10 bg-black text-13 text-white w-full py-4 font-semibold tracking-widest hover:bg-neutral-800 transition"
+                  >
+                    SUBMIT
+                  </button>
+                </div>
+              </div>
             </form>
 
 
