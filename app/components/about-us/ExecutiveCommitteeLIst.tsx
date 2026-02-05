@@ -20,8 +20,8 @@ const ExecutiveCommitteeLIst = ({ data }: { data: AboutData["fourthSection"] }) 
                     <Image src={item.image} alt={item.name} width={1920} height={1080} className="w-full h-full object-cover object-top" />
                   </div>
                   <div>
-                    <h3 className="text-20 xs:text-25 text-secondary font-light leading-[1.1] mb-2  xs:mb-2">{item.name}</h3>
-                    <p className="text-16 xs:text-17 text-primary">{item.designation}</p>
+                    <h3 className="text-20 xs:text-25 text-secondary font-[600] leading-[1.1] mb-2  xs:mb-2">{item.name}</h3>
+                    <p className="text-16 xs:text-15 text-primary">{item.designation}</p>
                   </div>
                 </div>
               </motion.div>

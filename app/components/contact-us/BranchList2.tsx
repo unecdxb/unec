@@ -54,13 +54,14 @@ const BranchList2 = ({ data }: { data: ContactData['firstSection']['items'] }) =
 
                                 {/* Title */}
                                 <div className="p-6">
-                                    <h3 className="text-20 font-light text-gray-900">
-                                        {branch.title}
+                                    <h3 className="text-16 font-bold text-gray-900">
+                                        {branch.title.replace("[HQ]", "").trim()}
+                                        {branch.title.includes("[HQ]") && <sup>[HQ]</sup>}
                                     </h3>
                                 </div>
-                                <hr className="h-1 bg-black border-0" />
+                                <hr className="h-1 border-black" />
                                 {/* Info */}
-                                <div className="text-sm text-gray-600 p-6">
+                                <div className="text-sm p-3 flex flex-col gap-1 font-[200]">
 
                                     <div className="grid grid-cols-[auto_1fr] gap-3">
                                         <FaMapMarkerAlt className="text-black mt-1" />
@@ -89,7 +90,7 @@ const BranchList2 = ({ data }: { data: ContactData['firstSection']['items'] }) =
                                 <div className="grid grid-cols-3 border-t-2 border-black mt-6">
                                     <Link
                                         href={`tel:${branch.phone}`}
-                                        className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white border-r-2"
+                                        className="flex items-center justify-center h-11   text-gray-700 transition hover:bg-primary hover:text-white border-r-2"
                                     >
                                         <FaPhone />
                                     </Link>
@@ -97,14 +98,14 @@ const BranchList2 = ({ data }: { data: ContactData['firstSection']['items'] }) =
                                     <Link
                                         href={branch.map}
                                         target="_blank"
-                                        className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white border-r-2"
+                                        className="flex items-center justify-center h-11   text-gray-700 transition hover:bg-primary hover:text-white border-r-2"
                                     >
                                         <FaMapMarkerAlt />
                                     </Link>
 
                                     <Link
                                         href={`mailto:${branch.email}`}
-                                        className="flex items-center justify-center h-11  bg-gray-100 text-gray-700 transition hover:bg-primary hover:text-white"
+                                        className="flex items-center justify-center h-11   text-gray-700 transition hover:bg-primary hover:text-white"
                                     >
                                         <FaEnvelope />
                                     </Link>

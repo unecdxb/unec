@@ -184,14 +184,14 @@ body {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: var(--font-suisse-intl);
   /* font-variant-numeric: lining-nums tabular-nums; */
-  font-size: var(--text-17);
+  font-size: var(--text-15);
   color: var(--color-paragraph);
   font-weight: 500;
 }
 
 @media (width < 1400px) {
   body {
-    font-size: var(--text-16);
+    font-size: var(--text-15);
   }
 }
 
@@ -679,8 +679,8 @@ body {
   border: 2px solid black !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  min-height: 54px !important;
-  margin-top: 33px !important;
+  min-height: 53px !important;
+  margin-top: 8px !important;
 }
 
 .contact-form-select__control--is-focused {
