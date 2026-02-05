@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 const newsSchema = new mongoose.Schema({
     metaTitle: { type: String },
     metaDescription: { type: String },
+    banner: { type: String },
+    bannerAlt: { type: String },
+    pageTitle: { type: String },
     news: [
         {
             banner: {
