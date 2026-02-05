@@ -288,7 +288,7 @@ const ContactForm: React.FC = () => {
 
                 {/* Email */}
                 <div>
-                  <label className="block mb-2 md:-mt-16 lg:-mt-20 xl:-mt-23 font-medium text-14">
+                  <label className="block mb-2 md:-mt-16 lg:-mt-28 xl:-mt-29 font-medium text-14">
                     Email<span className="text-red-500">*</span>
                   </label>
                   <input
