@@ -61,7 +61,7 @@ const BranchList2 = ({ data }: { data: ContactData['firstSection']['items'] }) =
                                 </div>
                                 <hr className="h-1 border-black" />
                                 {/* Info */}
-                                <div className="text-sm p-3 flex flex-col gap-1 font-[200]">
+                                <div className="text-sm p-3 flex flex-col gap-1 font-[500]">
 
                                     <div className="grid grid-cols-[auto_1fr] gap-3">
                                         <FaMapMarkerAlt className="text-black mt-1" />
