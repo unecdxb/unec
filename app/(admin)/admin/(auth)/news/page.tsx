@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { ImageUploader } from "@/components/ui/image-uploader";
 
 
 export default function News() {
@@ -22,6 +23,9 @@ export default function News() {
     const [newsList, setNewsList] = useState<{ _id: string, title: string, thumbnail: string }[]>([]);
     const [metaTitle, setMetaTitle] = useState<string>("");
     const [metaDescription, setMetaDescription] = useState<string>("");
+    const [banner, setBanner] = useState<string>("");
+    const [bannerAlt, setBannerAlt] = useState<string>("");
+    const [pageTitle, setPageTitle] = useState<string>("");
     const router = useRouter();
 
 
@@ -48,6 +52,9 @@ export default function News() {
                 const data = await response.json();
                 setMetaTitle(data.data.metaTitle);
                 setMetaDescription(data.data.metaDescription);
+                setBanner(data.data.banner);
+                setBannerAlt(data.data.bannerAlt);
+                setPageTitle(data.data.pageTitle);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -81,7 +88,7 @@ export default function News() {
         try {
             const response = await fetch("/api/admin/news/intrometa", {
                 method: "POST",
-                body: JSON.stringify({ metaTitle, metaDescription }),
+                body: JSON.stringify({ metaTitle, metaDescription, banner, bannerAlt, pageTitle }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -107,6 +114,25 @@ export default function News() {
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Meta Section</Label>
                     <Button onClick={submitMetaSection} className="text-white text-[16px]">Save</Button>
+                </div>
+                <Label className="">Banner</Label>
+                <div className='rounded-md grid grid-cols-2 gap-5'>
+                    <div>
+                        <ImageUploader
+                            value={banner}
+                            onChange={setBanner}
+                        />
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Alt Tag</Label>
+                                <Input type='text' placeholder='Alt Tag' value={bannerAlt} onChange={(e) => setBannerAlt(e.target.value)} />
+                            </div>
+                            <div className='flex flex-col gap-1'>
+                                <Label className='font-bold'>Page Title</Label>
+                                <Input type='text' placeholder='Page Title' value={pageTitle} onChange={(e) => setPageTitle(e.target.value)} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     <div>

@@ -2,6 +2,9 @@ export type NewsData = {
     metaTitle: string;
     metaDescription: string;
     news: News[];
+    banner: string;
+    bannerAlt: string;
+    pageTitle: string;
 }
 
 export type News = {
