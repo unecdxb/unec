@@ -37,14 +37,14 @@ const Footer = () => {
         </motion.div>
         <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_2fr_2fr_3fr] gap-6 relative overflow-hidden">
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Quick Links</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl uppercase">Quick Links</motion.h3>
             <ul className="space-y-3">
               {
                 footerData.quickLinks.map((item, index) => (
                   <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
                     <Link href={item.href} className="flex items-center gap-3">
-                      <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="text-xl text-primary group-hover:translate-x-1 transition-all duration-200" />
-                      <span className="hover:text-white/70 transition-colors duration-200">{item.title}</span>
+                      <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
+                      <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">{item.title}</span>
                     </Link>
                   </motion.li>
                 ))
@@ -53,14 +53,14 @@ const Footer = () => {
 
           </div>
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl">Legal</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 uppercase">Legal</motion.h3>
             <ul className="space-y-3">
               {
                 footerData.documents.map((item, index) => (
                   <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
                     <Link href={item.href} target="_blank" className="flex items-center gap-3">
-                      <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="text-xl text-primary group-hover:translate-x-1 transition-all duration-200" />
-                      <span className="hover:text-white/70 transition-colors duration-200">{item.title}</span>
+                      <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
+                      <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">{item.title}</span>
                     </Link>
                   </motion.li>
                 ))
@@ -68,18 +68,18 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 ">Connect</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 uppercase">Connect</motion.h3>
             <ul className="space-y-3">
               <motion.li variants={moveUp(0.4)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="group">
                 <Link href="/contact-us" className="flex items-center gap-3">
-                  <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="text-xl text-primary group-hover:translate-x-1 transition-all duration-200" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Connect Us</span>
+                  <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
+                  <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">Connect Us</span>
                 </Link>
               </motion.li>
               <motion.li variants={moveUp(0.6)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="group">
                 <Link href="/contact-us" className="flex items-center gap-3">
-                  <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="text-xl text-primary group-hover:translate-x-1 transition-all duration-200" />
-                  <span className="hover:text-white/70 transition-colors duration-200">Enquiry Form</span>
+                  <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="group-hover:translate-x-1 transition-all duration-200" />
+                  <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">Enquiry Form</span>
                 </Link>
               </motion.li>
             </ul>
@@ -88,7 +88,7 @@ const Footer = () => {
             <div className="flex gap-6 flex-col h-full justify-between">
               <div className="flex flex-col gap-6 w-full">
                 <div className="w-full">
-                  <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-2xl font-normal md:mb-4 mb-2">Subscribe to our newsletter</motion.h3>
+                  <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-lg font-bold md:mb-4 mb-2 uppercase">Subscribe to our newsletter</motion.h3>
                   <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="relative w-full max-w-[80vw] xs:max-w-[300px] xl:max-w-full">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                       <MdEmail className="text-gray-400 text-xl" />
@@ -133,7 +133,7 @@ const Footer = () => {
               <div className="flex items-end xl:justify-end">
                 <div className="">
                   <div className="flex xl:justify-end xl:items-end flex-wrap gap-y-2">
-                    <p className="text-white/50 ">© {new Date().getFullYear()} UNEC. All rights reserved.</p>
+                    <p className="text-white/90 uppercase text-xs">All rights reserved © {new Date().getFullYear()} UNEC. </p>
                   </div>
                 </div>
               </div>
