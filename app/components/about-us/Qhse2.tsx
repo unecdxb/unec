@@ -8,23 +8,20 @@ import { AboutData } from "./type";
 
 const QHSE2 = ({ data }: { data: AboutData["eighthSection"] }) => {
     return (
-        <section className="border-t border-gray-300 sp-py" id="qhse">
+        <section className="sp-py bg-[#ebebeb]" id="qhse">
             <div className="container">
-                <SubTitle title="QHSE" mClass="mb-4 xl:mb-12" />
+                <SubTitle title="QHSE" mClass="mb-4 xl:mb-12 text-black" />
                 <div className="grid grid-cols-1 xl:grid-cols-3 divide-y-2 divide-black border-2 max-xl:p-6 max-xl:gap-3">
 
                     {
                         data.items.map((item, index) => {
                             return (
-                                <motion.div variants={moveUp(index * 0.2 + 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index} className={`last:border-r-0
-  ${index !== 0 && index % 3 === 0 ? "xl:col-span-3" : "xl:col-span-1"}
-  xl:p-8
-  ${(index + 1) % 3 !== 0 ? "xl:border-r-2 border-black" : ""}
-`}
+                                <motion.div variants={moveUp(index * 0.2 + 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index} 
+                                className={`last:border-r-0 bg-white ${index !== 0 && index % 3 === 0 ? "xl:col-span-3" : "xl:col-span-1"} xl:p-8 ${(index + 1) % 3 !== 0 ? "xl:border-r-2 border-black" : ""}`}
                                 >
                                     <div>
                                         <div className="flex items-center justify-between mb-4 xl:mb-6">
-                                            <h3 className="text-25 font-light text-black ">{item.title}</h3>
+                                            <h3 className="text-xl font-bold text-black ">{item.title}</h3>
                                             <div className="flex items-center ">
                                                 <Image src={item.image} alt={item.title} width={30} height={30} className="text-50 text-secondary" />
                                             </div>
@@ -44,7 +41,7 @@ const QHSE2 = ({ data }: { data: AboutData["eighthSection"] }) => {
                                                 .map((para, pIndex) => (
                                                     <p
                                                         key={pIndex}
-                                                        className="font-light text-secondary/80 2xl:text-justify max-md:pb-4"
+                                                        className="font-semibold text-secondary text-sm max-md:pb-4"
                                                     >
                                                         {para.split("\n").map((line, lIndex) => (
                                                             <span key={lIndex}>

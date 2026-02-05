@@ -28,7 +28,7 @@ const AwardsRecognitions = ({ data }: { data: AboutData["sixthSection"] }) => {
               // };
 
               return (
-                <div key={index} className="relative flex flex-col max-md:pb-4 transition-all duration-300 group  xs:border-r p-3">
+                <div key={index} className="relative flex flex-col max-md:pb-4 transition-all duration-300 group  xs:border-r pr-3 py-3">
                   {/* Right border - only show on md and lg, hide on last items in row */}
                   {/* <div className={`absolute top-0 right-0 w-[1px] h-full bg-white/70 z-10 hidden
                     ${isLastInRow.tablet ? 'xs:hidden' : 'xs:block'} 
@@ -42,8 +42,8 @@ const AwardsRecognitions = ({ data }: { data: AboutData["sixthSection"] }) => {
                     ${isLastRow.desktop ? 'lg:hidden' : 'lg:block lg:w-[90%]'} h-[1px]`}>
                   </div> */}
 
-                  <motion.h3 variants={fadeIn(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-20 xl:text-25 font-bold leading-[1.2] mb-2 xl:mb-4 uppercase md:max-w-[98%] xl:max-w-[80%] group-hover:text-primary transition-all duration-300">{item.title}</motion.h3>
-                  <motion.p variants={fadeIn(index * 0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 text-white/90">{item.subTitle}</motion.p>
+                  <motion.h3 variants={fadeIn(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-20 xl:text-22 font-semibold leading-[1.2] mb-2 xl:mb-4 uppercase md:max-w-[98%] xl:max-w-[80%] group-hover:text-primary transition-all duration-300">{item.title}</motion.h3>
+                  <motion.p variants={fadeIn(index * 0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 text-white/90">{item.subTitle}</motion.p>
                   {/* <div className="w-1 h-full border-r border-white/70"></div> */}
                 </div>
               );
