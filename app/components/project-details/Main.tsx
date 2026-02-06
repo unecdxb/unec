@@ -149,11 +149,11 @@ const Main = ({ data }: { data: Project }) => {
     <>
       <section className="relative sp-py">
         <div className="container mx-auto px-4">
-          <ProjectInfo region={data.firstSection.location.name} status={data.firstSection.status} items={data.firstSection.items} />
+          <ProjectInfo region={data.firstSection.location.name} title={data.firstSection.title} status={data.firstSection.status} items={data.firstSection.items} />
           {data.images.length > 0 &&
             <div className="my-10">
               <h2 className="text-2xl font-semibold tracking-wide mb-10 uppercase">
-                PROJECT GALLERY
+                {data.galleryTitle}
               </h2>
               <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="xl:gap-20 items-center">
                 {/* Gallery Slider */}

@@ -67,7 +67,7 @@ const ChairmanMsg2 = ({ data }: { data: AboutData["thirdSection"] }) => {
                                 <div className="text-15">
                                     {data.description.split("\n").map((item, index) => (
                                         <motion.div key={index}>
-                                            <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" mb-4 font-light">{item}</motion.p>
+                                            <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" mb-4 font-[400]">{item}</motion.p>
                                         </motion.div>
                                     ))}
                                     {/* <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" mb-4 font-light">Great things in life are rarely accomplished alone. It takes teamwork to build something beautiful, strong and enduring. [ UNEC ] has been a trusted, hard-working partner at the side of real estate developers in the region for over 40 years, collaborating on iconic, world-class projects across the UAE and gulf region.</motion.p>
