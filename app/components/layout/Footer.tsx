@@ -37,14 +37,14 @@ const Footer = () => {
         </motion.div>
         <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_2fr_2fr_3fr] gap-6 relative overflow-hidden">
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-[600] mb-4 !font-suisse-intl uppercase">Quick Links</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Quick Links</motion.h3>
             <ul className="space-y-3">
               {
                 footerData.quickLinks.map((item, index) => (
                   <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
                     <Link href={item.href} className="flex items-center gap-3">
                       <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
-                      <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">{item.title}</span>
+                      <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">{item.title}</span>
                     </Link>
                   </motion.li>
                 ))
@@ -53,14 +53,14 @@ const Footer = () => {
 
           </div>
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-[600] mb-4 uppercase">Legal</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Legal</motion.h3>
             <ul className="space-y-3">
               {
                 footerData.documents.map((item, index) => (
                   <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
                     <Link href={item.href} target="_blank" className="flex items-center gap-3">
                       <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
-                      <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">{item.title}</span>
+                      <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">{item.title}</span>
                     </Link>
                   </motion.li>
                 ))
@@ -68,18 +68,18 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-[600] mb-4 uppercase">Connect</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Connect</motion.h3>
             <ul className="space-y-3">
               <motion.li variants={moveUp(0.4)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="group">
                 <Link href="/contact-us" className="flex items-center gap-3">
-                  <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
-                  <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">Connect Us</span>
+                  <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="group-hover:translate-x-1 transition-all duration-200" />
+                  <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">Connect Us</span>
                 </Link>
               </motion.li>
               <motion.li variants={moveUp(0.6)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="group">
                 <Link href="/contact-us" className="flex items-center gap-3">
                   <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="group-hover:translate-x-1 transition-all duration-200" />
-                  <span className="hover:text-white/70 transition-colors duration-200 text-sm uppercase ">Enquiry Form</span>
+                  <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">Enquiry Form</span>
                 </Link>
               </motion.li>
             </ul>
@@ -133,7 +133,7 @@ const Footer = () => {
               <div className="flex items-end xl:justify-end">
                 <div className="">
                   <div className="flex xl:justify-end xl:items-end flex-wrap gap-y-2">
-                    <p className="text-white/90 uppercase text-xs">All rights reserved © {new Date().getFullYear()} UNEC. </p>
+                    <p className="text-white/90 uppercase text-xs font-mono">All rights reserved © {new Date().getFullYear()} UNEC. </p>
                   </div>
                 </div>
               </div>
