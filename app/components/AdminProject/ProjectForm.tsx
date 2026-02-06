@@ -74,6 +74,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     const handleAddProject = async (data: ProjectFormProps) => {
         try {
+            console.log("data", data);
             const response = await fetch(editMode ? `/api/admin/project?id=${id}` : `/api/admin/project`, {
                 method: editMode ? "PATCH" : "POST",
                 body: JSON.stringify(data),
@@ -93,6 +94,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             const response = await fetch(`/api/admin/project?id=${id}`);
             if (response.ok) {
                 const data = await response.json();
+                console.log(data.data);
                 setValue("firstSection", {
                     ...data.data.firstSection,
                     location: data.data.firstSection.location?._id || "",
@@ -109,7 +111,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("thumbnailAlt", data.data.thumbnailAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
-                setValue("highlight", data.data.highlight.toString());
+                setValue("highlight", data.data.highlight);
                 setImageUrls(data.data.images);
             } else {
                 const data = await response.json();
@@ -174,18 +176,22 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
 
     const [imageUrls, setImageUrls] = useState<string[]>([]);
-    const handleImageUpload = async (uploadedUrl: string) => {
-        setImageUrls((prev) => [...prev, uploadedUrl]);
-        setValue("images", [...imageUrls, uploadedUrl]);
+    const handleImageUpload = (uploadedUrl: string) => {
+        setImageUrls((prev) => {
+            const updated = [...prev, uploadedUrl];
+            setValue("images", updated);
+            return updated;
+        });
     };
 
     const handleRemoveImage = (indexToRemove: number) => {
-        setImageUrls((prev) => prev.filter((_, index) => index !== indexToRemove));
-        setValue(
-            "images",
-            imageUrls.filter((_, index) => index !== indexToRemove)
-        );
+        setImageUrls((prev) => {
+            const updated = prev.filter((_, index) => index !== indexToRemove);
+            setValue("images", updated);
+            return updated;
+        });
     };
+
 
 
     const getTaskPos = (id: string) => imageUrls.findIndex((item: string) => (item == id))
@@ -204,8 +210,8 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
     };
 
     useEffect(() => {
-        console.log(imageUrls);
-    }, [imageUrls]);
+        console.log(watch("images"));
+    }, [watch("images")]);
 
 
 
