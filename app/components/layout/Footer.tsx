@@ -103,7 +103,7 @@ const Footer = () => {
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
                     return (
-                      <motion.div key={index} variants={moveLeft(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
+                      <motion.div key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                         <Link href={social.href} aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
                           {social.icon === 'custom' && social.customSrc ? (
                             <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all " />
@@ -116,17 +116,19 @@ const Footer = () => {
                   })}
                 </div>
               </div>
-              {/* <div className="flex items-center gap-3 mt-6">
+              {/* <div className="flex items-center xl:items-end gap-3 mt-6 w-fit ml-auto">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
                   return (
-                    <Link href={social.href} key={index} aria-label={social.label} className="w-10 h-10 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
+                     <motion.div key={index} variants={moveLeft(index * 0.2)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }}>
+                    <Link href={social.href} key={index} aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
                       {social.icon === 'custom' && social.customSrc ? (
                         <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-5 h-5 group-hover:scale-110 transition-all " />
                       ) : (
                         typeof Icon !== 'string' && <Icon className="text-lg group-hover:scale-110 transition-all " />
                       )}
                     </Link>
+                    </motion.div>
                   );
                 })}
               </div> */}
