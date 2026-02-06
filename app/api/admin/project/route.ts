@@ -55,6 +55,7 @@ export async function PATCH(request: NextRequest) {
             if (!foundProject) {
                 return NextResponse.json({ message: "Project not found" }, { status: 404 });
             }
+            console.log("images", body.images)
             foundProject.firstSection = body.firstSection;
             foundProject.banner = body.banner;
             foundProject.galleryTitle = body.galleryTitle;
