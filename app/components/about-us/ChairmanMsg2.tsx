@@ -55,7 +55,7 @@ const ChairmanMsg2 = ({ data }: { data: AboutData["thirdSection"] }) => {
 
                             <div className="pr-16" style={{ paddingLeft: `${leftOffset}px` }}>
                                 {/* <SubTitle title="TOGETHER, WE BUILD [ LEGACY ]" titleColor='white' className='text-28' /> */}
-                                <h2 className="text-28 xs:text-28 xl:text-28  uppercase font-medium leading-[1.2] mb-2 xl:mb-6 text-white font-[700]">
+                                <h2 className="text-28 xs:text-28 xl:text-28  uppercase font-bold leading-[1.2] mb-2 xl:mb-6 text-white font-[700]">
                                     {/* TOGETHER,
                                     <br /> WE BUILD [ LEGACY ] */}
                                     {data.title.split("\n").map((item, index) => (
@@ -64,7 +64,7 @@ const ChairmanMsg2 = ({ data }: { data: AboutData["thirdSection"] }) => {
                                         </div>
                                     ))}
                                 </h2>
-                                <div className="text-15">
+                                <div className="text-15 leading-[26px]">
                                     {data.description.split("\n").map((item, index) => (
                                         <motion.div key={index}>
                                             <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" mb-4 font-[400]">{item}</motion.p>
@@ -76,7 +76,7 @@ const ChairmanMsg2 = ({ data }: { data: AboutData["thirdSection"] }) => {
                                 </div>
                                 <div className="mt-6">
                                     <motion.h3 variants={moveUp(1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-14 font-bold">{data.name}</motion.h3>
-                                    <motion.p variants={moveUp(1.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" font-suisse-intl text-14"><span className="font-light  uppercase text-24 ">[</span><span className=" font-bold uppercase text-primary">{data.designation}</span><span className="font-light  uppercase text-24 ">]</span></motion.p>
+                                    <motion.p variants={moveUp(1.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className=" font-suisse-intl text-14"><span className="font-semibold text-14 ">[ </span><span className=" font-bold  text-primary">{data.designation}</span><span className="font-semibold  uppercase text-14 "> ]</span></motion.p>
                                 </div>
                             </div>
                         </div>

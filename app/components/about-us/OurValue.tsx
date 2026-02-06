@@ -24,7 +24,7 @@ const OurValue = ({ data }: { data: AboutData["fifthSection"] }) => {
             </motion.div>
             <div>
               <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-20 font-bold text-secondary mb-2 xl:mb-4 uppercase">{data.items[0].title}</motion.h3>
-              <motion.p variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="">{data.items[0].description}</motion.p>
+              <motion.p variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-secondary">{data.items[0].description}</motion.p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@ const OurValue = ({ data }: { data: AboutData["fifthSection"] }) => {
               </motion.div>
               <div>
                 <motion.h3 variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-20 font-bold text-secondary mb-2 xl:mb-4 uppercase">{item.title}</motion.h3>
-                <motion.p variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="">{item.description}</motion.p>
+                <motion.p variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-secondary">{item.description}</motion.p>
               </div>
             </div>
           ))}
