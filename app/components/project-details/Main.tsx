@@ -135,22 +135,14 @@ const Main = ({ data }: { data: Project }) => {
     });
   }, [currentSlide, images]);
 
-  if (images.length === 0) {
-    return (
-      <section className="relative sp-py">
-        <div className="container mx-auto px-4">
-          <div className="text-center text-gray-500">No images available</div>
-        </div>
-      </section>
-    );
-  }
+
 
   return (
     <>
       <section className="relative sp-py">
         <div className="container mx-auto px-4">
           <ProjectInfo region={data.firstSection.location.name} title={data.firstSection.title} status={data.firstSection.status} items={data.firstSection.items} />
-          {data.images.length > 0 &&
+          {data.images.length > 0 ?
             <div className="my-10">
               <h2 className="text-2xl font-semibold tracking-wide mb-10 uppercase">
                 {data.galleryTitle}
@@ -297,6 +289,9 @@ const Main = ({ data }: { data: Project }) => {
 
               </motion.div>
             </div>
+
+            :
+            <div className="text-center text-gray-500">No images available</div>
           }
 
         </div>
