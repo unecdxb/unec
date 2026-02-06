@@ -106,7 +106,7 @@ const Footer = () => {
                       <motion.div key={index} variants={moveLeft(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                         <Link href={social.href} aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
                           {social.icon === 'custom' && social.customSrc ? (
-                            <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all " />
+                            <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all" />
                           ) : (
                             typeof Icon !== 'string' && <Icon className="text-sm group-hover:scale-110 transition-all " />
                           )}

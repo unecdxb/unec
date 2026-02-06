@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { moveUp, zoomInUp } from "../motionVarients";
 import { statusData } from "../AdminProject/statusData";
 
-const ProjectInfo = ({ region, status, items }: { region: string, status: string, items: { title: string, value: string }[] }) => {
+const ProjectInfo = ({ region, status, items, title }: { region: string, status: string, items: { title: string, value: string }[], title: string }) => {
 
   return (
     // <motion.div variants={zoomInUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="bg-gradient-to-br from-gray-50 to-gray-100 mb-10 xl:mb-15">
@@ -41,16 +41,44 @@ const ProjectInfo = ({ region, status, items }: { region: string, status: string
 
         <div className="border-t border-gray-300">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-b border-gray-300">
-            <div className="flex gap-4">
-              <span className="w-32 text-sm uppercase tracking-widest text-black">Client</span>
-              <span className="text-sm uppercase tracking-widest text-black">
-                : Dubai Electricity & Water Authority (DEWA)
-              </span>
+          {items[0] && (
+            <div className="grid grid-cols-1 py-6 border-b border-gray-300">
+              <div className="flex gap-4">
+                <span className="w-32 text-sm uppercase tracking-widest text-black">
+                  {items[0].title}
+                </span>
+                <span className="text-sm uppercase tracking-widest text-black">
+                  : {items[0].value}
+                </span>
+              </div>
             </div>
-          </div>
+          )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-b border-gray-300">
+
+          {items.slice(1).reduce((rows: any[], item, index, array) => {
+            if (index % 2 === 0) {
+              rows.push(array.slice(index, index + 2));
+            }
+            return rows;
+          }, []).map((pair, rowIndex) => (
+            <div
+              key={rowIndex}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-b border-gray-300"
+            >
+              {pair.map((item: any, colIndex: number) => (
+                <div key={colIndex} className="flex gap-4">
+                  <span className="w-32 text-sm uppercase tracking-widest text-black">
+                    {item.title}
+                  </span>
+                  <span className="text-sm uppercase tracking-widest text-black">
+                    : {item.value}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
+
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-b border-gray-300">
             <div className="flex gap-4">
               <span className="w-32 text-sm uppercase tracking-widest text-black">Consultant</span>
               <span className="text-sm uppercase tracking-widest text-black">
@@ -64,20 +92,20 @@ const ProjectInfo = ({ region, status, items }: { region: string, status: string
                 : 2,054,147 Sq. Ft
               </span>
             </div>
-          </div>
+          </div> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-b border-gray-300">
             <div className="flex gap-4">
               <span className="w-32 text-sm uppercase tracking-widest text-black">Location</span>
               <span className="text-sm uppercase tracking-widest text-black">
-                : UAE
+                : {region}
               </span>
             </div>
 
             <div className="flex gap-4">
               <span className="w-32 text-sm uppercase tracking-widest text-black">Status</span>
               <span className="text-sm uppercase tracking-widest text-black">
-                : On-Going
+                : {statusData.find((item) => item.value.toString() == status)?.name}
               </span>
             </div>
           </div>

@@ -30,12 +30,13 @@ const Main = ({ data }: { data: NewsData['news'][number] }) => {
 
           </div>
           <div className="col-span-2">
-            {/* <SubTitle title={data.title} mClass="mb-4 xl:mb-6" /> */}
-            {/* <div dangerouslySetInnerHTML={{ __html: data.content }}>
+            <div
+              className=""
+              dangerouslySetInnerHTML={{ __html: data.content }}
+            />
 
-              </div> */}
-            <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="">[UNEC] have become an approved IOSH training provider authorized to deliver IOSH working safely and IOSH managing safely training courses to satisfy the most stringent health and safety standards and to reinforce the knowledge and experience of our employees in a variety of health and safety-related aspects.</motion.p>
           </div>
+
 
         </div>
       </div>
