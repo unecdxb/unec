@@ -313,7 +313,7 @@ body {
 
   /* border-radius: 10px; */
   .overlay {
-    @apply absolute top-0 left-0 w-full h-full bg-black opacity-70 z-10;
+    @apply absolute top-0 left-0 w-full h-full bg-black opacity-70 z-10 hover:opacity-50 transition-opacity duration-300;
   }
 }
 
@@ -342,7 +342,7 @@ body {
   }
 
   a {
-    @apply order-3 text-14 ml-auto mt-auto w-fit bg-transparent border-2 border-white text-white px-4 py-2 hover:bg-light hover:text-black transition-all duration-300;
+    @apply order-3 text-14 ml-auto mt-auto text-primary transition-all duration-300;
   }
 }
 
