@@ -38,6 +38,18 @@ const suisseIntl = localFont({
   variable: '--font-suisse-intl',
 });
 
+const suisseIntlMono = localFont({
+  src: [
+    {
+      path: "../../public/fonts/suisseIntl/SuisseIntlMono.woff2",
+      weight: "400",
+      style: "normal",
+    }
+  ],
+  variable: "--font-suisse-intl-mono",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "United Engineering Construction | Top Construction Company in UAE	",
   description: "UNEC is one of the top Construction Companies in UAE. Established in 1976, We are a multi-award-winning General Contracting Company with a portfolio spanning local &amp; regional markets: Dubai, Abu Dhabi, and Sharjah.",
@@ -52,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${suisseIntl.variable} font-sans antialiased`} >
+      <body className={`${suisseIntl.variable} ${suisseIntlMono.variable} font-sans antialiased`} >
         <JobSelectContextProvider>
           <Navbar />
           <BracketTextProcessor />

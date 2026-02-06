@@ -89,6 +89,7 @@
 
 
   --font-family-sans: var(--font-suisse-intl), sans-serif;
+  --font-family-mono: var(--font-suisse-intl-mono), monospace;
 }
 
 @utility container {
@@ -134,7 +135,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-suisse-intl);
-  --font-mono: var(--font-suisse-intl);
+  --font-mono: var(--font-suisse-intl-mono);
   --font-suisse-intl: var(--font-suisse-intl);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
@@ -292,7 +293,7 @@ body {
   }
 
   a {
-    @apply font-light text-16 hover:bg-light border border-transparent hover:border-black hover:text-black transition-all duration-300 mt-4;
+    @apply font-light text-16 hover:border-black hover:text-black hover:bg-transparent hover:border-0 transition-all duration-300 mt-4;
   }
 }
 
@@ -313,7 +314,7 @@ body {
 
   /* border-radius: 10px; */
   .overlay {
-    @apply absolute top-0 left-0 w-full h-full bg-black opacity-70 z-10 hover:opacity-50 transition-opacity duration-300;
+    @apply absolute top-0 left-0 w-full h-full bg-black opacity-70 z-10 group-hover:opacity-90 transition-opacity duration-300;
   }
 }
 
@@ -341,9 +342,9 @@ body {
     @apply text-white text-sm w-fit text-14;
   }
 
-  a {
-    @apply order-3 text-14 ml-auto mt-auto text-primary transition-all duration-300;
-  }
+a {
+  @apply order-3 text-14 ml-auto mt-auto text-primary uppercase font-medium tracking-wider transition-all duration-300 hover:underline hover:decoration-[2px] hover:underline-offset-[6px];
+}
 }
 
 @media (min-width: 1024px) {
