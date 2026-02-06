@@ -30,8 +30,9 @@ const LatestNews = ({ data, title }: { data: NewsData['news'], title: string }) 
         <SubTitle title={title} mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block ">
           {latestThreeNews.map((news, index) => (
-            <motion.div variants={moveUp(2 + index * 0.1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="nws-card border-2 border-secondary" key={index}>
-              <div className="img-box">
+            <motion.div variants={moveUp(2 + index * 0.1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}
+             className="nws-card group border-2 border-secondary" key={index}>
+              <div className="img-box group">
                 <Image src={news.banner} alt={news.bannerAlt} width={1200} height={600} className="w-full object-cover" />
                 <div className="overlay"></div>
               </div>
