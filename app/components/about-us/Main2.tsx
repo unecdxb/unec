@@ -17,7 +17,7 @@ const Main = ({ firstSection, secondSection }: { firstSection: AboutData["firstS
                             <Image src="/assets/images/about-us/icons/mission.svg" alt="Mission" width={100} height={100} className="w-full h-10 xl:h-15 object-contain " />
                         </motion.div> */}
                             <motion.p variants={moveUp(1.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-20 xl:text-20 text-secondary font-[700] mb-2 xl:mb-4 uppercase">{item.title}</motion.p>
-                            <motion.p variants={moveUp(1.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="xl:text-13 font-[700] text-secondary">{item.description}</motion.p>
+                            <motion.p variants={moveUp(1.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="xl:text-13 font-[600] text-secondary">{item.description}</motion.p>
                         </div>
                     ))}
                 </div>

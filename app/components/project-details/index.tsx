@@ -4,6 +4,7 @@ import SimilarProjects from "./SimilarProjects";
 import { Project, ProjectData } from "./type";
 
 const Index = ({ data, allProjectData }: { data: Project, allProjectData: ProjectData }) => {
+
   return (
     <main className="min-h-screen">
       {/* <PageBnr title={data.title} image={data.banner} imageAlt={data.bannerAlt} /> */}

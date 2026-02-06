@@ -43,7 +43,7 @@ const PageBanner = ({ title, image, imageAlt, description, date }: { title: stri
                         />
                         <div className="h-screen mx-auto" style={{ paddingLeft: isMobile ? 0 : `${leftOffset}px` }}>
                             <div className="relative z-20 h-full flex flex-col justify-end">
-                                <div className='xl:w-[44%] p-[28px] bg-black/50 '>
+                                <div className='xl:w-[44%] p-[28px] bg-black/50 font-[400]'>
                                     <h2 className={`text-white text-25 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
                   transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 opacity-100 translate-y-0 uppercase`}  >
                                         {title}

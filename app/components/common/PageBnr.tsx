@@ -18,7 +18,7 @@ const PageBnr = ({ title, image, imageAlt }: PageBnrProps) => {
       )}
       <div className="container h-full relative z-10">
         <div className="flex flex-col justify-end gap-4 h-full pb-10 md:pb-16 lg:pb-20 xl:pb-24">
-          <motion.h1 variants={moveRight(0.2)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="text-40 xl:text-60 font-light uppercase text-white leading-1.1">{title}</motion.h1>
+          <motion.h1 variants={moveRight(0.2)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="text-25 font-bold uppercase text-white leading-1.1">{title}</motion.h1>
           <Breadcrumb />
         </div>
       </div>

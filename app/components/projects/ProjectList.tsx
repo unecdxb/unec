@@ -208,7 +208,7 @@ const ProjectList = ({ data, regionData, categoryData }: { data: any, regionData
         ) : (
           <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredItems.map((item: any, index: number) => (
-              <Link href={`/projects/${item.title}`} key={index}>
+              <Link href={`/projects/${item.slug}`} key={index}>
                 <motion.div variants={moveUp(0.4 + 0.1 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
                   <ProjectCard image={item.thumbnail} title={item.title} location={item.firstSection.location.name} height="h-[250px] xl:h-[350px]" />
                 </motion.div>

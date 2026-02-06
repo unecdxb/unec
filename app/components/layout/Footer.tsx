@@ -37,7 +37,7 @@ const Footer = () => {
         </motion.div>
         <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_2fr_2fr_3fr] gap-6 relative overflow-hidden">
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 !font-suisse-intl uppercase">Quick Links</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-[600] mb-4 !font-suisse-intl uppercase">Quick Links</motion.h3>
             <ul className="space-y-3">
               {
                 footerData.quickLinks.map((item, index) => (
@@ -53,7 +53,7 @@ const Footer = () => {
 
           </div>
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 uppercase">Legal</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-[600] mb-4 uppercase">Legal</motion.h3>
             <ul className="space-y-3">
               {
                 footerData.documents.map((item, index) => (
@@ -68,7 +68,7 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-normal mb-4 uppercase">Connect</motion.h3>
+            <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-xl xl:text-2xl font-[600] mb-4 uppercase">Connect</motion.h3>
             <ul className="space-y-3">
               <motion.li variants={moveUp(0.4)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="group">
                 <Link href="/contact-us" className="flex items-center gap-3">
