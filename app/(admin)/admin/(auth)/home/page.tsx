@@ -22,6 +22,7 @@ interface HomeFormProps {
             imageAlt: string;
             title: string;
             description: string;
+            link: string;
         }[];
     };
     firstSection: {
@@ -184,6 +185,11 @@ const Home = () => {
                                                             {errors.bannerSection?.items?.[index]?.description && <p className='text-red-500'>{errors.bannerSection?.items?.[index]?.description.message}</p>}
                                                         </div>
                                                     </div>
+                                                    <div className='flex flex-col gap-2'>
+                                                        <Label className='font-bold'>Link</Label>
+                                                        <Input type='text' placeholder='Link' {...register(`bannerSection.items.${index}.link`)} />
+                                                        {errors.bannerSection?.items?.[index]?.link && <p className='text-red-500'>{errors.bannerSection?.items?.[index]?.link.message}</p>}
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -195,7 +201,7 @@ const Home = () => {
 
                             </div>
                             <div className='flex justify-end mt-2'>
-                                <Button type='button' className="" addItem onClick={() => bannerSectionAppend({ title: "", image: "", description: "", imageAlt: "" })}>Add Item</Button>
+                                <Button type='button' className="" addItem onClick={() => bannerSectionAppend({ title: "", image: "", description: "", imageAlt: "", link: "" })}>Add Item</Button>
                             </div>
                         </div>
                     </AdminItemContainer>
