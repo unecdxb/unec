@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { useRouter } from 'next/navigation';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
@@ -14,6 +15,7 @@ const Banner = ({ title, image, imageAlt }: { title: string, image: string, imag
     const containerRef = useRef<HTMLDivElement>(null);
     const [leftOffset, setLeftOffset] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         const updateOffset = () => {
@@ -50,7 +52,7 @@ const Banner = ({ title, image, imageAlt }: { title: string, image: string, imag
                         <div className="h-screen w-full flex justify-center items-end container">
 
                             <div className='w-full h-[100px] flex justify-between items-center z-100'>
-                                <div className='flex items-center gap-2 group cursor-pointer'>
+                                <div className='flex items-center gap-2 group cursor-pointer'  onClick={() => router.back()}>
                                     <Image src="/assets/images/projects/chevicon-left.svg" alt="chevicon-left" width={10} height={10} className='z-50 rotate-180 group-hover:translate-x-[-5px] transition-all duration-1000 ease-out' />
                                     <span className='text-white text-16 font-bold leading-[1.2] 
                   transition-all duration-1000 ease-out font-suisse-intl opacity-100 translate-y-0 group-hover:translate-x-[-5px]'>{isMobile ? `${title}` : "Previous"}</span>

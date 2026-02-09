@@ -65,6 +65,7 @@ const MechanicalCounter: React.FC<CounterProps> = ({keyIndex, end, duration = 2,
         key={index}
         className="inline-block tabular-nums transition-all duration-150"
         style={{
+          letterSpacing: '-0.05em',
           animation: isVisible ? `flip 0.6s ease-out ${index * 0.1}s` : 'none'
         }}
       >
