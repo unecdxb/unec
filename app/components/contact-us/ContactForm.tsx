@@ -121,7 +121,7 @@ const ContactForm: React.FC = () => {
   /* ---------------- UI ---------------- */
 
   return (
-    <section className=" bg-white sp-pb">
+    <section className=" bg-white sp-pb" id="contact-form">
       <div className='bg-black text-white text-29 text-center py-6'>
         CONTACT BY EMAIL
       </div>
