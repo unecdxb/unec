@@ -14,6 +14,7 @@ const homeSchema = new mongoose.Schema({
                 image: { type: String, required: true },
                 imageAlt: { type: String },
                 description: { type: String, required: true },
+                link: { type: String },
             }
         ]
     },
