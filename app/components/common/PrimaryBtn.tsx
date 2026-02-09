@@ -21,7 +21,7 @@ const PrimaryBtn = ({ href, text, mode = "dark", width, fontSize, mClass }: Prim
         ${mClass ? mClass : ""}
       `}
     >
-      <span className={` relative z-10 transition-colors duration-500 ${isLight ? "group-hover:text-secondary" : "group-hover:text-secondary"}`} >
+      <span className={` relative z-10 transition-colors font-mono duration-500 ${isLight ? "group-hover:text-secondary" : "group-hover:text-secondary"}`} >
         {text}
       </span>
       {/* Sliding background */}

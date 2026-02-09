@@ -25,7 +25,7 @@ const Main = ({ data }: { data: NewsData['news'][number] }) => {
               className="inline-flex items-center gap-3 bg-black text-white px-6 py-4 uppercase tracking-widest text-sm group"
             >
               <BsArrowLeft className="text-red-500  text-sm group-hover:-translate-x-1 transition-transform duration-300" />
-              <span className="text-sm">Back to News</span>
+              <span className="text-sm font-mono">Back to News</span>
             </Link>
 
           </div>

@@ -53,7 +53,7 @@ const LatestNews = ({ data, title }: { data: NewsData['news'], title: string }) 
   <h3 className="font-bold">{news.title}</h3>
 
   <div className="news-date">
-    <span>{formatDate(news.date)}</span>
+    <span className="font-mono">{formatDate(news.date)}</span>
   </div>
 
   <Link href={`/news/${news.slug}`} className="text-right w-fit h-fit text-[var(--text-14)] font-medium tracking-[var(--tracking-wider)] text-[var(--primary)] uppercase mt-auto ml-auto">
@@ -79,7 +79,7 @@ const LatestNews = ({ data, title }: { data: NewsData['news'], title: string }) 
           ))}
           <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="nws-btn">
             <Link href="news" className="relative overflow-hidden bg-black text-white w-full py-3 text-center font-medium transition-all duration-300 group text-14 tracking-wider" >
-              <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 uppercase">View All News</span>
+              <span className="relative z-10 transition-transform duration-300 group-hover:scale-105 uppercase font-mono">View All News</span>
               {/* Hover overlay */}
               <span className="absolute inset-0 bg-primary translate-y-full transition-transform duration-300 group-hover:translate-y-0"></span>
             </Link>
