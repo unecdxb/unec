@@ -324,7 +324,7 @@ const ContactForm: React.FC = () => {
                 <div className='col-span-1 md:mr-5'>
                   <button
                     type="submit"
-                    className="mt-10 bg-black text-13 text-white w-full py-4 font-semibold tracking-widest hover:bg-neutral-800 transition"
+                    className="mt-10 bg-black text-13 text-white w-full py-4 font-semibold tracking-widest hover:bg-neutral-800 transition font-mono"
                   >
                     SUBMIT
                   </button>

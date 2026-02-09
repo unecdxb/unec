@@ -18,7 +18,7 @@ const BtnLight = ({ href, text, width, fontSize, mClass }: BtnLightProps) => {
         ${mClass ? mClass : ""}
       `}
     >
-      <span className={` relative z-10 transition-colors duration-500 font-normal`} >
+      <span className={` relative z-10 transition-colors duration-500 font-mono`} >
         {text}
       </span>
       {/* Sliding background */}
