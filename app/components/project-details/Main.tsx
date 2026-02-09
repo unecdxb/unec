@@ -224,7 +224,7 @@ const Main = ({ data }: { data: Project }) => {
                     <div className="overflow-hidden">
                       <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 xl:gap-8">
                         <AnimatePresence mode="popLayout">
-                          {visibleThumbnails.map((img, idx) => {
+                          {images.map((img, idx) => {
                             const actualIndex = thumbnailStartIndex + idx;
                             return (
                               <motion.div
@@ -233,16 +233,16 @@ const Main = ({ data }: { data: Project }) => {
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3 }}
-                                onClick={() => openLightbox(actualIndex)}
+                                onClick={() => openLightbox(idx)}
                                 className="relative h-[200px] xl:h-[250px] 2xl:h-[300px] overflow-hidden cursor-pointer"
                               >
-                                {!imageErrors.has(actualIndex) ? (
+                                {!imageErrors.has(idx) ? (
                                   <Image
                                     src={img}
-                                    alt={`Thumbnail ${actualIndex + 1}`}
+                                    alt={`Thumbnail ${idx + 1}`}
                                     fill
                                     className="object-cover"
-                                    onError={() => handleImageError(actualIndex)}
+                                    onError={() => handleImageError(idx)}
                                   />
                                 ) : (
                                   <div className="flex items-center justify-center h-full bg-gray-800 text-white">
