@@ -77,7 +77,7 @@ const Footer = () => {
                 </Link>
               </motion.li>
               <motion.li variants={moveUp(0.6)} initial="hidden" animate="show" viewport={{ amount: 0.1, once: true }} className="group">
-                <Link href="/contact-us" className="flex items-center gap-3">
+                <Link href="/contact-us#contact-form" className="flex items-center gap-3">
                   <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className="group-hover:translate-x-1 transition-all duration-200" />
                   <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">Enquiry Form</span>
                 </Link>
