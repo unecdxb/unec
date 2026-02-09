@@ -2,10 +2,9 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
-
+import Link from "next/link";
 import "swiper/css";
 import "swiper/css/navigation";
-
 import Image from "next/image";
 import { ProjectData } from "./type";
 
@@ -37,6 +36,7 @@ export default function SimilarProjects({ data }: { data: ProjectData }) {
             >
                 {data.projects.map((item) => (
                     <SwiperSlide key={item._id} className="relative group cursor-pointer">
+                        <Link href={`/projects/${item.slug}`}>
                         <Image
                             src={item.thumbnail}
                             alt={item.thumbnailAlt}
@@ -47,7 +47,7 @@ export default function SimilarProjects({ data }: { data: ProjectData }) {
                         <div className="absolute bottom-0 left-0 right-0 p-4 xl:p-5 opacity-0 group-hover:opacity-100 bg-black/70  transition-all duration-500 z-10">
                             <h3 className="text-white text-20 font-bold">{item.title}</h3>
                             <p className="text-white text-16 tracking-wider">{item.firstSection.location.name}</p>
-                        </div>
+                        </div></Link>
                     </SwiperSlide>
                 ))}
             </Swiper>

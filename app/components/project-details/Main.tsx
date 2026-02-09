@@ -150,7 +150,7 @@ const Main = ({ data }: { data: Project }) => {
               <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="xl:gap-20 items-center">
                 {/* Gallery Slider */}
                 <div className="relative group">
-                  <div className="relative h-[250px] xs:h-[300px] xl:h-[450px] 2xl:h-[650px] bg-black overflow-hidden  shadow-2xl">
+                  {/* <div className="relative h-[250px] xs:h-[300px] xl:h-[450px] 2xl:h-[650px] bg-black overflow-hidden  shadow-2xl">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentSlide}
@@ -189,7 +189,6 @@ const Main = ({ data }: { data: Project }) => {
                       </motion.div>
                     </AnimatePresence>
 
-                    {/* Navigation Arrows */}
                     <button
                       onClick={prevSlide}
                       aria-label="Previous image"
@@ -205,7 +204,6 @@ const Main = ({ data }: { data: Project }) => {
                       <FiChevronRight className="text-2xl text-gray-800" />
                     </button>
 
-                    {/* Slide Indicators */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                       {images.map((_, index) => (
                         <button
@@ -219,7 +217,7 @@ const Main = ({ data }: { data: Project }) => {
                         />
                       ))}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Thumbnail Slider */}
                   <div className="relative mt-4 xl:mt-8 group/thumbnails">
@@ -231,41 +229,36 @@ const Main = ({ data }: { data: Project }) => {
                             return (
                               <motion.div
                                 key={actualIndex}
-                                initial={{ opacity: 0, scale: 1 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 1 }}
-                                transition={{ duration: THUMBNAIL_TRANSITION_DURATION }}
-                                whileHover={{ scale: 1 }}
-                                whileTap={{ scale: 1 }}
-                                onClick={() => setCurrentSlide(actualIndex)}
-                                className={`relative h-[200px] xl:h-[250px] 2xl:h-[300px]  overflow-hidden cursor-pointer hover:opacity-100  ${actualIndex === currentSlide ? '' : ''
-                                  }`}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                onClick={() => openLightbox(actualIndex)}
+                                className="relative h-[200px] xl:h-[250px] 2xl:h-[300px] overflow-hidden cursor-pointer"
                               >
                                 {!imageErrors.has(actualIndex) ? (
-
                                   <Image
                                     src={img}
                                     alt={`Thumbnail ${actualIndex + 1}`}
                                     fill
                                     className="object-cover"
-                                    sizes="(max-width: 768px) 25vw, (max-width: 1200px) 20vw, 15vw"
                                     onError={() => handleImageError(actualIndex)}
                                   />
-
                                 ) : (
-                                  <div className="flex items-center justify-center h-full text-white text-xs bg-gray-800">
+                                  <div className="flex items-center justify-center h-full bg-gray-800 text-white">
                                     Error
                                   </div>
                                 )}
                               </motion.div>
+
                             );
                           })}
                         </AnimatePresence>
                       </div>
                     </div>
 
-                    {/* Thumbnail Navigation Arrows */}
-                    {thumbnailStartIndex > 0 && (
+
+                    {/* {thumbnailStartIndex > 0 && (
                       <button
                         onClick={prevThumbnails}
                         aria-label="Previous thumbnails"
@@ -282,7 +275,7 @@ const Main = ({ data }: { data: Project }) => {
                       >
                         <FiChevronRight className="text-xl text-gray-800" />
                       </button>
-                    )}
+                    )} */}
                   </div>
                 </div>
 

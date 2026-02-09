@@ -30,22 +30,51 @@ const LatestNews = ({ data, title }: { data: NewsData['news'], title: string }) 
         <SubTitle title={title} mClass="mb-6 xl:mb-12" titleColor="text-black " />
         <div className="nws-block ">
           {latestThreeNews.map((news, index) => (
+    
             <motion.div variants={moveUp(2 + index * 0.1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}
-             className="nws-card group border-2 border-secondary" key={index}>
-               <Link href={`/news/${news.slug}`}><div className="img-box group">
+             className="nws-card group border-2 border-secondary  relative" key={index}>
+          <Link
+  href={`/news/${news.slug}`}
+  aria-label={news.title}
+  className="absolute inset-0 z-10"
+></Link>
+<div className="img-box group">
+  <Image
+    src={news.banner}
+    alt={news.bannerAlt}
+    width={1200}
+    height={600}
+    className="w-full object-cover"
+  />
+  <div className="overlay"></div>
+</div>
+<Link href={`/news/${news.slug}`}>
+<div className="nws-content relative z-20 text-black ">
+  <h3 className="font-bold">{news.title}</h3>
+
+  <div className="news-date">
+    <span>{formatDate(news.date)}</span>
+  </div>
+
+  <Link href={`/news/${news.slug}`} className="text-right w-fit h-fit text-[var(--text-14)] font-medium tracking-[var(--tracking-wider)] text-[var(--primary)] uppercase mt-auto ml-auto">
+    Read More
+</Link>
+</div></Link>
+
+             {/* <div className="img-box group">
                 <Image src={news.banner} alt={news.bannerAlt} width={1200} height={600} className="w-full object-cover" />
                 <div className="overlay"></div>
-              </div></Link>
+              </div>
          
               <div className="nws-content">
              
                 <h3 className="font-bold">{news.title}</h3>
                 <div className="news-date">
-                  {/* <BsCalendar3 className="w-4 h-4" /> */}
+               
                   <span>{formatDate(news.date)}</span>
                 </div>
-                <Link href={`/news/${news.slug}`}>Read More</Link>
-              </div>
+                <Link href={`/news/${news.slug}`} className="text-right w-fit h-fit text-[var(--text-14)] font-medium tracking-[var(--tracking-wider)] text-[var(--primary)] uppercase [grid-area:2/4/auto/5] mt-auto ml-auto">Read More</Link>
+              </div> */}
             </motion.div>
           ))}
           <motion.div variants={moveUp(2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="nws-btn">
