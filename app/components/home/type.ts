@@ -1,8 +1,11 @@
+import { Url } from "url";
+
 export type HomeDataType = {
     metaTitle: string;
     metaDescription: string;
     bannerSection: {
         items: {
+            link: Url;
             title: string;
             image: string;
             imageAlt: string;
