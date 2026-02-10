@@ -19,9 +19,11 @@ const CompanyProfile = ({ data }: { data: HomeDataType['firstSection'] }) => {
         <div className="grid grid-cols-1 md:grid-cols-2  gap-y-10 gap-x-10 ">
           <div className="flex flex-col justify-between gap-4">
             <div className="space-y-2 xl:space-y-4 font-medium ">
-              <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">
-                {data.description}</motion.p>
-              <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</motion.p>
+              {data.description.split("\n").map((item, index) => (
+                <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">
+                  {item}</motion.p>
+              ))}
+              {/* <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</motion.p> */}
             </div>
             <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
               <SecondaryBtn href="/about-us" text={data.fileTitle} />
