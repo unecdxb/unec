@@ -16,6 +16,9 @@ import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation";
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { FileUploader } from "@/components/ui/file-uploader";
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import DownloadCard from "./DownloadCard";
 
 
 export default function News() {
@@ -31,6 +34,7 @@ export default function News() {
     const [image, setImage] = useState<string>("");
     const [imageAlt, setImageAlt] = useState<string>("");
     const [pageTitle, setPageTitle] = useState<string>("");
+    const [reorderMode, setReorderMode] = useState(false);
 
 
     const handleAddDownload = async () => {
@@ -153,6 +157,46 @@ export default function News() {
         }
     }
 
+
+    const getTaskPos = (id: string) => downloadList.findIndex((item: { _id: string }) => (item._id == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        const oldIndex = getTaskPos(active.id as string);
+        const newIndex = getTaskPos(over.id as string);
+
+        const newPosition = arrayMove(downloadList, oldIndex, newIndex);
+        setDownloadList(newPosition);
+        // setValue("projects", newPosition);
+    };
+
+
+    const confirmPosition = async () => {
+        setReorderMode(!reorderMode);
+
+        const updatedDownloads = downloadList.map((project, index) => ({
+            ...project
+        }));
+
+        setDownloadList(updatedDownloads);
+
+        const formData = new FormData()
+        formData.append('downloads', JSON.stringify(updatedDownloads))
+        const response = await fetch(`/api/admin/downloads/reorder`, {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            const data = await response.json()
+            if (data.success) {
+                alert(data.message)
+            }
+        }
+    };
+
+
     useEffect(() => {
         handleFetchMeta();
         handleFetchDownload();
@@ -198,43 +242,61 @@ export default function News() {
             <div className="h-[500px] w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Downloads</Label>
-                    <Dialog>
-                        <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={() => { setTitle("") }}>Add Download</DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Add Download</DialogTitle>
-                                <div>
+                    <div className="flex gap-2">
+                        <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                        <Dialog>
+                            <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={() => { setTitle("") }}>Add Download</DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Add Download</DialogTitle>
                                     <div>
-                                        <Label>Title</Label>
-                                        <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                        <div>
+                                            <Label>Title</Label>
+                                            <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <Label>File</Label>
+                                            <FileUploader
+                                                onChange={(url) => setFile(url)}
+                                                value={file}
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label>Image</Label>
+                                            <ImageUploader
+                                                onChange={(url) => setImage(url)}
+                                                value={image}
+                                            />
+                                        </div>
+                                        <div>
+                                            <Label>Image Alt</Label>
+                                            <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <Label>File</Label>
-                                        <FileUploader
-                                            onChange={(url) => setFile(url)}
-                                            value={file}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label>Image</Label>
-                                        <ImageUploader
-                                            onChange={(url) => setImage(url)}
-                                            value={image}
-                                        />
-                                    </div>
-                                    <div>
-                                        <Label>Image Alt</Label>
-                                        <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
-                                    </div>
-                                </div>
-                            </DialogHeader>
-                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddDownload}>Save</DialogClose>
-                        </DialogContent>
+                                </DialogHeader>
+                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddDownload}>Save</DialogClose>
+                            </DialogContent>
 
-                    </Dialog>
+                        </Dialog>
+
+                    </div>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[90%]">
-                    {downloadList?.map((item) => (
+
+                    {reorderMode &&
+
+                        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                            <SortableContext items={downloadList.map((download) => download._id)} strategy={verticalListSortingStrategy}>
+                                {downloadList?.map((download, index) => (
+                                    <DownloadCard key={index} download={download} id={download._id} />
+                                ))}
+                            </SortableContext>
+                        </DndContext>
+
+                    }
+
+
+                    {!reorderMode && downloadList?.map((item) => (
                         <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-12" key={item._id}>
                             <div className="h-full">
                                 <div className="flex gap-2 items-center h-full">
