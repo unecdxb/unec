@@ -21,12 +21,12 @@ interface SocialLink {
 
 const Footer = () => {
   const socialLinks: SocialLink[] = [
-    { icon: FaFacebookF, href: '#', label: 'Facebook' },
-    { icon: FaXTwitter, href: '#', label: 'Twitter' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaYoutube, href: '#', label: 'YouTube' },
-    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-    { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
+    { icon: FaFacebookF, href: 'https://www.facebook.com/UnitedEngineeringConstruction/', label: 'Facebook' },
+    { icon: FaXTwitter, href: 'https://x.com/unec_co', label: 'Twitter' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/unec.co/', label: 'Instagram' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/channel/UCkpBsWG7H2cCgl8LANaL3_w', label: 'YouTube' },
+    { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/united-engineering-construction/', label: 'LinkedIn' },
+    { icon: 'custom', href: 'https://www.bayt.com/en/company/unec-united-engineering-construction-company-257472/', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
   ];
 
   return (
@@ -89,11 +89,11 @@ const Footer = () => {
               <div className="flex flex-col gap-6 w-full">
                 <div className="w-full">
                   <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-lg font-bold md:mb-4 mb-2 uppercase">Subscribe to our newsletter</motion.h3>
-                  <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="relative w-full max-w-[80vw] xs:max-w-[300px] xl:max-w-full">
+                  <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="relative w-full max-w-[80vw] xs:max-w-75 xl:max-w-full">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                       <MdEmail className="text-gray-400 text-xl" />
                     </div>
-                    <input type="email" placeholder="Enter your email address" className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+                    <input type="email" placeholder="Enter your email address" className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all" />
                     <button className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors">
                       <IoMdSend className="text-xl" />
                     </button>
@@ -104,7 +104,7 @@ const Footer = () => {
                     const Icon = social.icon;
                     return (
                       <motion.div key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-                        <Link href={social.href} aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
+                        <Link href={social.href} target="_blank" aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
                           {social.icon === 'custom' && social.customSrc ? (
                             <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all" />
                           ) : (

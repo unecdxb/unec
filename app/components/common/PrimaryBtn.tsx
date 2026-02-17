@@ -7,14 +7,15 @@ interface PrimaryBtnProps {
   width?: string;
   fontSize?: string;
   mClass?: string;
+  target?: string;
 }
 
-const PrimaryBtn = ({ href, text, mode = "dark", width, fontSize, mClass }: PrimaryBtnProps) => {
+const PrimaryBtn = ({ href, text, mode = "dark", width, fontSize, mClass, target }: PrimaryBtnProps) => {
 
   const isLight = mode === "light";
 
   return (
-    <Link href={href} className={`block relative overflow-hidden uppercase font-light transition-all duration-700 ease-out group border-2
+    <Link href={href} target={target} className={`block relative overflow-hidden uppercase font-light transition-all duration-700 ease-out group border-2
         ${isLight ? "bg-transparent border-light text-white" : " border-secondary text-white bg-black"}
         ${width ? width : "w-fit"}
         ${fontSize ? fontSize : "text-xs xl:text-sm"} px-4 py-2 xl:px-8 xl:py-3

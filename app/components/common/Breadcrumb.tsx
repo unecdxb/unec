@@ -80,7 +80,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({
                   {item.label}
                 </span>
               ) : (
-                <a href={item.href} className="text-sm font-light uppercase text-white opacity-60 hover:opacity-80 hover:text-gray-900 transition-opacity">
+                <a href={item.href} className="text-sm font-light uppercase text-white opacity-60 hover:opacity-80 hover:text-primary transition-opacity">
                   {item.label}
                 </a>
               )}

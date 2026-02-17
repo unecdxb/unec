@@ -80,15 +80,15 @@ const Hero = ({ data }: { data: HomeDataType['bannerSection'] }) => {
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         onSlideChangeTransitionStart={() => setActiveIndex(-1)}
         onSlideChangeTransitionEnd={(swiper) => setActiveIndex(swiper.activeIndex)}
-        className="h-screen"
+        className="h-[100dvh] heroSlider"
       >
         {data.items.map((slide, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-screen">
+            <div className="relative w-full h-[100dvh]">
               <Image src={slide.image} alt={slide.imageAlt} fill className="object-cover" priority={index === 0} />
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10"></div>
               <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 via-black/50 to-transparent z-10"></div>
-              <div ref={containerRef} className="container h-screen mx-auto px-4">
+              <div ref={containerRef} className="container h-[100dvh] mx-auto px-4">
                 <div className="relative z-20 h-full flex flex-col justify-end  pb-[35%] xl:pb-[10%] ">
                   <h2 className={`text-white text-28 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
                   transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 ${activeIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: activeIndex === index ? '300ms' : '0ms' }} >

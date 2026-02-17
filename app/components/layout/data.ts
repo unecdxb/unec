@@ -42,7 +42,7 @@ export const footerData = {
       },
       {
         title:"Modern Slavery Act",  
-        href:"/assets/docs/modern-slavery-act.pdf"
+        href:"/assets/docs/modern-slavery-policy.pdf"
       },
       {
         title:"Whistleblowing Policy",

@@ -1,10 +1,10 @@
-'use client';
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiChevronLeft, FiChevronRight, FiX, FiZoomIn } from 'react-icons/fi';
-import Image from 'next/image';
-import ProjectInfo from './ProjectInfo';
-import { moveUp, zoomInSlow } from '../motionVarients';
+"use client";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiChevronLeft, FiChevronRight, FiX, FiZoomIn } from "react-icons/fi";
+import Image from "next/image";
+import ProjectInfo from "./ProjectInfo";
+import { moveUp, zoomInSlow } from "../motionVarients";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
@@ -20,137 +20,140 @@ const THUMBNAIL_TRANSITION_DURATION = 0.3;
 
 // Mock ProjectInfo component
 
-
 const Main = ({ data }: { data: Project }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
-  const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
-  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [thumbnailStartIndex, setThumbnailStartIndex] = useState(0);
+    const [imageErrors, setImageErrors] = useState<Set<number>>(new Set());
 
-  const images = data.images
+    const images = data.images;
 
-  const maxThumbnailIndex = useMemo(() =>
-    Math.max(0, images.length - THUMBNAILS_PER_VIEW),
-    [images.length]
-  );
+    const maxThumbnailIndex = useMemo(() => Math.max(0, images.length - THUMBNAILS_PER_VIEW), [images.length]);
 
-  const visibleThumbnails = useMemo(() =>
-    images.slice(thumbnailStartIndex, thumbnailStartIndex + THUMBNAILS_PER_VIEW),
-    [images, thumbnailStartIndex]
-  );
+    const visibleThumbnails = useMemo(
+        () => images.slice(thumbnailStartIndex, thumbnailStartIndex + THUMBNAILS_PER_VIEW),
+        [images, thumbnailStartIndex],
+    );
 
-  // Navigation handlers
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % images.length);
-  }, [images.length]);
+    // Navigation handlers
+    const nextSlide = useCallback(() => {
+        setCurrentSlide((prev) => (prev + 1) % images.length);
+    }, [images.length]);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+    const prevSlide = useCallback(() => {
+        setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
+    }, [images.length]);
 
-  const nextThumbnails = useCallback(() => {
-    setThumbnailStartIndex((prev) => Math.min(prev + 1, maxThumbnailIndex));
-  }, [maxThumbnailIndex]);
+    const nextThumbnails = useCallback(() => {
+        setThumbnailStartIndex((prev) => Math.min(prev + 1, maxThumbnailIndex));
+    }, [maxThumbnailIndex]);
 
-  const prevThumbnails = useCallback(() => {
-    setThumbnailStartIndex((prev) => Math.max(prev - 1, 0));
-  }, []);
+    const prevThumbnails = useCallback(() => {
+        setThumbnailStartIndex((prev) => Math.max(prev - 1, 0));
+    }, []);
 
-  const openLightbox = useCallback((index: number) => {
-    setLightboxIndex(index);
-    setIsLightboxOpen(true);
-  }, []);
+    const openLightbox = useCallback((index: number) => {
+        setLightboxIndex(index);
+        setIsLightboxOpen(true);
+    }, []);
 
-  const closeLightbox = useCallback(() => {
-    setIsLightboxOpen(false);
-  }, []);
+    const closeLightbox = useCallback(() => {
+        setIsLightboxOpen(false);
+    }, []);
 
-  const nextLightboxImage = useCallback(() => {
-    setLightboxIndex((prev) => (prev + 1) % images.length);
-  }, [images.length]);
+    const nextLightboxImage = useCallback(() => {
+        setLightboxIndex((prev) => (prev + 1) % images.length);
+    }, [images.length]);
 
-  const prevLightboxImage = useCallback(() => {
-    setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+    const prevLightboxImage = useCallback(() => {
+        setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+    }, [images.length]);
 
-  const handleImageError = useCallback((index: number) => {
-    setImageErrors(prev => new Set(prev).add(index));
-  }, []);
+    const handleImageError = useCallback((index: number) => {
+        setImageErrors((prev) => new Set(prev).add(index));
+    }, []);
 
-  // Auto-play effect
-  useEffect(() => {
-    if (isLightboxOpen) return;
+    // Auto-play effect
+    useEffect(() => {
+        if (isLightboxOpen) return;
 
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, AUTO_PLAY_INTERVAL);
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % images.length);
+        }, AUTO_PLAY_INTERVAL);
 
-    return () => clearInterval(timer);
-  }, [images.length, isLightboxOpen]);
+        return () => clearInterval(timer);
+    }, [images.length, isLightboxOpen]);
 
-  // Body scroll lock effect
-  useEffect(() => {
-    if (isLightboxOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isLightboxOpen]);
+    // Body scroll lock effect
+    useEffect(() => {
+        if (isLightboxOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [isLightboxOpen]);
 
-  // Auto-scroll thumbnails to keep current slide visible
-  useEffect(() => {
-    if (currentSlide < thumbnailStartIndex) {
-      setThumbnailStartIndex(currentSlide);
-    } else if (currentSlide >= thumbnailStartIndex + THUMBNAILS_PER_VIEW) {
-      setThumbnailStartIndex(Math.min(currentSlide - THUMBNAILS_PER_VIEW + 1, maxThumbnailIndex));
-    }
-  }, [currentSlide, thumbnailStartIndex, maxThumbnailIndex]);
+    // Auto-scroll thumbnails to keep current slide visible
+    useEffect(() => {
+        if (currentSlide < thumbnailStartIndex) {
+            setThumbnailStartIndex(currentSlide);
+        } else if (currentSlide >= thumbnailStartIndex + THUMBNAILS_PER_VIEW) {
+            setThumbnailStartIndex(Math.min(currentSlide - THUMBNAILS_PER_VIEW + 1, maxThumbnailIndex));
+        }
+    }, [currentSlide, thumbnailStartIndex, maxThumbnailIndex]);
 
-  // Keyboard navigation effect
-  useEffect(() => {
-    if (!isLightboxOpen) return;
+    // Keyboard navigation effect
+    useEffect(() => {
+        if (!isLightboxOpen) return;
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') nextLightboxImage();
-      if (e.key === 'ArrowLeft') prevLightboxImage();
-    };
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight") nextLightboxImage();
+            if (e.key === "ArrowLeft") prevLightboxImage();
+        };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isLightboxOpen, closeLightbox, nextLightboxImage, prevLightboxImage]);
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [isLightboxOpen, closeLightbox, nextLightboxImage, prevLightboxImage]);
 
-  // Preload adjacent images
-  useEffect(() => {
-    const nextIndex = (currentSlide + 1) % images.length;
-    const prevIndex = (currentSlide - 1 + images.length) % images.length;
+    // Preload adjacent images
+    useEffect(() => {
+        const nextIndex = (currentSlide + 1) % images.length;
+        const prevIndex = (currentSlide - 1 + images.length) % images.length;
 
-    [nextIndex, prevIndex].forEach(index => {
-      const img = new window.Image();
-      img.src = images[index];
-    });
-  }, [currentSlide, images]);
+        [nextIndex, prevIndex].forEach((index) => {
+            const img = new window.Image();
+            img.src = images[index];
+        });
+    }, [currentSlide, images]);
 
-
-
-  return (
-    <>
-      <section className="relative sp-py">
-        <div className="container mx-auto px-4">
-          <ProjectInfo region={data.firstSection.location.name} title={data.firstSection.title} status={data.firstSection.status} items={data.firstSection.items} />
-          {data.images.length > 0 ?
-            <div className="my-10">
-              <h2 className="text-2xl font-semibold tracking-wide mb-10 uppercase">
-                {data.galleryTitle}
-              </h2>
-              <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="xl:gap-20 items-center">
-                {/* Gallery Slider */}
-                <div className="relative group">
-                  {/* <div className="relative h-[250px] xs:h-[300px] xl:h-[450px] 2xl:h-[650px] bg-black overflow-hidden  shadow-2xl">
+    return (
+        <>
+            <section className="relative sp-py">
+                <div className="container mx-auto px-4">
+                    <ProjectInfo
+                        region={data.firstSection.location.name}
+                        title={data.firstSection.title}
+                        status={data.firstSection.status}
+                        items={data.firstSection.items}
+                    />
+                    {data.images.length > 0 ? (
+                        <div className="my-10">
+                            <h2 className="text-2xl font-semibold tracking-wide mb-10 uppercase">{data.galleryTitle}</h2>
+                            <motion.div
+                                variants={moveUp(0.4)}
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ amount: 0.1, once: true }}
+                                className="xl:gap-20 items-center"
+                            >
+                                {/* Gallery Slider */}
+                                <div className="relative group">
+                                    {/* <div className="relative h-[250px] xs:h-[300px] xl:h-[450px] 2xl:h-[650px] bg-black overflow-hidden  shadow-2xl">
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentSlide}
@@ -219,46 +222,44 @@ const Main = ({ data }: { data: Project }) => {
                     </div>
                   </div> */}
 
-                  {/* Thumbnail Slider */}
-                  <div className="relative mt-4 xl:mt-8 group/thumbnails">
-                    <div className="overflow-hidden">
-                      <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 xl:gap-8">
-                        <AnimatePresence mode="popLayout">
-                          {images.map((img, idx) => {
-                            const actualIndex = thumbnailStartIndex + idx;
-                            return (
-                              <motion.div
-                                key={actualIndex}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                                onClick={() => openLightbox(idx)}
-                                className="relative h-[200px] xl:h-[250px] 2xl:h-[300px] overflow-hidden cursor-pointer"
-                              >
-                                {!imageErrors.has(idx) ? (
-                                  <Image
-                                    src={img}
-                                    alt={`Thumbnail ${idx + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    onError={() => handleImageError(idx)}
-                                  />
-                                ) : (
-                                  <div className="flex items-center justify-center h-full bg-gray-800 text-white">
-                                    Error
-                                  </div>
-                                )}
-                              </motion.div>
+                                    {/* Thumbnail Slider */}
+                                    <div className="relative mt-4 xl:mt-8 group/thumbnails">
+                                        <div className="overflow-hidden">
+                                            <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 xl:gap-8">
+                                                <AnimatePresence mode="popLayout">
+                                                    {images.map((img, idx) => {
+                                                        const actualIndex = thumbnailStartIndex + idx;
+                                                        return (
+                                                            <motion.div
+                                                                key={actualIndex}
+                                                                initial={{ opacity: 0 }}
+                                                                animate={{ opacity: 1 }}
+                                                                exit={{ opacity: 0 }}
+                                                                transition={{ duration: 0.3 }}
+                                                                onClick={() => openLightbox(idx)}
+                                                                className="relative h-[200px] xl:h-[250px] 2xl:h-[300px] overflow-hidden cursor-pointer"
+                                                            >
+                                                                {!imageErrors.has(idx) ? (
+                                                                    <Image
+                                                                        src={img}
+                                                                        alt={`Thumbnail ${idx + 1}`}
+                                                                        fill
+                                                                        className="object-cover"
+                                                                        onError={() => handleImageError(idx)}
+                                                                    />
+                                                                ) : (
+                                                                    <div className="flex items-center justify-center h-full bg-gray-800 text-white">
+                                                                        Error
+                                                                    </div>
+                                                                )}
+                                                            </motion.div>
+                                                        );
+                                                    })}
+                                                </AnimatePresence>
+                                            </div>
+                                        </div>
 
-                            );
-                          })}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-
-
-                    {/* {thumbnailStartIndex > 0 && (
+                                        {/* {thumbnailStartIndex > 0 && (
                       <button
                         onClick={prevThumbnails}
                         aria-label="Previous thumbnails"
@@ -276,120 +277,115 @@ const Main = ({ data }: { data: Project }) => {
                         <FiChevronRight className="text-xl text-gray-800" />
                       </button>
                     )} */}
-                  </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    ) : (
+                        <div className="h-0"></div>
+                    )}
                 </div>
 
+                {/* Lightbox Modal */}
+                <AnimatePresence>
+                    {isLightboxOpen && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center"
+                            onClick={closeLightbox}
+                        >
+                            <button
+                                onClick={closeLightbox}
+                                aria-label="Close lightbox"
+                                className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-50"
+                            >
+                                <FiX className="text-4xl" />
+                            </button>
 
-              </motion.div>
-            </div>
+                            <button
+                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                    e.stopPropagation();
+                                    prevLightboxImage();
+                                }}
+                                aria-label="Previous image"
+                                className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-50"
+                            >
+                                <FiChevronLeft className="text-5xl" />
+                            </button>
 
-            :
-            <div className="text-center text-gray-500">No images available</div>
-          }
+                            <button
+                                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                    e.stopPropagation();
+                                    nextLightboxImage();
+                                }}
+                                aria-label="Next image"
+                                className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-50"
+                            >
+                                <FiChevronRight className="text-5xl" />
+                            </button>
 
-        </div>
+                            <motion.div
+                                initial={{ scale: 0.8 }}
+                                animate={{ scale: 1 }}
+                                exit={{ scale: 0.8 }}
+                                className="max-w-7xl max-h-[90vh] w-full px-16"
+                                onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+                            >
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={lightboxIndex}
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: THUMBNAIL_TRANSITION_DURATION }}
+                                        className="relative w-full h-[70vh]"
+                                    >
+                                        {!imageErrors.has(lightboxIndex) ? (
+                                            <Image
+                                                src={images[lightboxIndex]}
+                                                alt={`Project ${lightboxIndex + 1}`}
+                                                fill
+                                                className="object-contain"
+                                                sizes="90vw"
+                                                priority
+                                                onError={() => handleImageError(lightboxIndex)}
+                                            />
+                                        ) : (
+                                            <div className="flex items-center justify-center h-full text-white">
+                                                Image failed to load
+                                            </div>
+                                        )}
+                                    </motion.div>
+                                </AnimatePresence>
+                            </motion.div>
 
-        {/* Lightbox Modal */}
-        <AnimatePresence>
-          {isLightboxOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center"
-              onClick={closeLightbox}
-            >
-              <button
-                onClick={closeLightbox}
-                aria-label="Close lightbox"
-                className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-50"
-              >
-                <FiX className="text-4xl" />
-              </button>
+                            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-lg">
+                                {lightboxIndex + 1} / {images.length}
+                            </div>
 
-              <button
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  e.stopPropagation();
-                  prevLightboxImage();
-                }}
-                aria-label="Previous image"
-                className="absolute left-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-50"
-              >
-                <FiChevronLeft className="text-5xl" />
-              </button>
-
-              <button
-                onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                  e.stopPropagation();
-                  nextLightboxImage();
-                }}
-                aria-label="Next image"
-                className="absolute right-6 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 transition-colors z-50"
-              >
-                <FiChevronRight className="text-5xl" />
-              </button>
-
-              <motion.div
-                initial={{ scale: 0.8 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.8 }}
-                className="max-w-7xl max-h-[90vh] w-full px-16"
-                onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-              >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={lightboxIndex}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: THUMBNAIL_TRANSITION_DURATION }}
-                    className="relative w-full h-[70vh]"
-                  >
-                    {!imageErrors.has(lightboxIndex) ? (
-                      <Image
-                        src={images[lightboxIndex]}
-                        alt={`Project ${lightboxIndex + 1}`}
-                        fill
-                        className="object-contain"
-                        sizes="90vw"
-                        priority
-                        onError={() => handleImageError(lightboxIndex)}
-                      />
-                    ) : (
-                      <div className="flex items-center justify-center h-full text-white">
-                        Image failed to load
-                      </div>
+                            <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2">
+                                {images.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+                                            e.stopPropagation();
+                                            setLightboxIndex(index);
+                                        }}
+                                        aria-label={`Go to image ${index + 1}`}
+                                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                            index === lightboxIndex ? "bg-white w-10" : "bg-white/50 hover:bg-white/75"
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                        </motion.div>
                     )}
-                  </motion.div>
                 </AnimatePresence>
-              </motion.div>
-
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-lg">
-                {lightboxIndex + 1} / {images.length}
-              </div>
-
-              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2">
-                {images.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-                      e.stopPropagation();
-                      setLightboxIndex(index);
-                    }}
-                    aria-label={`Go to image ${index + 1}`}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${index === lightboxIndex
-                      ? 'bg-white w-10'
-                      : 'bg-white/50 hover:bg-white/75'
-                      }`}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
-    </>
-  );
+            </section>
+        </>
+    );
 };
 
 export default Main;

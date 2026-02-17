@@ -138,7 +138,7 @@ const ContactForm: React.FC = () => {
               </p>
               <p className="mb-10 text-16 font-bold">
                 For employment-related queries, please visit{" "}
-                <a href="#" className="text-red-600 font-semibold">
+                <a href="/careers" target="_blank" className="text-red-600 font-semibold">
                   [UNEC] CAREERS
                 </a>
               </p>

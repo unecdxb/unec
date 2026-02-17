@@ -712,3 +712,23 @@ a {
     transform: rotateX(180deg);
   }
 }
+
+
+.heroSlider .swiper-pagination-bullet-custom {
+  cursor: pointer;
+}
+
+.heroSlider .swiper-pagination-bullet-active-custom {
+  background: #fc1312 !important;
+}
+
+
+@media (max-width: 768px) {
+  .heroSlider .swiper-pagination {
+    display: flex !important;
+    justify-content: center;
+    gap: 8px !important;
+  }
+}
+
+
