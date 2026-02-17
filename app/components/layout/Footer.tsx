@@ -11,6 +11,9 @@ import { CgBrackets } from "react-icons/cg";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
 import { footerData } from "./data";
+import { useState } from "react";
+import { toast } from "sonner";
+
 // Define the type for social links
 interface SocialLink {
   icon: IconType | 'custom';
@@ -19,7 +22,45 @@ interface SocialLink {
   customSrc?: string;
 }
 
+
 const Footer = () => {
+const [email, setEmail] = useState("");
+const [loading, setLoading] = useState(false);
+
+const handleSubscribe = async () => {
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    toast.error("Please enter a valid email");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const res = await fetch("/api/admin/newsletter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      throw new Error(data.message || "Something went wrong");
+    }
+
+    toast.success(data.message);
+    setEmail("");
+  } catch (err: any) {
+    toast.error(err.message || "Failed to subscribe");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
   const socialLinks: SocialLink[] = [
     { icon: FaFacebookF, href: 'https://www.facebook.com/UnitedEngineeringConstruction/', label: 'Facebook' },
     { icon: FaXTwitter, href: 'https://x.com/unec_co', label: 'Twitter' },
@@ -93,10 +134,23 @@ const Footer = () => {
                     <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                       <MdEmail className="text-gray-400 text-xl" />
                     </div>
-                    <input type="email" placeholder="Enter your email address" className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all" />
-                    <button className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors">
-                      <IoMdSend className="text-xl" />
-                    </button>
+<input
+  type="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
+  placeholder="Enter your email address"
+  className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all"
+/>
+
+<button
+  onClick={handleSubscribe}
+  disabled={loading}
+  className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+>
+  <IoMdSend className={`text-xl ${loading ? "animate-pulse" : ""}`} />
+</button>
+
                   </motion.div>
                 </div>
                 <div className="xl:items-end gap-3 flex xl:justify-end w-full">
