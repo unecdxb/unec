@@ -37,10 +37,10 @@ const Banner = ({ title, image, imageAlt }: { title: string, image: string, imag
     return (
         <section>
             <div
-                className="h-screen"
+                className="h-[85dvh] xl:h-screen"
             >
                 <div>
-                    <div className="relative w-full h-screen">
+                    <div className="relative w-full h-[85dvh] xl:h-screen">
                         <Image src={image} alt={imageAlt} fill className="object-cover" />
                         {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent z-10"></div> */}
                         <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-black/50 via-black/50 to-transparent z-10"></div>
@@ -49,7 +49,7 @@ const Banner = ({ title, image, imageAlt }: { title: string, image: string, imag
                             className="container invisible pointer-events-none"
                         />
                         <div className='w-full h-[100px] bg-black/50 z-50 absolute bottom-0 left-0'></div>
-                        <div className="h-screen w-full flex justify-center items-end container">
+                        <div className="h-[85dvh] xl:h-screen w-full flex justify-center items-end container">
 
                             <div className='w-full h-[100px] flex justify-between items-center z-100'>
                                 <div className='flex items-center gap-2 group cursor-pointer'  onClick={() => router.back()}>

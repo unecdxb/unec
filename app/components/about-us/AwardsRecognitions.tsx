@@ -6,10 +6,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeIn } from "../motionVarients";
 import { AboutData } from "./type";
+import AnchorSection from "../common/AnchorSection";
 const AwardsRecognitions = ({ data }: { data: AboutData["sixthSection"] }) => {
 
   return (
-    <section className="sp-pt relative pb-[130px]" id="awards-recognition" style={{ backgroundImage: `url(${data.image})` }}>
+    <AnchorSection id={data.id}>
+    <section className="sp-pt relative pb-[130px]" style={{ backgroundImage: `url(${data.image})` }}>
       <div className="absolute inset-0 w-full h-full bg-black/5 z-10  "></div>
       {/* <Image src={data.image} alt={data.imageAlt} width={1920} height={1080} className="w-full h-full object-cover absolute top-0 left-0 z-0 object-center" /> */}
       <div className="container relative z-10 text-white">
@@ -65,6 +67,7 @@ const AwardsRecognitions = ({ data }: { data: AboutData["sixthSection"] }) => {
         </div>
       </div>
     </section>
+    </AnchorSection>
   );
 }
 
