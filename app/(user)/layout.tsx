@@ -64,8 +64,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
+    <div lang="en">
+      <div
         className={`${suisseIntl.variable} ${suisseIntlMono.variable} font-sans antialiased`}
       >
         <JobSelectContextProvider>
@@ -82,7 +82,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </JobSelectContextProvider>
-      </body>
-    </html>
+      </div>
+    </div>
   );
 }
