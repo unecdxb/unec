@@ -73,7 +73,7 @@ function applySecurityHeaders(response: NextResponse, nonce: string) {
       https://www.google.com
       https://www.gstatic.com
       https://cdn.tiny.cloud;
-    style-src 'self' 'nonce-${nonce}'
+    style-src 'self' 'unsafe-inline'
       https://fonts.googleapis.com
       https://cdn.tiny.cloud;
     img-src 'self' data: blob: https://*.dropboxusercontent.com https:;
@@ -89,6 +89,10 @@ function applySecurityHeaders(response: NextResponse, nonce: string) {
 
   response.headers.set("Content-Security-Policy", csp);
   response.headers.set("x-nonce", nonce);
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
 
   // keep your cors
   response.headers.set("Access-Control-Allow-Origin", "https://docs-rho-wine.vercel.app");
