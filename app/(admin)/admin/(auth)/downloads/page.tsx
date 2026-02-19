@@ -19,6 +19,7 @@ import { FileUploader } from "@/components/ui/file-uploader";
 import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
 import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import DownloadCard from "./DownloadCard";
+import AdminItemContainer from "@/app/components/common/AdminItemContainer";
 
 
 export default function News() {
@@ -204,45 +205,47 @@ export default function News() {
 
     return (
         <div className="h-fit grid grid-cols-1 gap-5">
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
-                <div className="flex justify-between border-b-2 pb-2">
-                    <Label className="text-sm font-bold">Meta Section</Label>
-                    <Button onClick={submitMetaSection} className="text-white text-[16px]">Save</Button>
-                </div>
-                <div className='grid grid-cols-1 gap-2'>
-                    <div>
+            <AdminItemContainer>
+                <Label className="text-sm" main>SEO</Label>
+                <div className="h-fit w-full p-5 rounded-md">
+                    <div className='grid grid-cols-1 gap-2'>
                         <div>
-                            <Label className=''>Banner</Label>
-                            <ImageUploader onChange={(url) => setBanner(url)} value={banner} />
+                            <div>
+                                <Label className=''>Banner</Label>
+                                <ImageUploader onChange={(url) => setBanner(url)} value={banner} />
+                            </div>
+                            <div>
+                                <Label className=''>Banner Alt</Label>
+                                <Input type='text' placeholder='Alt Tag' value={bannerAlt} onChange={(e) => setBannerAlt(e.target.value)} />
+                            </div>
+                            <div>
+                                <Label className=''>Page Title</Label>
+                                <Input type='text' placeholder='Title' value={pageTitle} onChange={(e) => setPageTitle(e.target.value)} />
+                            </div>
                         </div>
-                        <div>
-                            <Label className=''>Banner Alt</Label>
-                            <Input type='text' placeholder='Alt Tag' value={bannerAlt} onChange={(e) => setBannerAlt(e.target.value)} />
-                        </div>
-                        <div>
-                            <Label className=''>Page Title</Label>
-                            <Input type='text' placeholder='Title' value={pageTitle} onChange={(e) => setPageTitle(e.target.value)} />
-                        </div>
-                    </div>
 
 
-                </div>
-                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                    <div>
-                        <Label>Meta title</Label>
-                        <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                     </div>
-                    <div>
-                        <Label>Meta Description</Label>
-                        <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                    <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                        <div>
+                            <Label>Meta title</Label>
+                            <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                        </div>
+                        <div>
+                            <Label>Meta Description</Label>
+                            <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                        </div>
+                    </div>
+                    <div className="flex justify-end mt-5">
+                        <Button onClick={submitMetaSection} className="text-white text-[16px]">Save</Button>
                     </div>
                 </div>
-            </div>
+            </AdminItemContainer>
 
-            <div className="h-[500px] w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
-                <div className="flex justify-between border-b-2 pb-2">
-                    <Label className="text-sm font-bold">Downloads</Label>
-                    <div className="flex gap-2">
+            <AdminItemContainer>
+                <div className="py-5 border-b border-black/20 flex items-center justify-between">
+                    <div className="text-xl text-black pl-5">Downloads</div>
+                    <div className="flex gap-2 justify-end  pb-2 pr-5">
                         <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
                         <Dialog>
                             <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={() => { setTitle("") }}>Add Download</DialogTrigger>
@@ -281,85 +284,126 @@ export default function News() {
 
                     </div>
                 </div>
-                <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[90%]">
+                {/* <div className="flex gap-2 justify-end  pb-2 pr-5">
+                    <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                    <Dialog>
+                        <DialogTrigger className="bg-primary text-white px-3 py-2 rounded-md font-bold" onClick={() => { setTitle("") }}>Add Download</DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Add Download</DialogTitle>
+                                <div>
+                                    <div>
+                                        <Label>Title</Label>
+                                        <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>File</Label>
+                                        <FileUploader
+                                            onChange={(url) => setFile(url)}
+                                            value={file}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label>Image</Label>
+                                        <ImageUploader
+                                            onChange={(url) => setImage(url)}
+                                            value={image}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Label>Image Alt</Label>
+                                        <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                    </div>
+                                </div>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddDownload}>Save</DialogClose>
+                        </DialogContent>
 
-                    {reorderMode &&
+                    </Dialog>
 
-                        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-                            <SortableContext items={downloadList.map((download) => download._id)} strategy={verticalListSortingStrategy}>
-                                {downloadList?.map((download, index) => (
-                                    <DownloadCard key={index} download={download} id={download._id} />
-                                ))}
-                            </SortableContext>
-                        </DndContext>
+                </div> */}
+                <div className="h-[500px] w-full p-5 rounded-md overflow-y-hidden">
 
-                    }
+                    <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[90%]">
+
+                        {reorderMode &&
+
+                            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                <SortableContext items={downloadList.map((download) => download._id)} strategy={verticalListSortingStrategy}>
+                                    {downloadList?.map((download, index) => (
+                                        <DownloadCard key={index} download={download} id={download._id} />
+                                    ))}
+                                </SortableContext>
+                            </DndContext>
+
+                        }
 
 
-                    {!reorderMode && downloadList?.map((item) => (
-                        <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-12" key={item._id}>
-                            <div className="h-full">
-                                <div className="flex gap-2 items-center h-full">
-                                    {item.title}
+                        {!reorderMode && downloadList?.map((item) => (
+                            <div className="flex justify-between border border-black/20 p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-12" key={item._id}>
+                                <div className="h-full">
+                                    <div className="flex gap-2 items-center h-full">
+                                        {item.title}
+                                    </div>
+                                </div>
+                                <div className="flex gap-5">
+                                    <Dialog>
+                                        <DialogTrigger onClick={() => { setTitle(item.title); setFile(item.file); setImage(item.image); setImageAlt(item.imageAlt) }}><MdEdit /></DialogTrigger>
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>Edit Download</DialogTitle>
+                                                <div>
+                                                    <div>
+                                                        <Label>Title</Label>
+                                                        <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                                    </div>
+                                                    <div>
+                                                        <Label>File</Label>
+                                                        <FileUploader
+                                                            onChange={(url) => setFile(url)}
+                                                            value={file}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Label>Image</Label>
+                                                        <ImageUploader
+                                                            onChange={(url) => setImage(url)}
+                                                            value={image}
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Label>Image Alt</Label>
+                                                        <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                                    </div>
+                                                </div>
+                                            </DialogHeader>
+                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleEditDownload(item._id)}>Save</DialogClose>
+                                        </DialogContent>
+
+                                    </Dialog>
+
+                                    <Dialog>
+                                        <DialogTrigger><MdDelete /></DialogTrigger>
+                                        <DialogContent>
+                                            <DialogHeader>
+                                                <DialogTitle>Are you sure?</DialogTitle>
+                                            </DialogHeader>
+                                            <div className="flex gap-2">
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                                                <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleDeleteDownload(item._id)}>Yes</DialogClose>
+                                            </div>
+
+                                        </DialogContent>
+
+                                    </Dialog>
                                 </div>
                             </div>
-                            <div className="flex gap-5">
-                                <Dialog>
-                                    <DialogTrigger onClick={() => { setTitle(item.title); setFile(item.file); setImage(item.image); setImageAlt(item.imageAlt) }}><MdEdit /></DialogTrigger>
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>Edit Download</DialogTitle>
-                                            <div>
-                                                <div>
-                                                    <Label>Title</Label>
-                                                    <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                                                </div>
-                                                <div>
-                                                    <Label>File</Label>
-                                                    <FileUploader
-                                                        onChange={(url) => setFile(url)}
-                                                        value={file}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Label>Image</Label>
-                                                    <ImageUploader
-                                                        onChange={(url) => setImage(url)}
-                                                        value={image}
-                                                    />
-                                                </div>
-                                                <div>
-                                                    <Label>Image Alt</Label>
-                                                    <Input type="text" placeholder="Image Alt" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
-                                                </div>
-                                            </div>
-                                        </DialogHeader>
-                                        <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleEditDownload(item._id)}>Save</DialogClose>
-                                    </DialogContent>
-
-                                </Dialog>
-
-                                <Dialog>
-                                    <DialogTrigger><MdDelete /></DialogTrigger>
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>Are you sure?</DialogTitle>
-                                        </DialogHeader>
-                                        <div className="flex gap-2">
-                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
-                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleDeleteDownload(item._id)}>Yes</DialogClose>
-                                        </div>
-
-                                    </DialogContent>
-
-                                </Dialog>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
 
 
+                    </div>
                 </div>
-            </div>
+            </AdminItemContainer>
         </div>
     );
 }

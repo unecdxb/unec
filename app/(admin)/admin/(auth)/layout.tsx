@@ -14,7 +14,7 @@ export default function AdminLayout({
       <aside className="w-64 bg-white shadow-md flex flex-col h-screen overflow-y-auto">
         <div className="flex-1 px-3 py-4">
           <div className="mb-6 px-4 flex flex-col gap-2 py-2">
-            <div className="flex items-center justify-center">
+            <div className="flex items-start justify-start">
               <Image
                 src="/assets/images/unec-logo-dark.svg"
                 alt="Logo"

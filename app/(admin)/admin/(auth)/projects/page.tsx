@@ -377,14 +377,19 @@ export default function Projects() {
                     </div>
                 </AdminItemContainer>
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                </div>
-                <div className='flex flex-col gap-2'>
-                    <Label className='font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                </div>
+                <AdminItemContainer>
+                    <Label main>SEO</Label>
+                    <div className="flex flex-col gap-2 p-5">
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='' {...register("metaTitle")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Description</Label>
+                            <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
                 <div className='flex justify-center mt-5'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
@@ -400,7 +405,7 @@ export default function Projects() {
                         <div className="flex justify-between border-b-2 pb-2">
                             <Label className="text-sm font-bold">Region</Label>
                             <Dialog>
-                                <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => setRegion("")}>Add Region</DialogTrigger>
+                                <DialogTrigger className="bg-black  text-white px-2 py-1 rounded-md" onClick={() => setRegion("")}>Add Region</DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
                                         <DialogTitle>Add Region</DialogTitle>
@@ -415,8 +420,8 @@ export default function Projects() {
                         </div>
                         <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
                             {regionList.map((item) => (
-                                <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                                    <div className="text-[16px]">
+                                <div className="flex justify-between border border-black/20 p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                                    <div className="text-[16px] font-normal">
                                         {item.name}
                                     </div>
                                     <div className="flex gap-5">
@@ -463,7 +468,7 @@ export default function Projects() {
                         <div className="flex justify-between border-b-2 pb-2">
                             <Label className="text-sm font-bold">Category</Label>
                             <Dialog>
-                                <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => setCategory("")}>Add Category</DialogTrigger>
+                                <DialogTrigger className="bg-black  text-white px-2 py-1 rounded-md" onClick={() => setCategory("")}>Add Category</DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
                                         <DialogTitle>Add Category</DialogTitle>
@@ -480,8 +485,8 @@ export default function Projects() {
 
                             <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
                                 {categoryList.map((item) => (
-                                    <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                                        <div className="text-[16px]">
+                                    <div className="flex justify-between border border-black/20 p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                                        <div className="text-[16px] font-normal">
                                             {item.name}
                                         </div>
                                         <div className="flex gap-5">
@@ -532,7 +537,7 @@ export default function Projects() {
                         <Label className="text-sm font-bold">Projects</Label>
                         <div className="flex gap-2">
                             <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
-                            <Button onClick={() => router.push("/admin/projects/add")} disabled={reorderMode}>Add Project</Button>
+                            <Button className="text-white" onClick={() => router.push("/admin/projects/add")} disabled={reorderMode}>Add Project</Button>
 
                         </div>
                     </div>
@@ -550,8 +555,8 @@ export default function Projects() {
 
                         }
                         {!reorderMode && projectList.map((item) => (
-                            <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                                <div className="text-[16px]">
+                            <div className="flex justify-between border border-black/20 p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                                <div className="text-[16px] font-normal">
                                     {item.title}
                                 </div>
                                 <div className="flex gap-5">
