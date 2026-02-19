@@ -94,7 +94,7 @@ export function FileUploader({
   return (
     <div className={cn("space-y-4 w-full", className)}>
       {value && fileName ? (
-        <div className="flex items-center justify-between p-4 border rounded-lg">
+        <div className="flex items-center justify-between p-4 border border-black/20 shadow-sm rounded-[3px]">
           <div className="flex items-center space-x-2">
             <File className="h-5 w-5 text-blue-500" />
             <span className="text-sm">{fileName}</span>
