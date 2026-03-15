@@ -1,5 +1,6 @@
 import "./globals.css";
 import { headers } from "next/headers";
+import { initCron } from "@/lib/initCron";
 
 export default function RootLayout({
   children,
@@ -7,7 +8,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   headers();
-
+  initCron();
   return (
     <html lang="en">
       <body>{children}</body>

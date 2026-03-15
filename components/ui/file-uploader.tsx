@@ -5,12 +5,22 @@ import { useDropzone } from "react-dropzone";
 import { File, X, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
+import { uploadToDropbox } from "@/lib/connectDropbox";
+import { toast } from "sonner";
 
 interface FileUploaderProps {
   value?: string;
-  onChange: (url: string, fileName: string) => void;
+  onChange: (url: string, fileName: string, size: string) => void;
   className?: string;
   accept?: Record<string, string[]>;
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return Math.round(bytes / Math.pow(k, i)) + ' ' + sizes[i];
 }
 
 export function FileUploader({
@@ -27,6 +37,7 @@ export function FileUploader({
 }: FileUploaderProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fileExists, setFileExists] = useState(false);
   const [fileName, setFileName] = useState<string>(() => {
     if (value) {
       const parts = value.split("/");
@@ -36,12 +47,28 @@ export function FileUploader({
   });
 
   useEffect(() => {
-    if (value) {
-      const parts = value.split("/");
-      setFileName(parts[parts.length - 1]);
-    } else {
-      setFileName("");
-    }
+    const checkFile = async () => {
+      if (!value) {
+        setFileExists(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(`${value}?t=${Date.now()}`, {
+          method: "HEAD",
+        });
+
+        if (res.ok) {
+          setFileExists(true);
+        } else {
+          setFileExists(false);
+        }
+      } catch {
+        setFileExists(false);
+      }
+    };
+
+    checkFile();
   }, [value]);
 
   const onDrop = useCallback(
@@ -53,23 +80,26 @@ export function FileUploader({
         setIsUploading(true);
         setError(null);
 
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("fileType", "file");
+        // const formData = new FormData();
+        // formData.append("file", file);
+        // formData.append("fileType", "file");
 
-        const response = await fetch("/api/admin/upload", {
-          method: "POST",
-          body: formData,
-        });
+        // const response = await fetch("/api/admin/upload", {
+        //   method: "POST",
+        //   body: formData,
+        // });
 
-        if (response.status !== 200) {
-          alert("Upload failed");
-          return;
-        }
+        // if (response.status !== 200) {
+        //   alert("Upload failed");
+        //   return;
+        // }
 
-        const data = await response.json();
+        // const data = await response.json();
+        const filePath = `/uploads/file/${Date.now()}${file.name}`;
+        const uploadResult = await uploadToDropbox(file, filePath);
         setFileName(file.name);
-        onChange(data.url, file.name);
+        console.log(file.size)
+        onChange(uploadResult, file.name, formatBytes(file.size));
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to upload file");
       } finally {
@@ -86,18 +116,32 @@ export function FileUploader({
     multiple: false,
   });
 
-  const removeFile = useCallback(() => {
-    setFileName("");
-    onChange("", "");
-  }, [onChange]);
+  const removeFile = async () => {
+    if (!value) return;
+
+    const response = await fetch("/api/admin/delete-file", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: value }),
+    });
+
+    if (response.ok) {
+      setFileName("");
+      onChange("", "", "0");
+      toast.success("File deleted successfully")
+    }
+
+  };
 
   return (
     <div className={cn("space-y-4 w-full", className)}>
-      {value && fileName ? (
-        <div className="flex items-center justify-between p-4 border border-black/20 shadow-sm rounded-[3px]">
-          <div className="flex items-center space-x-2">
+      {value && fileName && fileExists ? (
+        <div className="flex items-center justify-between p-4 border rounded-lg border-black/20">
+          <div className="flex items-center space-x-2 break-word">
             <File className="h-5 w-5 text-blue-500" />
-            <span className="text-sm">{fileName}</span>
+            <span className="text-sm">{fileName.split(".")[0]}</span>
           </div>
           <Button type="button" variant="ghost" size="icon" onClick={removeFile}>
             <X className="h-4 w-4" />
