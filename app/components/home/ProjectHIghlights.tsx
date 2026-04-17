@@ -20,7 +20,7 @@ const ProjectHIghlights = ({ data, title }: { data: ProjectType['projects'], tit
             data.map((item, index) => (
               <Link href={`/projects/${item.slug}`} key={index}>
                 <motion.div variants={moveUp((index + 4) * 0.1)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-                  <ProjectCard image={item.thumbnail} title={item.thumbnailAlt} location={item.firstSection.location.name} />
+                  <ProjectCard image={item.thumbnail} title={item.firstSection.title} location={item.firstSection.location.name} />
                 </motion.div>
               </Link>
 

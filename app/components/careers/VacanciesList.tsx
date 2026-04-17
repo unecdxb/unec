@@ -40,7 +40,7 @@ const VacanciesList = ({ data }: { data: CareerData["secondSection"] }) => {
           />
         </div> */}
 
-                <div className="flex flex-col gap-6 xl:gap-4 mt-12">
+                {data.items.length > 0 && <div className="flex flex-col gap-6 xl:gap-4 mt-12">
                     {data.items.map((item, index) => (
                         <motion.div
                             key={index}
@@ -109,7 +109,12 @@ const VacanciesList = ({ data }: { data: CareerData["secondSection"] }) => {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </div>}
+
+                {data.items.length == 0 && <motion.p
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }} variants={moveUp(0.2)} >At present, there are no open vacancies. We encourage you to revisit this page for future opportunities.</motion.p>}
             </div>
         </section>
     );

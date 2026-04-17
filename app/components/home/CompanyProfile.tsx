@@ -20,7 +20,7 @@ const CompanyProfile = ({ data }: { data: HomeDataType['firstSection'] }) => {
           <div className="flex flex-col justify-between gap-4">
             <div className="space-y-2 xl:space-y-4 font-medium ">
               {data.description.split("\n").map((item, index) => (
-                <motion.p variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">
+                <motion.p key={index} variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">
                   {item}</motion.p>
               ))}
               {/* <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</motion.p> */}
