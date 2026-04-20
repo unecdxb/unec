@@ -261,17 +261,17 @@ const ProjectList = ({ data, regionData, categoryData }: { data: any, regionData
   const gridRef = useRef<HTMLDivElement>(null);
 
   const regions = useMemo(() => [
-    { value: "ALL", label: "All" },
+    { value: "Region", label: "Region" },
     ...Array.from(new Set(regionData.map(i => i.name))).map(r => ({ value: r, label: r }))
   ], []);
 
   const categories = useMemo(() => [
-    { value: "ALL", label: "All" },
+    { value: "Category", label: "Category" },
     ...Array.from(new Set(categoryData.map(i => i.name))).map(c => ({ value: c, label: c }))
   ], []);
 
   const statuses = useMemo(() => [
-    { value: "ALL", label: "All" },
+    { value: "Status", label: "Status" },
     ...Array.from(new Set(statusData.map(i => i))).map(s => ({ value: s.value, label: s.name }))
   ], []);
 
@@ -296,9 +296,9 @@ const ProjectList = ({ data, regionData, categoryData }: { data: any, regionData
     if (!data?.projects || data.projects.length === 0) return [];
 
     return data.projects.filter((item: any) => {
-      const regionMatch = !appliedRegion || appliedRegion.value === "ALL" || item.firstSection.location.name === appliedRegion.value;
-      const categoryMatch = !appliedCategory || appliedCategory.value === "ALL" || item.firstSection.category.name === appliedCategory.value;
-      const statusMatch = !appliedStatus || appliedStatus.value === "ALL" || item.firstSection.status === appliedStatus.value.toString();
+      const regionMatch = !appliedRegion || appliedRegion.value === "Region" || item.firstSection.location.name === appliedRegion.value;
+      const categoryMatch = !appliedCategory || appliedCategory.value === "Category" || item.firstSection.category.name === appliedCategory.value;
+      const statusMatch = !appliedStatus || appliedStatus.value === "Status" || item.firstSection.status === appliedStatus.value.toString();
       const keywordMatch = appliedKeyword.trim() === "" ||
         [item.title, item.firstSection.category?.name, item.firstSection.location?.name]
           .filter(Boolean)
