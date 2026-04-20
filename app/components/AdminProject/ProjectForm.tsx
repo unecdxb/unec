@@ -36,6 +36,7 @@ interface ProjectFormProps {
     title: string;
     firstSection: {
         title: string;
+        innerLocation:string;
         location: string;
         category: string;
         status: string;
@@ -275,12 +276,18 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                             {errors.firstSection?.title && <p className='text-red-500'>{errors.firstSection.title.message}</p>}
                         </div>
 
-                        <div className='flex flex-col gap-2'>
+                        <div>
                             <Label className=''>Location</Label>
+                            <Input type='text' placeholder='Location' {...register("firstSection.innerLocation", { required: "Location is required" })} />
+                            {errors.firstSection?.innerLocation && <p className='text-red-500'>{errors.firstSection.innerLocation.message}</p>}
+                        </div>
+
+                        <div className='flex flex-col gap-2'>
+                            <Label className=''>Region</Label>
                             <Controller
                                 name="firstSection.location"
                                 control={control}
-                                rules={{ required: "Location is required" }}
+                                rules={{ required: "Region is required" }}
                                 render={({ field }) => (
                                     <Select
                                         onValueChange={field.onChange}
@@ -289,7 +296,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                     >
 
                                         <SelectTrigger className="w-full">
-                                            <SelectValue placeholder="Select Sector" />
+                                            <SelectValue placeholder="Select Region" />
                                         </SelectTrigger>
                                         <SelectContent>
                                             {regionList.map((item, index) => (

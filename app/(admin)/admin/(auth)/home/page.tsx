@@ -228,7 +228,7 @@ const Home = () => {
                             </div>
                             <div>
                                 <Label className=' font-bold'>File</Label>
-                                <Controller
+                                {/* <Controller
                                     name="firstSection.file"
                                     control={control}
                                     rules={{ required: "File is required" }}
@@ -238,7 +238,22 @@ const Home = () => {
                                             onChange={field.onChange}
                                         />
                                     )}
-                                />
+                                /> */}
+
+                                <div className='flex flex-col gap-2'>
+                                                    <Label className=''>Image</Label>
+                                                    <Controller
+                                                        name={`firstSection.file`}
+                                                        control={control}
+                                                        rules={{ required: "Image is required" }}
+                                                        render={({ field }) => (
+                                                            <FileUploader
+                                                                value={field.value}
+                                                                onChange={field.onChange}
+                                                            />
+                                                        )}
+                                                    />
+                                                </div>
                             </div>
                         </div>
 

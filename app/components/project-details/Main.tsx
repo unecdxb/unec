@@ -136,7 +136,7 @@ const Main = ({ data }: { data: Project }) => {
             <section className="relative sp-py">
                 <div className="container mx-auto px-4">
                     <ProjectInfo
-                        region={data.firstSection.location.name}
+                        region={data.firstSection.innerLocation}
                         title={data.firstSection.title}
                         status={data.firstSection.status}
                         items={data.firstSection.items}
