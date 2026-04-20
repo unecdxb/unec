@@ -4,6 +4,7 @@ import SecondaryBtn from "../common/SecondaryBtn";
 import { motion } from "framer-motion";
 import { moveUp } from "../motionVarients";
 import { HomeDataType } from "./type";
+import Link from "next/link";
 const CompanyProfile = ({ data }: { data: HomeDataType['firstSection'] }) => {
   // const stats = [
   //   { end: 1976, label: 'Establishment Year', suffix: '' },
@@ -26,7 +27,7 @@ const CompanyProfile = ({ data }: { data: HomeDataType['firstSection'] }) => {
               {/* <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</motion.p> */}
             </div>
             <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-              <SecondaryBtn href="/about-us" text={data.fileTitle} />
+              <SecondaryBtn href={data.file} target="_blank" text={data.fileTitle} />
             </motion.div>
           </div>
           <div>

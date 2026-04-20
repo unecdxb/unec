@@ -40,6 +40,9 @@ const projectSchema = new mongoose.Schema({
             title: {
                 type: String,
             },
+            innerLocation: {
+                type: String,
+            },
             location: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Region" },
             category: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Category" },
             status: {

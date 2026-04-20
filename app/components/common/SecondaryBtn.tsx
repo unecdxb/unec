@@ -7,11 +7,12 @@ interface SecondaryBtnProps {
   width?: string;
   fontSize?: string;
   mClass?: string;
+  target?:string;
 }
 
-const SecondaryBtn = ({ href, text, width, fontSize, mClass }: SecondaryBtnProps) => {
+const SecondaryBtn = ({ href, text, width, fontSize, mClass, target }: SecondaryBtnProps) => {
   return (
-    <Link href={href} className={`block relative overflow-hidden uppercase font-light transition-all duration-700 ease-out group border-2 bg-secondary text-white border-secondary hover:text-secondary hover:bg-white 
+    <Link href={href} target={target} className={`block relative overflow-hidden uppercase font-light transition-all duration-700 ease-out group border-2 bg-secondary text-white border-secondary hover:text-secondary hover:bg-white 
        
         ${width ? width : "w-fit"}
         ${fontSize ? fontSize : "text-xs xl:text-sm"} px-4 py-2 xl:px-8 xl:py-3

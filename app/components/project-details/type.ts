@@ -16,6 +16,7 @@ export type Project = {
     title: string;
     firstSection: {
         title: string;
+        innerLocation:string;
         location: {
             name: string;
         };

@@ -21,7 +21,7 @@ const ExecutiveCommitteeLIst = ({ data }: { data: AboutData["fourthSection"] }) 
                                 viewport={{ amount: 0.1, once: true }}
                                 key={index}
                             >
-                                <div className="flex flex-col gap-4 2xl:gap-6 border-b border-black/20 pb-4 xl:pb-6 transition-all duration-300">
+                                <div className="flex flex-col gap-4 2xl:gap-6 pb-4 xl:pb-6 transition-all duration-300 h-full">
                                     <div className="w-full h-[150px] xs:h-[150px] md:h-[200px] lg:h-[300px] xl:h-[350px] 3xl:h-[450px] bg-[#424155] overflow-hidden">
                                         <Image
                                             src={item.image}
@@ -38,6 +38,7 @@ const ExecutiveCommitteeLIst = ({ data }: { data: AboutData["fourthSection"] }) 
                                         <p className="text-16 xs:text-15 text-primary">{item.designation}</p>
                                     </div>
                                 </div>
+                                <hr className="text-black/20"></hr>
                             </motion.div>
                         ))}
                     </div>

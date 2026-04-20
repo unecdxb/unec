@@ -65,27 +65,35 @@ function generateNonce() {
 }
 
 function applySecurityHeaders(response: NextResponse, nonce: string) {
-  const csp = `
-    default-src 'self';
-    script-src 'self' 'nonce-${nonce}'
-      https://www.googletagmanager.com
-      https://www.google-analytics.com
-      https://www.google.com
-      https://www.gstatic.com
-      https://cdn.tiny.cloud;
-    style-src 'self' 'unsafe-inline'
-      https://fonts.googleapis.com
-      https://cdn.tiny.cloud;
-    img-src 'self' data: blob: https://*.dropboxusercontent.com https:;
-    font-src 'self' https://fonts.gstatic.com https://cdn.tiny.cloud;
-    connect-src 'self' https://www.google-analytics.com https://vitals.vercel-insights.com https://api.resend.com https://www.google.com https://cdn.tiny.cloud;
-    frame-src 'self' https://www.youtube.com https://player.vimeo.com https://www.google.com;
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'self';
-    upgrade-insecure-requests;
-  `.replace(/\n/g, "");
+const csp = `
+  default-src 'self';
+  script-src 'self' 'nonce-${nonce}'
+    https://www.googletagmanager.com
+    https://www.google-analytics.com
+    https://www.google.com
+    https://www.gstatic.com
+    https://cdn.tiny.cloud;
+  style-src 'self' 'unsafe-inline'
+    https://fonts.googleapis.com
+    https://cdn.tiny.cloud;
+  img-src 'self' data: blob: https://*.dropboxusercontent.com https:;
+  font-src 'self' https://fonts.gstatic.com https://cdn.tiny.cloud;
+  connect-src 'self'
+    https://www.google-analytics.com
+    https://vitals.vercel-insights.com
+    https://api.resend.com
+    https://www.google.com
+    https://cdn.tiny.cloud
+    https://api.dropboxapi.com
+    https://content.dropboxapi.com
+    https://dl.dropboxusercontent.com;
+  frame-src 'self' https://www.youtube.com https://player.vimeo.com https://www.google.com;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'self';
+  upgrade-insecure-requests;
+`.replace(/\n/g, "");
 
   response.headers.set("Content-Security-Policy", csp);
   response.headers.set("x-nonce", nonce);
