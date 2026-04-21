@@ -36,10 +36,12 @@ type OptionType = {
 
 const queryOptions: OptionType[] = [
   { value: "general", label: "General Enquiry" },
-  { value: "support", label: "Technical Support" },
-  { value: "sales", label: "Sales Inquiry" },
-  { value: "partnership", label: "Partnership Opportunity" },
-  { value: "feedback", label: "Feedback" },
+  { value: "supplier enquiry", label: "Supplier Enquiry" },
+  { value: "subcontractor enquiry", label: "Subcontractor Enquiry" },
+  { value: "tender enquiry", label: "Tender Enquiry" },
+  { value: "marketing & media", label: "Marketing & Media" },
+  { value: "complaints", label: "Complaints" },
+  { value: "whistleblowing", label: "Whistleblowing" },
   { value: "other", label: "Other" },
 ];
 

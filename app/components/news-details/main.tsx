@@ -31,7 +31,7 @@ const Main = ({ data }: { data: NewsData['news'][number] }) => {
           </div>
           <div className="col-span-2">
             <div
-              className=""
+              className="news-content"
               dangerouslySetInnerHTML={{ __html: data.content }}
             />
 

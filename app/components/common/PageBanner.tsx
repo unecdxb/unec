@@ -7,7 +7,7 @@ import moment from "moment";
 import Link from 'next/link';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
-const PageBanner = ({ title, image, imageAlt, description, date }: { title: string, image: string, imageAlt: string, description?: string, date?: string }) => {
+const PageBanner = ({ title, subTitle, image, imageAlt, description, date }: { title: string,subTitle:string, image: string, imageAlt: string, description?: string, date?: string }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [leftOffset, setLeftOffset] = useState(0);
     const pathname = usePathname();
@@ -63,10 +63,17 @@ const PageBanner = ({ title, image, imageAlt, description, date }: { title: stri
                             <div className="relative z-20 h-full flex flex-col justify-end">
                                 <div className='xl:w-[44%] p-[28px] bg-black/50 font-[400]'>
                                     <h2 className={`text-white text-25 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
-                  transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 opacity-100 translate-y-0 uppercase`}  >
+                  transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 opacity-100 translate-y-0`}  >
                                         {title}
                                     </h2>
-                                    <div className={`w-10 h-1 bg-primary mb-5 xl:mb-7 opacity-100 translate-y-0`} />
+                                    
+                                    <div className={`w-10 h-1 bg-primary mb-2 opacity-100 translate-y-0`} />
+
+                                    <p className={`text-white text-18 font-bold xs:max-w-[70vw] xl:max-w-3xl leading-[1.2] 
+                  transition-all duration-1000 ease-out font-suisse-intl mb-4 xs:mb-5 xl:mb-5 opacity-100 translate-y-0`}  >
+                                        {subTitle}
+                                    </p>
+                                    
                                     {description && description
                                         .trim()
                                         .split(/\n\s*\n/) // paragraph split (empty line)
@@ -87,27 +94,27 @@ const PageBanner = ({ title, image, imageAlt, description, date }: { title: stri
                                     {isNewsDetails && (
                                         <div className='flex justify-between items-center'>
                                             <div className="text-white">
-                                                {moment(date, "YYYY-MM-DD").format("MM.DD.YYYY")}
+                                                {moment(date, "YYYY-MM-DD").format("DD.MM.YYYY")}
                                             </div>
                                             <div className='flex gap-2'>
                                                 <button
                                                     onClick={() => openShareWindow(shareLinks.facebook)}
                                                     aria-label="Share on Facebook"
-                                                    className="w-8 h-8 bg-transparent border border-white text-white flex items-center justify-center hover:bg-white transition-colors group"
+                                                    className="w-8 h-8 bg-transparent cursor-pointer border border-white text-white flex items-center justify-center hover:bg-white transition-colors group"
                                                 >
                                                     <FaFacebookF className="text-sm group-hover:scale-110 transition-all group-hover:text-black" />
                                                 </button>
                                                 <button
                                                     onClick={() => openShareWindow(shareLinks.twitter)}
                                                     aria-label="Share on X (Twitter)"
-                                                    className="w-8 h-8 bg-transparent border border-white text-white flex items-center justify-center hover:bg-white transition-colors group"
+                                                    className="w-8 h-8 bg-transparent border cursor-pointer border-white text-white flex items-center justify-center hover:bg-white transition-colors group"
                                                 >
                                                     <FaTwitter className="text-sm group-hover:scale-110 transition-all group-hover:text-black" />
                                                 </button>
                                                 <button
                                                     onClick={() => openShareWindow(shareLinks.linkedin)}
                                                     aria-label="Share on LinkedIn"
-                                                    className="w-8 h-8 bg-transparent border border-white text-white flex items-center justify-center hover:bg-white transition-colors group"
+                                                    className="w-8 h-8 bg-transparent border cursor-pointer border-white text-white flex items-center justify-center hover:bg-white transition-colors group"
                                                 >
                                                     <FaLinkedinIn className="text-sm group-hover:scale-110 transition-all group-hover:text-black" />
                                                 </button>

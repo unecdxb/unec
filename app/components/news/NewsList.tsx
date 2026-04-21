@@ -40,28 +40,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
     const paginatedNews = sortedNews.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
     // Animate news cards when filter changes
-    useEffect(() => {
-        if (newsGridRef.current) {
-            const cards = newsGridRef.current.querySelectorAll(".news-card");
 
-            // Kill any existing animations first
-            gsap.killTweensOf(cards);
-
-            // Fade out old cards first (if any exist)
-            if (cards.length > 0) {
-                gsap.fromTo(
-                    cards,
-                    { opacity: 0 },
-                    {
-                        opacity: 1,
-                        duration: 0.3,
-                        stagger: 0.03,
-                        ease: "power1.out",
-                    },
-                );
-            }
-        }
-    }, [selectedYear, sortedNews.length]);
 
     // Format date
     const formatDate = (dateString: string) => {
@@ -108,13 +87,13 @@ const NewsList = ({ data }: { data: NewsData }) => {
 
                 {/* News Grid */}
                 <div ref={newsGridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 2xl:gap-10">
-                    {sortedNews.map((news, index) => (
+                    {paginatedNews.map((news, index) => (
                         <motion.div
                             key={index}
-                            variants={moveUp(0.6 + index * 0.1)}
+                            variants={moveUp(index * 0.05)}
                             initial="hidden"
                             whileInView="show"
-                            viewport={{ amount: 0.1, once: true }}
+                            viewport={{ amount: 0, once: true }}
                             className="h-full"
                         >
                             <div className="news-card flex flex-col group  overflow-hidden border border-gray-100 bg-white transition-all duration-500 cursor-pointer relative h-full">
@@ -186,7 +165,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
                             {currentPage > 1 && (
                                 <div className="flex items-center gap-4">
                                     <button
-                                        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                                        onClick={() => {setCurrentPage((prev) => Math.max(prev - 1, 1)); window.scrollTo({top:0})}}
                                         className="flex items-center gap-3 text-sm tracking-widest text-red-500 hover:gap-4 transition-all disabled:opacity-40 cursor-pointer"
                                     >
                                         PREVIOUS
@@ -203,7 +182,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
                                     <>
                                         <div key={page} className="flex items-center gap-4">
                                             <button
-                                                onClick={() => setCurrentPage(page)}
+                                                onClick={() => {setCurrentPage(page);window.scrollTo({top:0})}}
                                                 className={`text-sm tracking-widest transition-colors  cursor-pointer ${
                                                     currentPage === page
                                                         ? "text-red-500 font-semibold"
@@ -220,7 +199,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
                             })}
                             <span
                                 className="text-sm tracking-widest text-black cursor-pointer transition-colors hover:text-red-500"
-                                onClick={() => setCurrentPage(totalPages)}
+                                onClick={() => {setCurrentPage(totalPages);window.scrollTo({top:0})}}
                             >
                                 {"0" + totalPages}
                             </span>
@@ -229,8 +208,8 @@ const NewsList = ({ data }: { data: NewsData }) => {
                         {/* Next button */}
                         {currentPage < totalPages && (
                             <button
-                                onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                                className="flex items-center gap-3 text-sm tracking-widest text-red-500 hover:gap-4 transition-all disabled:opacity-40"
+                                onClick={() => {setCurrentPage((prev) => Math.min(prev + 1, totalPages));window.scrollTo({top:0})}}
+                                className="flex items-center cursor-pointer gap-3 text-sm tracking-widest text-red-500 hover:gap-4 transition-all disabled:opacity-40"
                             >
                                 NEXT
                             </button>

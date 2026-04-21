@@ -11,6 +11,7 @@ export type News = {
     banner: string;
     bannerAlt: string;
     title: string;
+    subTitle:string;
     slug: string;
     content: string;
     thumbnail: string;
