@@ -24,7 +24,7 @@ const Main = ({ firstSection, secondSection }: { firstSection: AboutData["firstS
                 <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-6 xl:gap-y-10 xl:gap-x-20">
                     {secondSection.items.map((item, index) => (
                         <motion.div key={index} variants={moveUp(0.2 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="h-[90px] bg-[#EBEBEB]">
-                            <Link href={`/about-us/${item.scrollToId}`} className="text-xs md:text-sm xl:text-[1rem] uppercase  w-full h-full flex items-center justify-center text-center hover:translate-y-[-2px] group transition-all"><p className="inline-block transition-all duration-300 text-primary font-[700]"><span className="text-secondary">[</span>{item.title}<span className="text-secondary">]</span></p></Link>
+                            <Link href={`/about-us/${item.scrollToId}`} className="text-xs md:text-sm xl:text-[1rem] uppercase  w-full h-full flex items-center justify-center text-center hover:bg-black group transition-all"><p className="inline-block text-primary font-[700] group-hover:text-white"><span className="text-secondary group-hover:text-white transition-all duration-300">[</span>{item.title}<span className="text-secondary group-hover:text-white transition-all duration-300">]</span></p></Link>
                         </motion.div>
                     ))}
                     {/* <motion.div variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="h-[90px] bg-[#EBEBEB]">

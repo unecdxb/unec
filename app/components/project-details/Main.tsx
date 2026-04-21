@@ -299,7 +299,7 @@ const Main = ({ data }: { data: Project }) => {
                             <button
                                 onClick={closeLightbox}
                                 aria-label="Close lightbox"
-                                className="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-50"
+                                className="absolute top-26 right-16 text-white hover:text-gray-300 transition-colors z-50"
                             >
                                 <FiX className="text-4xl" />
                             </button>
