@@ -8,6 +8,7 @@ import { gsap } from "gsap";
 import Link from "next/link";
 import ProjectCard from "../common/ProjectCard";
 import { statusData } from "../AdminProject/statusData";
+import { IoIosCloseCircle } from "react-icons/io";
 
 type Option = {
   value: string | number;
@@ -241,7 +242,7 @@ const ProjectList = ({
               }}
               className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 gap-4 xl:gap-10 items-end"
             >
-              <motion.div
+              <motion.div className="flex gap-3 items-center"
                 variants={{ hidden: { y: 15, opacity: 0 }, show: { y: 0, opacity: 1 } }}
               >
                 <Select
@@ -254,12 +255,16 @@ const ProjectList = ({
                   defaultValue={regions[0]}
                   onChange={setRegion}
                   classNamePrefix="cmn-select"
-                  className="cmn-select"
+                  className="cmn-select w-full"
                   instanceId="region-select"
                 />
+                <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
+                  setRegion(regions[0]);
+                  setAppliedRegion(regions[0]);
+                }} />
               </motion.div>
 
-              <motion.div
+              <motion.div className="flex gap-3 items-center"
                 variants={{ hidden: { y: 15, opacity: 0 }, show: { y: 0, opacity: 1 } }}
               >
                 <Select
@@ -272,12 +277,17 @@ const ProjectList = ({
                   defaultValue={categories[0]}
                   onChange={setCategory}
                   classNamePrefix="cmn-select"
-                  className="cmn-select"
+                  className="cmn-select w-full"
                   instanceId="category-select"
                 />
+                {/* <IoIosCloseCircle className="absolute top-[14px] -right-6 text-xl"/> */}
+                <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
+                  setCategory(categories[0]);
+                  setAppliedCategory(categories[0]);
+                }}/>
               </motion.div>
 
-              <motion.div
+              <motion.div className="flex gap-3 items-center"
                 variants={{ hidden: { y: 15, opacity: 0 }, show: { y: 0, opacity: 1 } }}
               >
                 <Select
@@ -290,12 +300,16 @@ const ProjectList = ({
                   defaultValue={statuses[0]}
                   onChange={setStatus}
                   classNamePrefix="cmn-select"
-                  className="cmn-select"
+                  className="cmn-select w-full"
                   instanceId="status-select"
                 />
+                <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
+                  setStatus(statuses[0]);
+                  setAppliedStatus(statuses[0]);
+                }}/>
               </motion.div>
 
-              <motion.div
+              <motion.div className="flex gap-3 items-center"
                 variants={{ hidden: { y: 15, opacity: 0 }, show: { y: 0, opacity: 1 } }}
               >
                 <input
@@ -306,6 +320,7 @@ const ProjectList = ({
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                 />
+                <IoIosCloseCircle className="w-fit text-2xl" onClick={()=>setKeyword("")}/>
               </motion.div>
 
               <motion.button
