@@ -28,6 +28,7 @@ interface NewsFormProps {
     banner: string;
     bannerAlt: string;
     title: string;
+    subTitle:string;
     slug: string;
     content: string;
     thumbnail: string;
@@ -68,6 +69,7 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("title", data.data.title);
+                setValue("subTitle", data.data.subTitle);
                 setValue("slug", data.data.slug);
                 setValue("content", data.data.content);
                 setValue("thumbnail", data.data.thumbnail);
@@ -145,6 +147,12 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                     <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
+
+                <div>
+                    <Label className=''>Sub Title</Label>
+                    <Input type='text' placeholder='Sub Title' {...register("subTitle")} />
+                </div>
+
                 <div>
                     <Label className='flex gap-2 items-center mb-1'>
                         Slug
