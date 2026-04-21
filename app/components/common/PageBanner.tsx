@@ -7,7 +7,7 @@ import moment from "moment";
 import Link from 'next/link';
 import { FaFacebookF, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
-const PageBanner = ({ title, subTitle, image, imageAlt, description, date }: { title: string,subTitle:string, image: string, imageAlt: string, description?: string, date?: string }) => {
+const PageBanner = ({ title, subTitle, image, imageAlt, description, date }: { title: string,subTitle?:string, image: string, imageAlt: string, description?: string, date?: string }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [leftOffset, setLeftOffset] = useState(0);
     const pathname = usePathname();
@@ -94,7 +94,7 @@ const PageBanner = ({ title, subTitle, image, imageAlt, description, date }: { t
                                     {isNewsDetails && (
                                         <div className='flex justify-between items-center'>
                                             <div className="text-white">
-                                                {moment(date, "YYYY-MM-DD").format("DD.MM.YYYY")}
+                                                {moment(date, "YYYY-MM-DD").format("DD.MM..YYYY")}
                                             </div>
                                             <div className='flex gap-2'>
                                                 <button
