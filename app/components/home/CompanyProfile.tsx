@@ -27,7 +27,7 @@ const CompanyProfile = ({ data }: { data: HomeDataType['firstSection'] }) => {
               {/* <motion.p variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-19 text-secondary">Our vast experience, forward-thinking innovations and commitment to the highest standards in professionalism, safety and efficiency have made us a trusted collaborator to the developers of some of the area's most iconic buildings and landmarks.</motion.p> */}
             </div>
             <motion.div variants={moveUp(0.6)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-              <SecondaryBtn href={data.file} target="_blank" text={data.fileTitle} />
+              <SecondaryBtn href={data.file.replace("?dl=0", "?raw=1").replace("dl.dropboxusercontent.com", "www.dropbox.com")} target="_blank" text={data.fileTitle} />
             </motion.div>
           </div>
           <div>
