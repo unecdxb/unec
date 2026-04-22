@@ -96,7 +96,7 @@ const JobForm: React.FC<{ openings: CareerData["secondSection"]["items"] }> = ({
         reset,
         setValue,
     } = useForm<JobFormData>({
-        mode: "onBlur",
+        mode: "onChange",
     });
 
     /* ---------------- FILE VALIDATION ---------------- */

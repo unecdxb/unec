@@ -134,6 +134,7 @@ const handleSubscribe = async () => {
                     <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                       <MdEmail className="text-gray-400 text-xl" />
                     </div>
+                    <div className="newsletter-subscribe-input">
 <input
   type="email"
   value={email}
@@ -142,6 +143,7 @@ const handleSubscribe = async () => {
   placeholder="Enter your email address"
   className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all"
 />
+</div>
 
 <button
   onClick={handleSubscribe}
