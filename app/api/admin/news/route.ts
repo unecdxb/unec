@@ -27,12 +27,12 @@ export async function PATCH(req: NextRequest) {
         await connectDB();
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
-        const { banner, bannerAlt, title, subTitle, slug, content, metaTitle, metaDescription, thumbnail, thumbnailAlt, date } = await req.json();
+        const { banner, bannerAlt, title, subTitle, slug, content, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, message, name, designation } = await req.json();
         const news = await News.findOne({});
         if (news) {
             news.news = news.news.map((news: { _id: string }) => {
                 if (news._id.toString() === id) {
-                    return { banner, bannerAlt, title, subTitle, slug, content, metaTitle, metaDescription, thumbnail, thumbnailAlt, date }
+                    return { banner, bannerAlt, title, subTitle, slug, content, metaTitle, metaDescription, thumbnail, thumbnailAlt, date, message, name, designation }
                 }
                 return news
             })
