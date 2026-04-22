@@ -299,7 +299,7 @@ const Main = ({ data }: { data: Project }) => {
                             <button
                                 onClick={closeLightbox}
                                 aria-label="Close lightbox"
-                                className="absolute top-26 right-16 text-white hover:text-gray-300 transition-colors z-50"
+                                className="absolute top-36 right-6 text-white hover:text-gray-300 transition-colors z-50"
                             >
                                 <FiX className="text-4xl" />
                             </button>
@@ -330,7 +330,7 @@ const Main = ({ data }: { data: Project }) => {
                                 initial={{ scale: 0.8 }}
                                 animate={{ scale: 1 }}
                                 exit={{ scale: 0.8 }}
-                                className="max-w-7xl max-h-[90vh] w-full px-16"
+                                className="max-w-7xl max-h-[90vh] w-full lg:px-16"
                                 onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
                             >
                                 <AnimatePresence mode="wait">
