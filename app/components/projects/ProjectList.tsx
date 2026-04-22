@@ -258,10 +258,10 @@ const ProjectList = ({
                   className="cmn-select w-full"
                   instanceId="region-select"
                 />
-                <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
+                {region?.value !== regions[0].value && <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
                   setRegion(regions[0]);
                   setAppliedRegion(regions[0]);
-                }} />
+                }} />}
               </motion.div>
 
               <motion.div className="flex gap-3 items-center"
@@ -281,10 +281,10 @@ const ProjectList = ({
                   instanceId="category-select"
                 />
                 {/* <IoIosCloseCircle className="absolute top-[14px] -right-6 text-xl"/> */}
-                <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
+                {category?.value !== categories[0].value && <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
                   setCategory(categories[0]);
                   setAppliedCategory(categories[0]);
-                }}/>
+                }}/>}
               </motion.div>
 
               <motion.div className="flex gap-3 items-center"
@@ -303,10 +303,10 @@ const ProjectList = ({
                   className="cmn-select w-full"
                   instanceId="status-select"
                 />
-                <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
+                {status?.value !== statuses[0].value && <IoIosCloseCircle className="w-fit text-2xl" onClick={() => {
                   setStatus(statuses[0]);
                   setAppliedStatus(statuses[0]);
-                }}/>
+                }}/>}
               </motion.div>
 
               <motion.div className="flex gap-3 items-center"
@@ -320,7 +320,7 @@ const ProjectList = ({
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                 />
-                <IoIosCloseCircle className="w-fit text-2xl" onClick={()=>setKeyword("")}/>
+                {keyword.length > 0 && <IoIosCloseCircle className="w-fit text-2xl" onClick={()=>setKeyword("")}/>}
               </motion.div>
 
               <motion.button
