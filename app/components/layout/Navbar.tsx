@@ -39,12 +39,12 @@ const Navbar = ({ variant }: NavbarProps) => {
 
     const isLight = shouldUseLightVariant;
     const socialLinks: SocialLink[] = [
-        { icon: FaFacebookF, href: "#", label: "Facebook" },
-        { icon: FaXTwitter, href: "#", label: "Twitter" },
-        { icon: FaInstagram, href: "#", label: "Instagram" },
-        { icon: FaYoutube, href: "#", label: "YouTube" },
-        { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
-        { icon: "custom", href: "#", label: "Bayt", customSrc: "/assets/images/icons/bayt.svg" },
+        { icon: FaFacebookF, href: "https://www.facebook.com/UnitedEngineeringConstruction/", label: "Facebook" },
+        { icon: FaXTwitter, href: "https://x.com/unec_co", label: "Twitter" },
+        { icon: FaInstagram, href: "https://www.instagram.com/unec.co/", label: "Instagram" },
+        { icon: FaYoutube, href: "https://www.youtube.com/channel/UCkpBsWG7H2cCgl8LANaL3_w", label: "YouTube" },
+        { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/united-engineering-construction/", label: "LinkedIn" },
+        { icon: "custom", href: "https://www.bayt.com/en/company/unec-united-engineering-construction-company-257472/", label: "Bayt", customSrc: "/assets/images/icons/bayt.svg" },
     ];
 
     const isContactPage = pathname === "/contact-us";
@@ -227,7 +227,7 @@ ${isLight ? " text-gray-800 hover:text-primary" : " text-white hover:text-white/
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
+                            className="fixed inset-0 bg-black/50 z-[1000] lg:hidden"
                             onClick={closeMobileMenu}
                         />
 
@@ -237,7 +237,7 @@ ${isLight ? " text-gray-800 hover:text-primary" : " text-white hover:text-white/
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[70] lg:hidden shadow-2xl"
+                            className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[1500] lg:hidden shadow-2xl"
                         >
                             <div className="flex flex-col h-full">
                                 {/* Header with Logo and Close Button */}

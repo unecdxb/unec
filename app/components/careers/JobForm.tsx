@@ -234,11 +234,11 @@ const removeFile = () => {
                     viewport={{ amount: 0.1, once: true }}
                     className="bg-white/60 p-4 xl:p-10"
                 >
-                    <p className="text-gray-600 ">
+                    {/* <p className="text-gray-600 ">
                         * Fill out the form below to apply and take the next step in your career with us!
                     </p>
-                    <hr className="h-1 border-gray-200 w-[50%] mt-2" />
-                    <div className="mb-8"></div>
+                    <hr className="h-1 border-gray-200 w-[50%] mt-2" /> */}
+                    {/* <div className="mb-8"></div> */}
 
                     {submitStatus && (
                         <div
