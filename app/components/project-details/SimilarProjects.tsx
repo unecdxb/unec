@@ -53,11 +53,11 @@ export default function SimilarProjects({ data }: { data: ProjectData }) {
             </Swiper>
 
             {/* Custom Navigation */}
-            <button className="swiper-button-prev-custom absolute left-2 top-[60%] z-10 -translate-y-1/2 bg-black/80 p-3">
+            <button className="swiper-button-prev-custom cursor-pointer absolute left-2 top-[60%] z-10 -translate-y-1/2 bg-black/80 p-3">
                 <span className="text-red-500 text-2xl">‹</span>
             </button>
 
-            <button className="swiper-button-next-custom absolute right-2 top-[60%] z-10 -translate-y-1/2 bg-black/80 p-3">
+            <button className="swiper-button-next-custom cursor-pointer absolute right-2 top-[60%] z-10 -translate-y-1/2 bg-black/80 p-3">
                 <span className="text-red-500 text-2xl">›</span>
             </button>
         </div>

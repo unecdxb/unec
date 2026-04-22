@@ -79,7 +79,7 @@ const ContactForm: React.FC = () => {
     formState: { errors },
     reset,
   } = useForm<ContactFormData>({
-    mode: 'onBlur'
+    mode: 'onChange'
   });
 
   /* ---------------- SUBMIT ---------------- */
