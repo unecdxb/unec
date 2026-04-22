@@ -44,7 +44,7 @@ export default function SimilarProjects({ data }: { data: ProjectData }) {
                             height={500}
                             className="w-full h-[280px] object-cover"
                         />
-                        <div className="max-lg:opacity-100 max-lg:inset-0 max-lg:flex max-lg:flex-col max-lg:justify-end max-lg:items-center max-lg:bg-black/40 absolute bottom-0 left-0 right-0 p-4 xl:p-5 opacity-0 group-hover:opacity-100 bg-black/70  transition-all duration-500 z-10">
+                        <div className="max-xl:opacity-100 max-xl:inset-0 max-lg:flex max-xl:flex-col max-xl:justify-end max-xl:items-center max-xl:bg-black/40 absolute bottom-0 left-0 right-0 p-4 xl:p-5 opacity-0 group-hover:opacity-100 bg-black/70  transition-all duration-500 z-10">
                             <h3 className="text-white text-20 font-bold max-lg:text-center">{item.title}</h3>
                             <p className="text-white text-16 tracking-wider">{item.firstSection.location.name}</p>
                         </div></Link>
