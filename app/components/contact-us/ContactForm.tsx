@@ -216,6 +216,7 @@ const ContactForm: React.FC = () => {
                         placeholder="Select query type"
                         value={queryOptions.find(opt => opt.value === field.value) || null}
                         onChange={(opt) => field.onChange(opt?.value)}
+                        className=''
                         classNamePrefix="contact-form-select"
                         components={{
                           DropdownIndicator,
