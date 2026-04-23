@@ -24,40 +24,40 @@ interface SocialLink {
 
 
 const Footer = () => {
-const [email, setEmail] = useState("");
-const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
-const handleSubscribe = async () => {
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    toast.error("Please enter a valid email");
-    return;
-  }
-
-  try {
-    setLoading(true);
-
-    const res = await fetch("/api/admin/newsletter", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || !data.success) {
-      throw new Error(data.message || "Something went wrong");
+  const handleSubscribe = async () => {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email");
+      return;
     }
 
-    toast.success(data.message);
-    setEmail("");
-  } catch (err: any) {
-    toast.error(err.message || "Failed to subscribe");
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      setLoading(true);
+
+      const res = await fetch("/api/admin/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      toast.success(data.message);
+      setEmail("");
+    } catch (err: any) {
+      toast.error(err.message || "Failed to subscribe");
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
 
@@ -79,10 +79,28 @@ const handleSubscribe = async () => {
         <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_2fr_2fr_3fr] gap-6 relative overflow-hidden">
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Quick Links</motion.h3>
-            <ul className="space-y-3">
+            <motion.ul
+              className="space-y-3"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.08,
+                    delayChildren: 0.1,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.2, once: true }}
+            >
               {
                 footerData.quickLinks.map((item, index) => (
-                  <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
+                  <motion.li
+                    key={index}
+                    variants={moveUp()}
+                    className="group"
+                  >
                     <Link href={item.href} className="flex items-center gap-3">
                       <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
                       <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">{item.title}</span>
@@ -90,15 +108,33 @@ const handleSubscribe = async () => {
                   </motion.li>
                 ))
               }
-            </ul>
+            </motion.ul>
 
           </div>
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Legal</motion.h3>
-            <ul className="space-y-3">
+            <motion.ul
+              className="space-y-3"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.08,
+                    delayChildren: 0.1,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.2, once: true }}
+            >
               {
                 footerData.documents.map((item, index) => (
-                  <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
+                  <motion.li
+                    key={index}
+                    variants={moveUp()}
+                    className="group"
+                  >
                     <Link href={item.href} target="_blank" className="flex items-center gap-3">
                       <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
                       <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">{item.title}</span>
@@ -106,7 +142,7 @@ const handleSubscribe = async () => {
                   </motion.li>
                 ))
               }
-            </ul>
+            </motion.ul>
           </div>
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Connect</motion.h3>
@@ -135,23 +171,23 @@ const handleSubscribe = async () => {
                       <MdEmail className="text-gray-400 text-xl" />
                     </div>
                     <div className="newsletter-subscribe-input">
-<input
-  type="email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
-  placeholder="Enter your email address"
-  className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all"
-/>
-</div>
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
+                        placeholder="Enter your email address"
+                        className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all"
+                      />
+                    </div>
 
-<button
-  onClick={handleSubscribe}
-  disabled={loading}
-  className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
->
-  <IoMdSend className={`text-xl ${loading ? "animate-pulse" : ""}`} />
-</button>
+                    <button
+                      onClick={handleSubscribe}
+                      disabled={loading}
+                      className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      <IoMdSend className={`text-xl ${loading ? "animate-pulse" : ""}`} />
+                    </button>
 
                   </motion.div>
                 </div>
