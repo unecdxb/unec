@@ -341,7 +341,7 @@ const removeFile = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {/* POSITION - React Select */}
-                            <div>
+                            <div className="">
                                 {/* <label className="block text-sm font-medium text-gray-700 mb-2">
                   Position <span className="text-red-500">*</span>
                 </label> */}
