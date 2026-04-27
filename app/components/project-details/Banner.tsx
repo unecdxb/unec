@@ -1,21 +1,12 @@
 "use client";
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
-import { useRouter } from 'next/navigation';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 import Image from 'next/image';
 
 const Banner = ({ title, image, imageAlt }: { title: string, image: string, imageAlt: string }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [paginationLeft, setPaginationLeft] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const [leftOffset, setLeftOffset] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
-    const router = useRouter();
 
     useEffect(() => {
         const updateOffset = () => {

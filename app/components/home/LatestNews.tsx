@@ -56,9 +56,9 @@ const LatestNews = ({ data, title }: { data: NewsData['news'], title: string }) 
     <span className="font-mono">{formatDate(news.date)}</span>
   </div>
 
-  <Link href={`/news/${news.slug}`} className="text-right w-fit h-fit text-[var(--text-14)] font-medium tracking-[var(--tracking-wider)] text-[var(--primary)] uppercase mt-auto ml-auto">
+  <div className="read-more-news-card text-right w-fit h-fit text-[var(--text-14)] font-medium tracking-[var(--tracking-wider)] text-[var(--primary)] uppercase mt-auto ml-auto">
     Read More
-</Link>
+</div>
 </div></Link>
 
              {/* <div className="img-box group">

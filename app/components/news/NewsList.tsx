@@ -179,7 +179,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
                                 const isLast = page === totalPages;
 
                                 return (
-                                    <>
+                                    <div key={index}>
                                         <div key={page} className="flex items-center gap-4">
                                             <button
                                                 onClick={() => { setCurrentPage(page); window.scrollTo({ top: 0 }) }}
@@ -193,7 +193,7 @@ const NewsList = ({ data }: { data: NewsData }) => {
 
                                             {isLast && <span className="w-10 h-[2px] bg-black inline-block" />}
                                         </div>
-                                    </>
+                                    </div>
                                 );
                             })}
                             <span

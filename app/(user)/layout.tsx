@@ -6,6 +6,7 @@ import Footer from "../components/layout/Footer";
 import BracketTextProcessor from "../components/common/BracketTextProcessor";
 import { JobSelectContextProvider } from "@/contexts/jobSelectContext";
 import { Toaster } from "@/components/ui/sonner";
+import ScrollToTop from "../components/common/ScrollToTop";
 
 const suisseIntl = localFont({
   src: [
@@ -78,8 +79,9 @@ export default function RootLayout({
               className: "!bg-black !text-white !border !border-white",
             }}
           />
+          <ScrollToTop/>
 
-          {children}
+            {children}
           <Footer />
         </JobSelectContextProvider>
       </div>
