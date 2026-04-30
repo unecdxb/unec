@@ -83,7 +83,7 @@ const Navbar = ({ variant }: NavbarProps) => {
         { href: "/about-us", label: "About Us" },
         { href: "/projects", label: "Projects" },
         { href: "/news", label: "News" },
-        { href: "/careers", label: "Careers" },
+        // { href: "/careers", label: "Careers" },
         { href: "/contact-us", label: "Contact Us" },
         { href: "/downloads", label: "Downloads" },
     ];
