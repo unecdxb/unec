@@ -14,10 +14,10 @@ export const footerData = {
             title:"News",
             href:"/news"
         },
-        {
-           title:"Careers",
-           href:"/careers"
-        },
+        // {
+        //    title:"Careers",
+        //    href:"/careers"
+        // },
         {
           title:"Contact us",
           href:"/contact-us"
