@@ -17,6 +17,18 @@ const newsSchema = new mongoose.Schema({
             title: {
                 type: String
             },
+            subTitle: {
+                type: String
+            },
+            message: {
+                type: String
+            },
+            name: {
+                type: String
+            },
+            designation: {
+                type: String
+            },
             slug: {
                 type: String
             },

@@ -20,6 +20,9 @@ import { useForm, Controller } from "react-hook-form";
 import { ImageUploader } from '@/components/ui/image-uploader'
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import ProjectCard from "./ProjectCard";
 
 
 interface ProjectPageProps {
@@ -40,6 +43,7 @@ export default function Projects() {
     const [projectList, setProjectList] = useState<{ _id: string, title: string, description: string }[]>([]);
     const [categoryList, setCategoryList] = useState<{ _id: string, name: string }[]>([]);
     const [regionList, setRegionList] = useState<{ _id: string, name: string }[]>([]);
+    const [reorderMode, setReorderMode] = useState(false);
 
     const router = useRouter();
 
@@ -260,6 +264,46 @@ export default function Projects() {
         }
     }
 
+    const getTaskPos = (id: string) => projectList.findIndex((item: { _id: string }) => (item._id == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        const oldIndex = getTaskPos(active.id as string);
+        const newIndex = getTaskPos(over.id as string);
+
+        const newPosition = arrayMove(projectList, oldIndex, newIndex);
+        setProjectList(newPosition);
+        // setValue("projects", newPosition);
+    };
+
+
+
+    const confirmPosition = async () => {
+        setReorderMode(!reorderMode);
+
+        const updatedProjects = projectList.map((project, index) => ({
+            ...project
+        }));
+
+        setProjectList(updatedProjects);
+
+        const formData = new FormData()
+        formData.append('projects', JSON.stringify(updatedProjects))
+        const response = await fetch(`/api/admin/project/reorder`, {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            const data = await response.json()
+            if (data.success) {
+                toast.success(data.message)
+            }
+        }
+    };
+
+
     useEffect(() => {
         handleFetchProjects();
         handleFetchRegion();
@@ -333,14 +377,19 @@ export default function Projects() {
                     </div>
                 </AdminItemContainer>
 
-                <div className='flex flex-col gap-2'>
-                    <Label className='font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
-                </div>
-                <div className='flex flex-col gap-2'>
-                    <Label className='font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
-                </div>
+                <AdminItemContainer>
+                    <Label main>SEO</Label>
+                    <div className="flex flex-col gap-2 p-5">
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Title</Label>
+                            <Input type='text' placeholder='' {...register("metaTitle")} />
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='font-bold'>Description</Label>
+                            <Input type='text' placeholder='' {...register("metaDescription")} />
+                        </div>
+                    </div>
+                </AdminItemContainer>
 
                 <div className='flex justify-center mt-5'>
                     <Button type='submit' className="cursor-pointer text-white text-[16px] w-full">Submit</Button>
@@ -356,7 +405,7 @@ export default function Projects() {
                         <div className="flex justify-between border-b-2 pb-2">
                             <Label className="text-sm font-bold">Region</Label>
                             <Dialog>
-                                <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => setRegion("")}>Add Region</DialogTrigger>
+                                <DialogTrigger className="bg-black  text-white px-2 py-1 rounded-md" onClick={() => setRegion("")}>Add Region</DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
                                         <DialogTitle>Add Region</DialogTitle>
@@ -371,8 +420,8 @@ export default function Projects() {
                         </div>
                         <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
                             {regionList.map((item) => (
-                                <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                                    <div className="text-[16px]">
+                                <div className="flex justify-between border border-black/20 p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                                    <div className="text-[16px] font-normal">
                                         {item.name}
                                     </div>
                                     <div className="flex gap-5">
@@ -419,7 +468,7 @@ export default function Projects() {
                         <div className="flex justify-between border-b-2 pb-2">
                             <Label className="text-sm font-bold">Category</Label>
                             <Dialog>
-                                <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => setCategory("")}>Add Category</DialogTrigger>
+                                <DialogTrigger className="bg-black  text-white px-2 py-1 rounded-md" onClick={() => setCategory("")}>Add Category</DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
                                         <DialogTitle>Add Category</DialogTitle>
@@ -436,8 +485,8 @@ export default function Projects() {
 
                             <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
                                 {categoryList.map((item) => (
-                                    <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                                        <div className="text-[16px]">
+                                    <div className="flex justify-between border border-black/20 p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                                        <div className="text-[16px] font-normal">
                                             {item.name}
                                         </div>
                                         <div className="flex gap-5">
@@ -486,12 +535,28 @@ export default function Projects() {
                 <div className="h-screen w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
                     <div className="flex justify-between border-b-2 pb-2">
                         <Label className="text-sm font-bold">Projects</Label>
-                        <Button onClick={() => router.push("/admin/projects/add")}>Add Project</Button>
+                        <div className="flex gap-2">
+                            <Button className={`text-white text-[16px] ${reorderMode ? "bg-yellow-700" : "bg-green-700"}`} onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? "Done" : "Reorder"}</Button>
+                            <Button className="text-white" onClick={() => router.push("/admin/projects/add")} disabled={reorderMode}>Add Project</Button>
+
+                        </div>
                     </div>
                     <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[90%]">
-                        {projectList.map((item) => (
-                            <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                                <div className="text-[16px]">
+
+                        {reorderMode &&
+
+                            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                <SortableContext items={projectList.map((project) => project._id)} strategy={verticalListSortingStrategy}>
+                                    {projectList?.map((project, index) => (
+                                        <ProjectCard key={index} project={project} id={project._id} />
+                                    ))}
+                                </SortableContext>
+                            </DndContext>
+
+                        }
+                        {!reorderMode && projectList.map((item) => (
+                            <div className="flex justify-between border border-black/20 p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                                <div className="text-[16px] font-normal">
                                     {item.title}
                                 </div>
                                 <div className="flex gap-5">

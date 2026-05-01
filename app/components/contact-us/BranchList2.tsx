@@ -39,15 +39,15 @@ const BranchList2 = ({ data }: { data: ContactData['firstSection']['items'] }) =
     return (
         <section className="sp-pb">
             <div className="container">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-stretch">
                     {data.map((branch, index) => (
-                        <motion.div variants={moveUp(0.2 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index}>
+                        <motion.div className="h-full" variants={moveUp(0.2 * index)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} key={index}>
                             <div
                                 key={index}
                                 ref={(el) => {
                                     if (el) cardsRef.current[index] = el;
                                 }}
-                                className="group relative bg-white overflow-hidden border-2 border-black"
+                                className="group relative bg-white overflow-hidden border-2 border-black h-full flex flex-col"
                             >
                                 {/* Accent Bar */}
                                 {/* <span className="absolute top-0 left-0 w-full h-1 bg-black/60"></span> */}
@@ -61,7 +61,7 @@ const BranchList2 = ({ data }: { data: ContactData['firstSection']['items'] }) =
                                 </div>
                                 <hr className="h-1 border-black" />
                                 {/* Info */}
-                                <div className="text-sm p-3 flex flex-col gap-1 font-[500]">
+                                <div className="text-sm p-3 flex flex-col gap-1 font-[500] flex-1">
 
                                     <div className="grid grid-cols-[auto_1fr] gap-3">
                                         <FaMapMarkerAlt className="text-black mt-1" />

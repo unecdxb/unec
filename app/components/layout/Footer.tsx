@@ -11,6 +11,9 @@ import { CgBrackets } from "react-icons/cg";
 import { motion } from "framer-motion";
 import { moveUp, moveLeft } from "../motionVarients";
 import { footerData } from "./data";
+import { useState } from "react";
+import { toast } from "sonner";
+
 // Define the type for social links
 interface SocialLink {
   icon: IconType | 'custom';
@@ -19,14 +22,52 @@ interface SocialLink {
   customSrc?: string;
 }
 
+
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const res = await fetch("/api/admin/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      toast.success(data.message);
+      setEmail("");
+    } catch (err: any) {
+      toast.error(err.message || "Failed to subscribe");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
   const socialLinks: SocialLink[] = [
-    { icon: FaFacebookF, href: '#', label: 'Facebook' },
-    { icon: FaXTwitter, href: '#', label: 'Twitter' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaYoutube, href: '#', label: 'YouTube' },
-    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-    { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
+    { icon: FaFacebookF, href: 'https://www.facebook.com/UnitedEngineeringConstruction/', label: 'Facebook' },
+    { icon: FaXTwitter, href: 'https://x.com/unec_co', label: 'Twitter' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/unec.co/', label: 'Instagram' },
+    { icon: FaYoutube, href: 'https://www.youtube.com/channel/UCkpBsWG7H2cCgl8LANaL3_w', label: 'YouTube' },
+    { icon: FaLinkedinIn, href: 'https://www.linkedin.com/company/united-engineering-construction/', label: 'LinkedIn' },
+    { icon: 'custom', href: 'https://www.bayt.com/en/company/unec-united-engineering-construction-company-257472/', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
   ];
 
   return (
@@ -38,10 +79,28 @@ const Footer = () => {
         <div className="grid grid-cols-1 xs:grid-cols-3 xl:grid-cols-[2fr_2fr_2fr_3fr] gap-6 relative overflow-hidden">
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Quick Links</motion.h3>
-            <ul className="space-y-3">
+            <motion.ul
+              className="space-y-3"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.08,
+                    delayChildren: 0.1,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.2, once: true }}
+            >
               {
                 footerData.quickLinks.map((item, index) => (
-                  <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
+                  <motion.li
+                    key={index}
+                    variants={moveUp()}
+                    className="group"
+                  >
                     <Link href={item.href} className="flex items-center gap-3">
                       <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
                       <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">{item.title}</span>
@@ -49,15 +108,33 @@ const Footer = () => {
                   </motion.li>
                 ))
               }
-            </ul>
+            </motion.ul>
 
           </div>
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Legal</motion.h3>
-            <ul className="space-y-3">
+            <motion.ul
+              className="space-y-3"
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.08,
+                    delayChildren: 0.1,
+                  },
+                },
+              }}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ amount: 0.2, once: true }}
+            >
               {
                 footerData.documents.map((item, index) => (
-                  <motion.li key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="group">
+                  <motion.li
+                    key={index}
+                    variants={moveUp()}
+                    className="group"
+                  >
                     <Link href={item.href} target="_blank" className="flex items-center gap-3">
                       <Image src="/assets/images/chevicon-left.svg" alt="" width={8} height={8} className=" group-hover:translate-x-1 transition-all duration-200" />
                       <span className="hover:text-white/70 transition-colors duration-200 text-12 uppercase font-mono">{item.title}</span>
@@ -65,7 +142,7 @@ const Footer = () => {
                   </motion.li>
                 ))
               }
-            </ul>
+            </motion.ul>
           </div>
           <div>
             <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-16 xl:text-18 font-bold mb-4 uppercase">Connect</motion.h3>
@@ -89,14 +166,29 @@ const Footer = () => {
               <div className="flex flex-col gap-6 w-full">
                 <div className="w-full">
                   <motion.h3 variants={moveUp(0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="text-lg font-bold md:mb-4 mb-2 uppercase">Subscribe to our newsletter</motion.h3>
-                  <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="relative w-full max-w-[80vw] xs:max-w-[300px] xl:max-w-full">
+                  <motion.div variants={moveUp(0.4)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }} className="relative w-full max-w-[80vw] xs:max-w-75 xl:max-w-full">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
                       <MdEmail className="text-gray-400 text-xl" />
                     </div>
-                    <input type="email" placeholder="Enter your email address" className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
-                    <button className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors">
-                      <IoMdSend className="text-xl" />
+                    <div className="newsletter-subscribe-input">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        onKeyDown={(e) => e.key === "Enter" && handleSubscribe()}
+                        placeholder="Enter your email address"
+                        className="w-full py-3 pl-12 2xl:pr-24 text-sm xs:text-base border border-gray-300 focus:outline-none focus:border-1 focus:border-primary transition-all"
+                      />
+                    </div>
+
+                    <button
+                      onClick={handleSubscribe}
+                      disabled={loading}
+                      className="absolute inset-y-0 right-0 flex items-center p-3 xl:px-6 text-white rounded-r-lg hover:bg-white/10 cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      <IoMdSend className={`text-xl ${loading ? "animate-pulse" : ""}`} />
                     </button>
+
                   </motion.div>
                 </div>
                 <div className="xl:items-end gap-3 flex xl:justify-end w-full">
@@ -104,7 +196,7 @@ const Footer = () => {
                     const Icon = social.icon;
                     return (
                       <motion.div key={index} variants={moveUp(index * 0.2)} initial="hidden" whileInView="show" viewport={{ amount: 0.1, once: true }}>
-                        <Link href={social.href} aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
+                        <Link href={social.href} target="_blank" aria-label={social.label} className="w-8 h-8 bg-black border border-white text-white flex items-center justify-center hover:bg-gray-800 transition-colors group" >
                           {social.icon === 'custom' && social.customSrc ? (
                             <Image src={social.customSrc} alt={social.label} width={20} height={20} className="w-4 h-4 group-hover:scale-110 transition-all" />
                           ) : (

@@ -2,25 +2,15 @@
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import React, { useEffect, useState } from 'react'
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
-import 'react-quill-new/dist/quill.snow.css';
-import dynamic from 'next/dynamic'
+import { useEffect } from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
-import Image from 'next/image'
 import { RiAiGenerateText } from 'react-icons/ri'
 import TinyEditor from "@/app/components/TinyMce/TinyEditor";
+import { Textarea } from '@/components/ui/textarea'
 
 
 
@@ -28,6 +18,10 @@ interface NewsFormProps {
     banner: string;
     bannerAlt: string;
     title: string;
+    subTitle:string;
+    message:string;
+    name:string;
+    designation:string;
     slug: string;
     content: string;
     thumbnail: string;
@@ -68,6 +62,10 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("banner", data.data.banner);
                 setValue("bannerAlt", data.data.bannerAlt);
                 setValue("title", data.data.title);
+                setValue("subTitle", data.data.subTitle);
+                setValue("message", data.data.message);
+                setValue("name", data.data.name);
+                setValue("designation", data.data.designation);
                 setValue("slug", data.data.slug);
                 setValue("content", data.data.content);
                 setValue("thumbnail", data.data.thumbnail);
@@ -145,6 +143,27 @@ const NewsForm = ({ editMode }: { editMode?: boolean }) => {
                     <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
+
+                <div>
+                    <Label className=''>Sub Title</Label>
+                    <Input type='text' placeholder='Sub Title' {...register("subTitle")} />
+                </div>
+
+                <div>
+                    <Label className=''>Message</Label>
+                    <Textarea placeholder='Message' {...register("message")} />
+                </div>
+
+                <div>
+                    <Label className=''>Name</Label>
+                    <Input type='text' placeholder='Name' {...register("name")} />
+                </div>
+
+                <div>
+                    <Label className=''>Designation</Label>
+                    <Input type='text' placeholder='Designation' {...register("designation")} />
+                </div>
+
                 <div>
                     <Label className='flex gap-2 items-center mb-1'>
                         Slug

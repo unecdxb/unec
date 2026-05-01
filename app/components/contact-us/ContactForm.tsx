@@ -36,10 +36,12 @@ type OptionType = {
 
 const queryOptions: OptionType[] = [
   { value: "general", label: "General Enquiry" },
-  { value: "support", label: "Technical Support" },
-  { value: "sales", label: "Sales Inquiry" },
-  { value: "partnership", label: "Partnership Opportunity" },
-  { value: "feedback", label: "Feedback" },
+  { value: "supplier enquiry", label: "Supplier Enquiry" },
+  { value: "subcontractor enquiry", label: "Subcontractor Enquiry" },
+  { value: "tender enquiry", label: "Tender Enquiry" },
+  { value: "marketing & media", label: "Marketing & Media" },
+  { value: "complaints", label: "Complaints" },
+  { value: "whistleblowing", label: "Whistleblowing" },
   { value: "other", label: "Other" },
 ];
 
@@ -77,7 +79,7 @@ const ContactForm: React.FC = () => {
     formState: { errors },
     reset,
   } = useForm<ContactFormData>({
-    mode: 'onBlur'
+    mode: 'onChange'
   });
 
   /* ---------------- SUBMIT ---------------- */
@@ -138,7 +140,7 @@ const ContactForm: React.FC = () => {
               </p>
               <p className="mb-10 text-16 font-bold">
                 For employment-related queries, please visit{" "}
-                <a href="#" className="text-red-600 font-semibold">
+                <a href="/careers" target="_blank" className="text-red-600 font-semibold">
                   [UNEC] CAREERS
                 </a>
               </p>
@@ -214,6 +216,7 @@ const ContactForm: React.FC = () => {
                         placeholder="Select query type"
                         value={queryOptions.find(opt => opt.value === field.value) || null}
                         onChange={(opt) => field.onChange(opt?.value)}
+                        className=''
                         classNamePrefix="contact-form-select"
                         components={{
                           DropdownIndicator,
@@ -324,7 +327,7 @@ const ContactForm: React.FC = () => {
                 <div className='col-span-1 md:mr-5'>
                   <button
                     type="submit"
-                    className="mt-10 bg-black text-13 text-white w-full py-4 font-semibold tracking-widest hover:bg-neutral-800 transition font-mono"
+                    className="mt-10 cursor-pointer bg-black text-13 text-white w-full py-4 font-semibold tracking-widest hover:bg-neutral-800 transition font-mono"
                   >
                     SUBMIT
                   </button>

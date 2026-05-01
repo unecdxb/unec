@@ -1,280 +1,323 @@
 "use client";
-import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
-import { IconType } from 'react-icons';
+import { IconType } from "react-icons";
 import { usePathname } from "next/navigation";
 
 interface SocialLink {
-  icon: IconType | 'custom';
-  href: string;
-  label: string;
-  customSrc?: string;
+    icon: IconType | "custom";
+    href: string;
+    label: string;
+    customSrc?: string;
 }
 
 interface NavbarProps {
-  variant?: "light" | "dark";
+    variant?: "light" | "dark";
 }
 
 const Navbar = ({ variant }: NavbarProps) => {
-  const pathname = usePathname();
+    const pathname = usePathname();
+    const fixedHeaderRef = useRef<HTMLElement | null>(null);
 
-  // Define routes that should use light variant (pages without dark banners)
-  const lightVariantRoutes: string[] = [
-    // '/news',
-    // '/contact-us',
-    // '/downloads',
-  ];
+    // Define routes that should use light variant (pages without dark banners)
+    const lightVariantRoutes: string[] = [
+        // '/news',
+        // '/contact-us',
+        // '/downloads',
+    ];
 
-  // Auto-detect variant based on route if not explicitly provided
-  const shouldUseLightVariant = variant
-    ? variant === "light"
-    : lightVariantRoutes.some(route => pathname.startsWith(route));
+    // Auto-detect variant based on route if not explicitly provided
+    const shouldUseLightVariant = variant
+        ? variant === "light"
+        : lightVariantRoutes.some((route) => pathname.startsWith(route));
 
-  const isLight = shouldUseLightVariant;
-  const socialLinks: SocialLink[] = [
-    { icon: FaFacebookF, href: '#', label: 'Facebook' },
-    { icon: FaXTwitter, href: '#', label: 'Twitter' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaYoutube, href: '#', label: 'YouTube' },
-    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-    { icon: 'custom', href: '#', label: 'Bayt', customSrc: '/assets/images/icons/bayt.svg' },
-  ];
+    const isLight = shouldUseLightVariant;
+    const socialLinks: SocialLink[] = [
+        { icon: FaFacebookF, href: "https://www.facebook.com/UnitedEngineeringConstruction/", label: "Facebook" },
+        { icon: FaXTwitter, href: "https://x.com/unec_co", label: "Twitter" },
+        { icon: FaInstagram, href: "https://www.instagram.com/unec.co/", label: "Instagram" },
+        { icon: FaYoutube, href: "https://www.youtube.com/channel/UCkpBsWG7H2cCgl8LANaL3_w", label: "YouTube" },
+        { icon: FaLinkedinIn, href: "https://www.linkedin.com/company/united-engineering-construction/", label: "LinkedIn" },
+        { icon: "custom", href: "https://www.bayt.com/en/company/unec-united-engineering-construction-company-257472/", label: "Bayt", customSrc: "/assets/images/icons/bayt.svg" },
+    ];
 
-  const isContactPage = pathname === '/contact-us';
+    const isContactPage = pathname === "/contact-us";
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    if (isContactPage) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  }, [pathname])
+    useEffect(() => {
+        if (isContactPage) {
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false);
+        }
+    }, [pathname]);
 
-  useEffect(() => {
-    if (isContactPage) return;
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    useEffect(() => {
+        if (isContactPage) return;
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [pathname]);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [isMobileMenuOpen]);
+
+    const navLinks = [
+        { href: "/", label: "Home" },
+        { href: "/about-us", label: "About Us" },
+        { href: "/projects", label: "Projects" },
+        { href: "/news", label: "News" },
+        // { href: "/careers", label: "Careers" },
+        { href: "/contact-us", label: "Contact Us" },
+        { href: "/downloads", label: "Downloads" },
+    ];
+
+    const closeMobileMenu = () => setIsMobileMenuOpen(false);
+    const isActive = (href: string) => {
+        if (href === "/") return pathname === "/";
+        return pathname.startsWith(href);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+    useEffect(() => {
+        const setOffset = () => {
+            if (!fixedHeaderRef.current) return;
+            const height = fixedHeaderRef.current.offsetHeight;
+            document.documentElement.style.setProperty("--header-offset", `${height}px`);
+        };
 
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isMobileMenuOpen]);
+        setOffset();
+        window.addEventListener("resize", setOffset);
 
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about-us", label: "About Us" },
-    { href: "/projects", label: "Projects" },
-    { href: "/news", label: "News" },
-    { href: "/careers", label: "Careers" },
-    { href: "/contact-us", label: "Contact Us" },
-    { href: "/downloads", label: "Downloads" },
-  ];
+        return () => window.removeEventListener("resize", setOffset);
+    }, [isScrolled]);
 
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
-
-  return (
-    <>
-      {/* Original Header - Always visible on top */}
-      <header className={`absolute top-0 left-0 w-full z-50 ${isLight ? 'bg-white/95 backdrop-blur-sm shadow-sm' : ''}`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between pt-4 xl:py-4 2xl:py-5">
-            <div>
-              <Link href="/">
-                <Image src={isLight ? "/assets/images/unec-logo-dark.svg" : "/assets/images/unec-logo.svg"} alt="Logo" width={150} height={150} className="object-contain w-auto h-10 xl:h-[67px]" />
-              </Link>
-            </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:block">
-              <ul className="flex ">
-                {navLinks.map((link, index) => (
-                  <li key={index} className={`border-r px-[15px] last:border-r-0 last:pr-0 block py-0  ${isLight ? 'border-white' : 'border-gray-300'}`}>
-                    <Link href={link.href}
-                      className={`text-12 leading-3 block uppercase transition-all duration-200 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-0  hover:after:w-full focus:after:w-full after:h-[2px] after:bg-primary  ${isLight
-                        ? 'text-gray-800 hover:text-primary font-semibold'
-                        : 'text-white hover:text-white/80'
-                        }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className={`lg:hidden text-3xl z-50 ${isLight ? 'text-gray-800' : 'text-white'}`}
-              aria-label="Open menu"
+    return (
+        <>
+            {/* Original Header - Always visible on top */}
+            <header
+                className={`absolute top-0 left-0 w-full z-50 ${isLight ? "bg-white/95 backdrop-blur-sm shadow-sm" : ""}`}
             >
-              <IoIosMenu />
-            </button>
-          </div>
-        </div>
-      </header>
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center justify-between pt-4 xl:py-4 2xl:py-5">
+                        <div>
+                            <Link href="/">
+                                <Image
+                                    src={isLight ? "/assets/images/unec-logo-dark.svg" : "/assets/images/unec-logo.svg"}
+                                    alt="Logo"
+                                    width={150}
+                                    height={150}
+                                    className="object-contain w-auto h-10 xl:h-[67px]"
+                                />
+                            </Link>
+                        </div>
 
-      {/* Scrolled Header - Shows when scrolling down */}
-      <motion.header
-        initial={{ y: "-100%" }}
-        animate={{ y: isScrolled ? 0 : "-100%" }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-0 left-0 w-full z-1000 bg-white shadow-md"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-3 xl:py-4">
-            <div>
-              <Link href="/">
-                <Image src="/assets/images/unec-logo-dark.svg" alt="Logo" width={120} height={120} className="object-contain w-10 xl:w-12" />
-              </Link>
-            </div>
+                        {/* Desktop Navigation */}
+                        <nav className="hidden lg:block">
+                            <ul className="flex ">
+                                {navLinks.map((link, index) => (
+                                    <li
+                                        key={index}
+                                        className={`border-r px-[15px] last:border-r-0 last:pr-0 block py-0  ${isLight ? "border-white" : "border-gray-300"}`}
+                                    >
+                                        <Link
+                                            href={link.href}
+                                            className={`text-12 leading-3 block uppercase transition-all duration-200 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300
+${isActive(link.href) ? "after:w-full font-semibold text-primary" : "after:w-0 hover:after:w-full"}
+${isLight ? " text-gray-800 hover:text-primary" : " text-white hover:text-white/80"}
+`}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
 
-            {/* Desktop Navigation - Scrolled */}
-            <nav className="hidden lg:block">
-              <ul className="flex">
-                {navLinks.map((link, index) => (
-                  <li key={index} className={`border-r px-[15px] last:border-r-0 last:pr-0 block py-0  ${isLight ? 'border-white' : 'border-gray-300'}`}>
-                    <Link href={link.href}
-                      className={`text-12 leading-3 block uppercase transition-all duration-200 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:w-0  hover:after:w-full focus:after:w-full after:h-[2px] after:bg-primary  ${isLight
-                        ? 'text-gray-800 hover:text-primary font-semibold'
-                        : 'text-secondary hover:text-black/80'
-                        }`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {/* Mobile Menu Button - Scrolled */}
-            <button
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden text-gray-800 text-3xl"
-              aria-label="Open menu"
-            >
-              <IoIosMenu />
-            </button>
-          </div>
-        </div>
-      </motion.header>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/50 z-[60] lg:hidden"
-              onClick={closeMobileMenu}
-            />
-
-            {/* Mobile Menu */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[70] lg:hidden shadow-2xl"
-            >
-              <div className="flex flex-col h-full">
-                {/* Header with Logo and Close Button */}
-                <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200">
-                  <Image
-                    src="/assets/images/unec-logo-dark.svg"
-                    alt="Logo"
-                    width={100}
-                    height={100}
-                    className="object-contain w-10"
-                  />
-                  <button
-                    onClick={closeMobileMenu}
-                    className="text-gray-800 text-4xl hover:text-gray-600 transition-colors"
-                    aria-label="Close menu"
-                  >
-                    <IoCloseOutline />
-                  </button>
-                </div>
-
-                {/* Mobile Navigation */}
-                <nav className="flex-1 px-6 py-6">
-                  <ul className="flex flex-col gap-4">
-                    {navLinks.map((link, index) => (
-                      <motion.li
-                        key={link.href}
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.3 }}
-                      >
-                        <Link
-                          href={link.href}
-                          onClick={closeMobileMenu}
-                          className="block text-gray-800 text-sm uppercase hover:bg-gray-100 rounded-lg transition-all duration-200 font-light"
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className={`lg:hidden text-3xl z-50 ${isLight ? "text-gray-800" : "text-white"}`}
+                            aria-label="Open menu"
                         >
-                          {link.label}
-                        </Link>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </nav>
-
-                {/* Social Links */}
-                <div className="flex flex-col px-6 pb-10 pt-10 border-t border-gray-200">
-                  <h3 className="text-2xl font-normal mb-4">Connect</h3>
-                  <ul className="flex items-center gap-1 flex-wrap">
-                    {socialLinks.map((social, index) => {
-                      const Icon = social.icon;
-                      return (
-                        <Link
-                          href={social.href}
-                          key={index}
-                          aria-label={social.label}
-                          className="w-8 h-8 bg-primary rounded-full border border-white text-white flex items-center justify-center hover:bg-black transition-colors group"
-                        >
-                          {social.icon === 'custom' && social.customSrc ? (
-                            <Image
-                              src={social.customSrc}
-                              alt={social.label}
-                              width={20}
-                              height={20}
-                              className="w-4 h-4 group-hover:scale-110 transition-all"
-                            />
-                          ) : (
-                            typeof Icon !== 'string' && <Icon className="text-sm group-hover:scale-110 transition-all" />
-                          )}
-                        </Link>
-                      );
-                    })}
-                  </ul>
+                            <IoIosMenu />
+                        </button>
+                    </div>
                 </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
+            </header>
+
+            {/* Scrolled Header - Shows when scrolling down */}
+            <motion.header
+                ref={fixedHeaderRef}
+                initial={{ y: "-100%" }}
+                animate={{ y: isScrolled ? 0 : "-100%" }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="fixed top-0 left-0 w-full z-1000 bg-white shadow-md"
+            >
+                <div className="container mx-auto px-4">
+                    <div className="flex items-center justify-between py-3 xl:py-4">
+                        <div>
+                            <Link href="/">
+                                <Image
+                                    src="/assets/images/unec-logo-dark.svg"
+                                    alt="Logo"
+                                    width={120}
+                                    height={120}
+                                    className="object-contain w-10 xl:w-12"
+                                />
+                            </Link>
+                        </div>
+
+                        {/* Desktop Navigation - Scrolled */}
+                        <nav className="hidden lg:block">
+                            <ul className="flex">
+                                {navLinks.map((link, index) => (
+                                    <li
+                                        key={index}
+                                        className={`border-r px-[15px] last:border-r-0 last:pr-0 block py-0  ${isLight ? "border-white" : "border-gray-300"}`}
+                                    >
+                                        <Link
+                                            href={link.href}
+                                            className={`text-12 leading-3 block uppercase transition-all duration-200 relative after:content-[''] after:absolute after:bottom-[-10px] after:left-0 after:h-[2px] after:bg-primary after:origin-left after:transition-all after:duration-300
+  ${isActive(link.href) ? "after:w-full font-semibold text-primary" : "after:w-0 hover:after:w-full"}
+  ${isLight ? " text-gray-800 hover:text-primary" : " text-secondary hover:text-black/80"}
+`}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+
+                        {/* Mobile Menu Button - Scrolled */}
+                        <button
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className="lg:hidden text-gray-800 text-3xl"
+                            aria-label="Open menu"
+                        >
+                            <IoIosMenu />
+                        </button>
+                    </div>
+                </div>
+            </motion.header>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <>
+                        {/* Backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="fixed inset-0 bg-black/50 z-[1000] lg:hidden"
+                            onClick={closeMobileMenu}
+                        />
+
+                        {/* Mobile Menu */}
+                        <motion.div
+                            initial={{ x: "100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "100%" }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="fixed top-0 right-0 h-full w-[280px] sm:w-[320px] bg-white z-[1500] lg:hidden shadow-2xl"
+                        >
+                            <div className="flex flex-col h-full">
+                                {/* Header with Logo and Close Button */}
+                                <div className="flex items-center justify-between px-6 py-3 border-b border-gray-200">
+                                    <Image
+                                        src="/assets/images/unec-logo-dark.svg"
+                                        alt="Logo"
+                                        width={100}
+                                        height={100}
+                                        className="object-contain w-10"
+                                    />
+                                    <button
+                                        onClick={closeMobileMenu}
+                                        className="text-gray-800 text-4xl hover:text-gray-600 transition-colors"
+                                        aria-label="Close menu"
+                                    >
+                                        <IoCloseOutline />
+                                    </button>
+                                </div>
+
+                                {/* Mobile Navigation */}
+                                <nav className="flex-1 px-6 py-6">
+                                    <ul className="flex flex-col gap-4">
+                                        {navLinks.map((link, index) => (
+                                            <motion.li
+                                                key={link.href}
+                                                initial={{ opacity: 0, x: 50 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: index * 0.1, duration: 0.3 }}
+                                            >
+                                                <Link
+                                                    href={link.href}
+                                                    onClick={closeMobileMenu}
+                                                    className="block text-gray-800 text-sm uppercase hover:bg-gray-100 rounded-lg transition-all duration-200 font-light"
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+                                </nav>
+
+                                {/* Social Links */}
+                                <div className="flex flex-col px-6 pb-10 pt-10 border-t border-gray-200">
+                                    <h3 className="text-2xl font-normal mb-4">Connect</h3>
+                                    <ul className="flex items-center gap-1 flex-wrap">
+                                        {socialLinks.map((social, index) => {
+                                            const Icon = social.icon;
+                                            return (
+                                                <Link
+                                                    href={social.href}
+                                                    key={index}
+                                                    aria-label={social.label}
+                                                    className="w-8 h-8 bg-primary rounded-full border border-white text-white flex items-center justify-center hover:bg-black transition-colors group"
+                                                >
+                                                    {social.icon === "custom" && social.customSrc ? (
+                                                        <Image
+                                                            src={social.customSrc}
+                                                            alt={social.label}
+                                                            width={20}
+                                                            height={20}
+                                                            className="w-4 h-4 group-hover:scale-110 transition-all"
+                                                        />
+                                                    ) : (
+                                                        typeof Icon !== "string" && (
+                                                            <Icon className="text-sm group-hover:scale-110 transition-all" />
+                                                        )
+                                                    )}
+                                                </Link>
+                                            );
+                                        })}
+                                    </ul>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+        </>
+    );
 };
 
 export default Navbar;

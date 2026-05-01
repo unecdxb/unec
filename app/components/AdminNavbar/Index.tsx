@@ -49,11 +49,11 @@ const AdminNavbar = () => {
         { name: "Enquiries", href: "/admin/career/enquiries" }
       ]
     },
+    { name: "Newsletter", href: "/admin/newsletter", icon: BriefcaseIcon },
     // { name: "Founder's Message", href: "/admin/founders-message", icon: LucideSword },
     // { name: "Manager's Message", href: "/admin/managers-message", icon: MdManageAccounts },
     // { name: "Leadership Team", href: "/admin/leadership-team", icon: UserGroupIcon },
     // { name: "Learning Program", href: "/admin/learning-program", icon: BookA },
-
     // { name: "Interests", href: "/admin/interests", icon: MdInterests },
     // { name: "Footer Enquiries", href: "/admin/footer-enquiries", icon: FaDownLong },
     // { name: "Testimonials", href: "/admin/testimonials", icon: MdReviews },
